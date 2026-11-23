@@ -1667,7 +1667,7 @@
         <div class="min-w-0">
           <p class="text-xs font-semibold text-text-main">Language / Bahasa</p>
           <p class="text-[11px] text-text-subtle">
-            Interface language for the dashboard (id / en / zh / ja)
+            Interface language for the dashboard (en / id / zh)
           </p>
         </div>
         <select

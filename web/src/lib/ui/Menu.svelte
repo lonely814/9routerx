@@ -13,9 +13,7 @@
   inside `overflow-x-auto` tables and an `overflow-y-auto` page — which is what
   pushed the Cache Analytics dropdown off the right edge on a phone.
 
-  The panel is also portalled to `<body>` while it is open: `position: fixed`
-  resolves against the nearest ancestor that establishes a containing block,
-  and the top bar's `backdrop-blur-xl` `<header>` is exactly that, so its panel
+  The panel is also portalled to `<body>{t('` while it is open: `position: fixed` resolves against the nearest ancestor that establishes a containing block, and the top bar\'s `backdrop-blur-xl` `')}<header>` is exactly that, so its panel
   was laid out from the header's box and rendered off-screen (issue #235).
 
   The trigger is labelled "Menu" rather than icon-only: an icon alone gives a
@@ -175,9 +173,7 @@
            there, and an unlabelled glyph there would be a bare tap target. -->
       <span class={fullWidth ? '' : 'hidden sm:inline'}>{t('Menu')}</span>
       {#if !fullWidth}
-        <span class="material-symbols-outlined text-[16px] text-text-muted" aria-hidden="true">
-          expand_more
-        </span>
+        <span class="material-symbols-outlined text-[16px] text-text-muted" aria-hidden="true">expand_more</span>
       {/if}
     {/if}
   </button>

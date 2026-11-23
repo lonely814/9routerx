@@ -749,9 +749,7 @@
             <!-- FASE UI-GLEPH: the tagline the rebrand had to keep, one mono
                  line at the foot of every dashboard page (spec §4). -->
             <footer class="mt-10 border-t border-[var(--app-border)] pt-4 pb-2 text-center">
-              <span class="font-code text-[10px] tracking-[0.18em] text-[var(--app-text-subtle)]">
-                9RouterX — 9R Next Go Generation
-              </span>
+              <span class="font-code text-[10px] tracking-[0.18em] text-[var(--app-text-subtle)]">{t('9RouterX — 9R Next Go Generation')}</span>
             </footer>
           {/if}
         </div>

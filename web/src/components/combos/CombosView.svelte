@@ -615,9 +615,7 @@
         </button>
       {/if}
     </div>
-    <Button onclick={handleReconcile} variant="ghost" size="sm" loading={isReconciling}>
-      Reconcile rules
-    </Button>
+    <Button onclick={handleReconcile} variant="ghost" size="sm" loading={isReconciling}>{t('Reconcile rules')}</Button>
     {#if reconcileNote}
       <span class="text-[11px] text-text-muted">{reconcileNote}</span>
     {/if}
@@ -667,9 +665,7 @@
               onclick={handleApplyBulkStrategy}
               disabled={!bulkStrategy}
               class="whitespace-nowrap"
-            >
-              Apply Strategy
-            </Button>
+            >{t('Apply Strategy')}</Button>
             <Button
               icon="delete"
               size="sm"
@@ -679,9 +675,7 @@
             >
               Delete ({selectedCombos.length})
             </Button>
-            <Button size="sm" variant="ghost" onclick={clearSelection} class="whitespace-nowrap">
-              Clear
-            </Button>
+            <Button size="sm" variant="ghost" onclick={clearSelection} class="whitespace-nowrap">{t('Clear')}</Button>
           {/if}
         </div>
       {/if}
@@ -776,9 +770,7 @@
         </div>
         <p class="text-text-main font-medium mb-1">{t('No combos yet')}</p>
         <p class="text-sm text-text-muted mb-4">{t('Create model combos with fallback support')}</p>
-        <Button icon="add" onclick={openCreateModal} class="w-full sm:w-auto">
-          Create Combo
-        </Button>
+        <Button icon="add" onclick={openCreateModal} class="w-full sm:w-auto">{t('Create Combo')}</Button>
       </div>
     </Card>
   {:else}

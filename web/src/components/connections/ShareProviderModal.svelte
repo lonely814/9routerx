@@ -350,18 +350,14 @@
               class="rounded-[8px] border px-3 py-1.5 text-xs font-medium transition-colors cursor-pointer {credentialScope === 'none'
                 ? 'border-brand-500 bg-brand-500/10 text-brand-500'
                 : 'border-border bg-surface-2 text-text-muted hover:text-text-main'}"
-            >
-              None
-            </button>
+            >{t('None')}</button>
             <button
               type="button"
               onclick={() => (credentialScope = 'single')}
               class="rounded-[8px] border px-3 py-1.5 text-xs font-medium transition-colors cursor-pointer {credentialScope === 'single'
                 ? 'border-brand-500 bg-brand-500/10 text-brand-500'
                 : 'border-border bg-surface-2 text-text-muted hover:text-text-main'}"
-            >
-              One key
-            </button>
+            >{t('One key')}</button>
           </div>
           {#if credentialScope === 'single'}
             {#if keyedConnections.length === 0}
@@ -436,17 +432,11 @@
             <span class="text-sm font-medium text-text-main">{t('Endpoint fields')}</span>
             <div class="flex flex-wrap gap-4">
               <label class="flex items-center gap-2 text-xs text-text-main">
-                <input type="checkbox" bind:checked={includeURL} class="accent-brand-500" />
-                Base URL
-              </label>
+                <input type="checkbox" bind:checked={includeURL} class="accent-brand-500" />{t('Base URL')}</label>
               <label class="flex items-center gap-2 text-xs text-text-main">
-                <input type="checkbox" bind:checked={includePrefix} class="accent-brand-500" />
-                Prefix
-              </label>
+                <input type="checkbox" bind:checked={includePrefix} class="accent-brand-500" />{t('Prefix')}</label>
               <label class="flex items-center gap-2 text-xs text-text-main">
-                <input type="checkbox" bind:checked={includeName} class="accent-brand-500" />
-                Display name
-              </label>
+                <input type="checkbox" bind:checked={includeName} class="accent-brand-500" />{t('Display name')}</label>
             </div>
           </div>
         {/if}
@@ -471,9 +461,7 @@
                 </div>
               {/each}
             </div>
-            <p class="text-xs text-text-muted">
-              Each key becomes a connection on the receiver, named as above. The number is its rotation order.
-            </p>
+            <p class="text-xs text-text-muted">{t('Each key becomes a connection on the receiver, named as above. The number is its rotation order.')}</p>
             {#if bulkMissingKeys}
               <p class="text-xs text-warning">{t('Reading the stored keys…')}</p>
             {/if}
@@ -496,10 +484,7 @@
               {/each}
             </div>
           {/if}
-          <p class="text-xs text-text-muted">
-            Each checked provider is added on the receiver with its model catalogue auto-fetched. Credentials are not
-            carried — the receiver pastes them.
-          </p>
+          <p class="text-xs text-text-muted">{t('Each checked provider is added on the receiver with its model catalogue auto-fetched. Credentials are not carried — the receiver pastes them.')}</p>
         </div>
       {/if}
 
@@ -517,26 +502,20 @@
 
       <!-- Warnings -->
       {#if hasCredential}
-        <p class="rounded-lg border border-warning/40 bg-warning/10 p-3 text-xs text-text-main">
-          This link contains a live API key. Anyone who obtains it can spend your quota. Treat it like a password.
-        </p>
+        <p class="rounded-lg border border-warning/40 bg-warning/10 p-3 text-xs text-text-main">{t('This link contains a live API key. Anyone who obtains it can spend your quota. Treat it like a password.')}</p>
       {/if}
       {#if scope === 'set'}
-        <p class="rounded-lg border border-warning/40 bg-warning/10 p-3 text-xs text-text-main">
-          A multi-provider link is encoded, not encrypted — anyone who obtains it can read everything in it.
-        </p>
+        <p class="rounded-lg border border-warning/40 bg-warning/10 p-3 text-xs text-text-main">{t('A multi-provider link is encoded, not encrypted — anyone who obtains it can read everything in it.')}</p>
       {/if}
       {#if shownTier === 'split'}
         <p class="rounded-lg border border-warning/40 bg-warning/10 p-3 text-xs text-text-main">
           This link is {shownURL.length} characters — too long for many chat clients and browser history. Use
-          <strong>{t('Copy in two parts')}</strong> and send the credentials separately.
-        </p>
+          <strong>{t('Copy in two parts')}</strong>{t('and send the credentials separately.')}</p>
       {/if}
       {#if shownTier === 'refuse'}
         <p class="rounded-lg border border-error/40 bg-error/10 p-3 text-xs text-text-main">
           This link would be {shownURL.length} characters, which no client can carry reliably. Share the provider link
-          without credentials and send the keys through <strong>{t('Export Keys')}</strong> instead.
-        </p>
+          without credentials and send the keys through <strong>{t('Export Keys')}</strong>{t('instead.')}</p>
       {/if}
       {#if buildError}<p class="text-xs text-error">{buildError}</p>{/if}
 
@@ -574,9 +553,7 @@
           <p class="text-xs text-text-muted">{shownOutput.length} characters</p>
           {#if outputFormat === 'file'}
             <Button variant="secondary" onclick={downloadFile}>
-              <span class="material-symbols-outlined text-[16px]">download</span>
-              Download
-            </Button>
+              <span class="material-symbols-outlined text-[16px]">download</span>{t('Download')}</Button>
           {/if}
         </div>
         {#if outputFormat === 'scheme' && schemeToken}
@@ -595,8 +572,7 @@
         {#if shownOutputTier === 'refuse' && outputFormat === 'url'}
           <p class="rounded-lg border border-error/40 bg-error/10 p-3 text-xs text-text-main">
             This URL would be {shownOutput.length} characters, which no client can carry reliably. Use the
-            <strong>{t('9routerx://')}</strong> {t('token or download a')} <strong>{t('.9routerx.json')}</strong> file instead.
-          </p>
+            <strong>{t('9routerx://')}</strong> {t('token or download a')} <strong>{t('.9routerx.json')}</strong>{t('file instead.')}</p>
         {/if}
       </div>
     </div>
@@ -606,9 +582,7 @@
     <div class="flex items-center justify-end gap-2">
       {#if shownTier === 'split'}
         <Button variant="secondary" onclick={copySplit}>
-          <span class="material-symbols-outlined text-[16px]">content_copy</span>
-          Copy in two parts
-        </Button>
+          <span class="material-symbols-outlined text-[16px]">content_copy</span>{t('Copy in two parts')}</Button>
       {/if}
       <Button
         variant="primary"

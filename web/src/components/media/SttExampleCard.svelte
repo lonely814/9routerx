@@ -228,9 +228,7 @@
             title={useTunnel ? 'Using tunnel' : 'Using local'}
             class="flex items-center gap-1 text-xs px-2 py-1.5 rounded-lg border shrink-0 transition-colors cursor-pointer {useTunnel ? 'border-primary/40 bg-primary/10 text-primary' : 'border-border text-text-muted hover:text-primary'}"
           >
-            <span class="material-symbols-outlined text-[14px]">wifi_tethering</span>
-            Tunnel
-          </button>
+            <span class="material-symbols-outlined text-[14px]">wifi_tethering</span>{t('Tunnel')}</button>
         {/if}
       </div>
     </div>
@@ -365,9 +363,7 @@
               type="checkbox"
               bind:checked={tagAudioEvents}
               class="accent-primary"
-            />
-            Label non-speech sounds as [laughter], [applause], ...
-          </label>
+            />{t('Label non-speech sounds as [laughter], [applause], ...')}</label>
         </div>
       </div>
     {/if}
@@ -381,9 +377,7 @@
               type="checkbox"
               bind:checked={diarize}
               class="accent-primary"
-            />
-            Detect speakers automatically (overrides speaker count)
-          </label>
+            />{t('Detect speakers automatically (overrides speaker count)')}</label>
         </div>
       </div>
     {/if}
@@ -425,9 +419,7 @@
             disabled={running || !audioFile || !modelFull}
             class="flex w-full sm:w-auto items-center justify-center gap-1.5 px-3 py-1 rounded-lg bg-primary text-white text-xs font-medium hover:bg-primary/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
           >
-            <span class="material-symbols-outlined text-[14px] {running ? 'animate-spin' : ''}">
-              play_arrow
-            </span>
+            <span class="material-symbols-outlined text-[14px] {running ? 'animate-spin' : ''}">{t('play_arrow')}</span>
             {running ? 'Transcribing...' : 'Run'}
           </button>
         </div>

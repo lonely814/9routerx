@@ -615,9 +615,7 @@
           <h1 class="font-headline text-2xl sm:text-3xl font-bold text-text-main tracking-tight flex items-center gap-2">
             CLI & IDE Tools
           </h1>
-          <p class="font-body text-xs sm:text-sm text-text-muted">
-            Configure Cursor, Claude Code, Cline, and terminal agents to connect to 9RouterX
-          </p>
+          <p class="font-body text-xs sm:text-sm text-text-muted">{t('Configure Cursor, Claude Code, Cline, and terminal agents to connect to 9RouterX')}</p>
         </div>
       </div>
     </div>
@@ -652,9 +650,7 @@
         class="flex-1 sm:flex-initial whitespace-nowrap px-3 py-1.5 rounded-lg text-xs font-semibold transition cursor-pointer {activeCategory === 'cli'
           ? 'bg-surface text-brand-500 shadow-sm'
           : 'text-text-muted hover:text-text-main'}"
-      >
-        CLI Agents
-      </button>
+      >{t('CLI Agents')}</button>
       <button
         type="button"
         onclick={() => (activeCategory = 'ide')}
@@ -670,9 +666,7 @@
         class="flex-1 sm:flex-initial whitespace-nowrap px-3 py-1.5 rounded-lg text-xs font-semibold transition cursor-pointer {activeCategory === 'mitm'
           ? 'bg-surface text-brand-500 shadow-sm'
           : 'text-text-muted hover:text-text-main'}"
-      >
-        MITM Proxies
-      </button>
+      >{t('MITM Proxies')}</button>
     </div>
 
     <!-- Search Input -->
@@ -955,9 +949,7 @@
           type="button"
           onclick={() => (selectedTool = null)}
           class="py-2 px-5 rounded-lg bg-brand-500 hover:bg-brand-600 text-white font-semibold text-xs transition cursor-pointer"
-        >
-          Done
-        </button>
+        >{t('Done')}</button>
       </div>
     </div>
   </div>

@@ -110,17 +110,13 @@
   <!-- 1. Custom Providers -->
   <div class="flex flex-col gap-4">
     <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-      <h2 class="text-lg sm:text-xl font-semibold leading-tight text-text-main">
-        Custom Providers (OpenAI, Anthropic, Embedding)
-      </h2>
+      <h2 class="text-lg sm:text-xl font-semibold leading-tight text-text-main">{t('Custom Providers (OpenAI, Anthropic, Embedding)')}</h2>
       <div class="flex flex-col gap-2 sm:flex-row sm:w-auto">
         <Button size="sm" onclick={onAddCustom} class="w-full sm:w-auto">
-          <Plus class="w-4 h-4 mr-1" /> Add Custom Provider
-        </Button>
+          <Plus class="w-4 h-4 mr-1" />{t('Add Custom Provider')}</Button>
         {#if onImport}
           <Button size="sm" variant="secondary" onclick={onImport} class="w-full sm:w-auto">
-            <Download class="w-4 h-4 mr-1" /> Import
-          </Button>
+            <Download class="w-4 h-4 mr-1" />{t('Import')}</Button>
         {/if}
       </div>
     </div>
@@ -152,8 +148,7 @@
       <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <h2 class="text-lg sm:text-xl font-semibold leading-tight text-text-main">{t('OAuth Providers')}</h2>
         <Button size="sm" variant="outline" class="text-xs w-full sm:w-auto text-text-muted hover:text-text-main" onclick={() => notifications.info('Testing OAuth connections...')}>
-          <Play class="w-3.5 h-3.5 mr-1 text-text-muted" /> Test All
-        </Button>
+          <Play class="w-3.5 h-3.5 mr-1 text-text-muted" />{t('Test All')}</Button>
       </div>
       <div class="grid grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-4 lg:grid-cols-3 xl:grid-cols-4">
         {#each oauthProviders as p (p.id)}
@@ -175,8 +170,7 @@
       <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <h2 class="text-lg sm:text-xl font-semibold leading-tight text-text-main">{t('Free Tier Providers')}</h2>
         <Button size="sm" variant="outline" class="text-xs w-full sm:w-auto text-text-muted hover:text-text-main" onclick={() => notifications.info('Testing Free Tier connections...')}>
-          <Play class="w-3.5 h-3.5 mr-1 text-text-muted" /> Test All
-        </Button>
+          <Play class="w-3.5 h-3.5 mr-1 text-text-muted" />{t('Test All')}</Button>
       </div>
       <div class="grid grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-4 lg:grid-cols-3 xl:grid-cols-4">
         {#each freeTierProviders as p (p.id)}
@@ -199,8 +193,7 @@
       <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <h2 class="text-lg sm:text-xl font-semibold leading-tight text-text-main">{t('API Key Providers')}</h2>
         <Button size="sm" variant="outline" class="text-xs w-full sm:w-auto text-text-muted hover:text-text-main" onclick={() => notifications.info('Testing API Key connections...')}>
-          <Play class="w-3.5 h-3.5 mr-1 text-text-muted" /> Test All
-        </Button>
+          <Play class="w-3.5 h-3.5 mr-1 text-text-muted" />{t('Test All')}</Button>
       </div>
       <div class="grid grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-4 lg:grid-cols-3 xl:grid-cols-4">
         {#each visibleApikeyProviders as p (p.id)}
@@ -240,9 +233,7 @@
               <span
                 class="absolute right-2 top-2 z-10 rounded-full bg-surface-2 text-text-muted font-semibold px-2 py-0.5 text-[10px]"
                 title={t('disabled — enable via the Web Cookie Providers dashboard toggle / CLAUDE_WEB_ENABLED')}
-              >
-                disabled — enable via dashboard toggle / CLAUDE_WEB_ENABLED
-              </span>
+              >{t('disabled — enable via dashboard toggle / CLAUDE_WEB_ENABLED')}</span>
             {/if}
             <ProviderCard
               id={p.id}

@@ -202,27 +202,21 @@
         class="rounded-lg px-3 py-1 text-xs font-semibold transition-colors cursor-pointer {viewMode === 'costs'
           ? 'bg-brand-500 text-white shadow-sm'
           : 'text-text-muted hover:text-text-main'}"
-      >
-        Costs
-      </button>
+      >{t('Costs')}</button>
       <button
         type="button"
         onclick={() => (viewMode = 'tokens')}
         class="rounded-lg px-3 py-1 text-xs font-semibold transition-colors cursor-pointer {viewMode === 'tokens'
           ? 'bg-brand-500 text-white shadow-sm'
           : 'text-text-muted hover:text-text-main'}"
-      >
-        Tokens
-      </button>
+      >{t('Tokens')}</button>
     </div>
   </div>
 
   <!-- Breakdown Table Card -->
   <Card padding="none" class="overflow-hidden border border-border">
     {#if tableData().length === 0}
-      <div class="p-8 text-center text-text-muted text-sm font-body">
-        No usage recorded for this period.
-      </div>
+      <div class="p-8 text-center text-text-muted text-sm font-body">{t('No usage recorded for this period.')}</div>
     {:else}
       <div class="overflow-x-auto">
         <table class="glyph-table w-full text-left border-collapse text-xs font-body">
@@ -236,49 +230,35 @@
               </th>
               {#if tableView !== 'provider'}
                 <th class="py-3 px-4 hidden md:table-cell" aria-sort={sortKey === 'provider' ? (sortDir === 'asc' ? 'ascending' : 'descending') : 'none'}>
-                  <button type="button" class={headerClass('provider')} onclick={() => toggleSort('provider')}>
-                    Provider
-                    <span class="text-[9px]">{arrow('provider')}</span>
+                  <button type="button" class={headerClass('provider')} onclick={() => toggleSort('provider')}>{t('Provider')}<span class="text-[9px]">{arrow('provider')}</span>
                   </button>
                 </th>
               {/if}
               <th class="py-3 px-4" aria-sort={sortKey === 'requests' ? (sortDir === 'asc' ? 'ascending' : 'descending') : 'none'}>
-                <button type="button" class={headerClass('requests', 'right')} onclick={() => toggleSort('requests')}>
-                  Requests
-                  <span class="text-[9px]">{arrow('requests')}</span>
+                <button type="button" class={headerClass('requests', 'right')} onclick={() => toggleSort('requests')}>{t('Requests')}<span class="text-[9px]">{arrow('requests')}</span>
                 </button>
               </th>
               {#if viewMode === 'costs'}
                 <th class="py-3 px-4" aria-sort={sortKey === 'cost' ? (sortDir === 'asc' ? 'ascending' : 'descending') : 'none'}>
-                  <button type="button" class={headerClass('cost', 'right')} onclick={() => toggleSort('cost')}>
-                    Total Cost
-                    <span class="text-[9px]">{arrow('cost')}</span>
+                  <button type="button" class={headerClass('cost', 'right')} onclick={() => toggleSort('cost')}>{t('Total Cost')}<span class="text-[9px]">{arrow('cost')}</span>
                   </button>
                 </th>
               {:else}
                 <th class="py-3 px-4" aria-sort={sortKey === 'promptTokens' ? (sortDir === 'asc' ? 'ascending' : 'descending') : 'none'}>
-                  <button type="button" class={headerClass('promptTokens', 'right')} onclick={() => toggleSort('promptTokens')}>
-                    In Tokens
-                    <span class="text-[9px]">{arrow('promptTokens')}</span>
+                  <button type="button" class={headerClass('promptTokens', 'right')} onclick={() => toggleSort('promptTokens')}>{t('In Tokens')}<span class="text-[9px]">{arrow('promptTokens')}</span>
                   </button>
                 </th>
                 <th class="py-3 px-4" aria-sort={sortKey === 'completionTokens' ? (sortDir === 'asc' ? 'ascending' : 'descending') : 'none'}>
-                  <button type="button" class={headerClass('completionTokens', 'right')} onclick={() => toggleSort('completionTokens')}>
-                    Out Tokens
-                    <span class="text-[9px]">{arrow('completionTokens')}</span>
+                  <button type="button" class={headerClass('completionTokens', 'right')} onclick={() => toggleSort('completionTokens')}>{t('Out Tokens')}<span class="text-[9px]">{arrow('completionTokens')}</span>
                   </button>
                 </th>
                 <th class="py-3 px-4" aria-sort={sortKey === 'cachedTokens' ? (sortDir === 'asc' ? 'ascending' : 'descending') : 'none'}>
-                  <button type="button" class={headerClass('cachedTokens', 'right')} onclick={() => toggleSort('cachedTokens')}>
-                    Cached Tokens
-                    <span class="text-[9px]">{arrow('cachedTokens')}</span>
+                  <button type="button" class={headerClass('cachedTokens', 'right')} onclick={() => toggleSort('cachedTokens')}>{t('Cached Tokens')}<span class="text-[9px]">{arrow('cachedTokens')}</span>
                   </button>
                 </th>
               {/if}
               <th class="py-3 px-4 hidden md:table-cell" aria-sort={sortKey === 'lastUsed' ? (sortDir === 'asc' ? 'ascending' : 'descending') : 'none'}>
-                <button type="button" class={headerClass('lastUsed', 'right')} onclick={() => toggleSort('lastUsed')}>
-                  Last Used
-                  <span class="text-[9px]">{arrow('lastUsed')}</span>
+                <button type="button" class={headerClass('lastUsed', 'right')} onclick={() => toggleSort('lastUsed')}>{t('Last Used')}<span class="text-[9px]">{arrow('lastUsed')}</span>
                 </button>
               </th>
             </tr>

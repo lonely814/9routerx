@@ -161,9 +161,7 @@
             {#if skill.isEntry}
               <span
                 class="px-2 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider bg-brand-500/15 text-brand-600 dark:text-brand-400 border border-brand-500/30"
-              >
-                START HERE
-              </span>
+              >{t('START HERE')}</span>
             {/if}
 
             {#if skill.endpoint}

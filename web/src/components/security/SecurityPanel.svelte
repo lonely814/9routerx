@@ -364,12 +364,7 @@
         {#if vault && !vault.enabled}
           <div class="flex items-start gap-2.5 rounded-[10px] border border-warning/25 bg-warning/5 p-3">
             <AlertTriangle class="mt-0.5 h-4 w-4 shrink-0 text-warning" />
-            <p class="text-xs leading-relaxed text-text-muted">
-              Credentials are stored in plaintext. Set
-              <span class="font-code text-text-main">{t('ROUTER_MASTER_KEY')}</span>
-              to a base64 32-byte value and restart the gateway to encrypt them. This is opt-in —
-              nothing changes until you set it.
-            </p>
+            <p class="text-xs leading-relaxed text-text-muted">{t('Credentials are stored in plaintext. Set')}<span class="font-code text-text-main">{t('ROUTER_MASTER_KEY')}</span>{t('to a base64 32-byte value and restart the gateway to encrypt them. This is opt-in — nothing changes until you set it.')}</p>
           </div>
         {:else if vault}
           <div class="space-y-2 border-t border-border-subtle pt-4">
@@ -386,9 +381,7 @@
               size="sm"
               disabled={!rotateKey.trim()}
               onclick={() => (isRotateConfirmOpen = true)}
-            >
-              Rotate key
-            </Button>
+            >{t('Rotate key')}</Button>
           </div>
         {:else}
           <p class="text-sm text-text-muted">{t('Vault status unavailable.')}</p>
@@ -416,11 +409,7 @@
             ? 'Policies are scanning prompts and responses on every request.'
             : 'Policies are kept but not enforced — the escape hatch for a false positive.'}
         </p>
-        <p class="text-xs leading-relaxed text-text-subtle">
-          Policies layer from least to most specific (global → provider → model → chain → API key).
-          The most specific matching policy wins; a request with no policy passes through
-          unscanned.
-        </p>
+        <p class="text-xs leading-relaxed text-text-subtle">{t('Policies layer from least to most specific (global → provider → model → chain → API key). The most specific matching policy wins; a request with no policy passes through unscanned.')}</p>
       </div>
     </Card>
   </div>
@@ -430,9 +419,7 @@
     <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
       <div>
         <h2 class="text-base font-semibold text-text-main">{t('Guardrail policies')}</h2>
-        <p class="mt-0.5 text-sm text-text-muted">
-          One policy per scope — the resolver takes the most specific match.
-        </p>
+        <p class="mt-0.5 text-sm text-text-muted">{t('One policy per scope — the resolver takes the most specific match.')}</p>
       </div>
       <div class="flex items-center gap-2">
         <select
@@ -452,21 +439,15 @@
           onclick={load}
           title={t('Reload vault status, policies and audit log')}
         >
-          <RefreshCw size={15} />
-          Refresh
-        </Button>
+          <RefreshCw size={15} />{t('Refresh')}</Button>
         <Button variant="primary" size="md" onclick={openEditor}>
-          <Plus size={16} />
-          New policy
-        </Button>
+          <Plus size={16} />{t('New policy')}</Button>
       </div>
     </div>
 
     {#if isLoading && policies.length === 0}
       <div class="flex items-center gap-2 py-8 text-sm text-text-muted">
-        <RefreshCw size={15} class="animate-spin" />
-        Loading policies…
-      </div>
+        <RefreshCw size={15} class="animate-spin" />{t('Loading policies…')}</div>
     {:else if visiblePolicies.length === 0}
       <div class="rounded-[14px] border border-border-subtle bg-surface px-5 py-8 text-center">
         <p class="text-sm text-text-muted">
@@ -547,9 +528,7 @@
     {#if logs.length === 0}
       <div class="rounded-[14px] border border-border-subtle bg-surface px-5 py-8 text-center">
         <p class="inline-flex items-center gap-2 text-sm text-text-muted">
-          <KeyRound size={15} />
-          No guardrail decisions recorded yet.
-        </p>
+          <KeyRound size={15} />{t('No guardrail decisions recorded yet.')}</p>
       </div>
     {:else}
       <div class="overflow-hidden rounded-[14px] border border-border-subtle bg-surface">
@@ -693,9 +672,7 @@
           />
         </div>
         <Button variant="outline" size="sm" onclick={addCustomPattern} disabled={!customRegex.trim()}>
-          <Plus size={14} />
-          Add pattern
-        </Button>
+          <Plus size={14} />{t('Add pattern')}</Button>
         {#if formCustomPatterns.length > 0}
           <div class="space-y-2">
             {#each formCustomPatterns as pattern, index (index)}
@@ -738,17 +715,13 @@
   </form>
 
   {#snippet footer()}
-    <Button variant="ghost" onclick={() => (isEditorOpen = false)} disabled={isCreating}>
-      Cancel
-    </Button>
+    <Button variant="ghost" onclick={() => (isEditorOpen = false)} disabled={isCreating}>{t('Cancel')}</Button>
     <Button
       variant="primary"
       loading={isCreating}
       disabled={isCreating}
       onclick={createPolicy}
-    >
-      Create policy
-    </Button>
+    >{t('Create policy')}</Button>
   {/snippet}
 </Modal>
 

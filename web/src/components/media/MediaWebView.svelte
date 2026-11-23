@@ -122,8 +122,7 @@
         </div>
       </div>
       <Button size="sm" onclick={() => openCreateDialog(kind)}>
-        <Plus class="w-3.5 h-3.5 mr-1" /> Create Combo
-      </Button>
+        <Plus class="w-3.5 h-3.5 mr-1" />{t('Create Combo')}</Button>
     </div>
 
     {#if sectionCombos.length > 0}

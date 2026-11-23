@@ -602,9 +602,7 @@
     <span
       class="material-symbols-outlined text-[18px] transition-transform duration-200"
       style:transform={open ? 'rotate(180deg)' : 'rotate(0deg)'}
-    >
-      expand_more
-    </span>
+    >expand_more</span>
   </button>
 {/snippet}
 
@@ -761,9 +759,7 @@
                   'costs'
                     ? 'bg-brand-500 text-white shadow-sm'
                     : 'text-text-muted hover:text-text-main'}"
-                >
-                  Costs
-                </button>
+                >{t('Costs')}</button>
                 <button
                   type="button"
                   onclick={() => (trendMode = 'tokens')}
@@ -771,9 +767,7 @@
                   'tokens'
                     ? 'bg-brand-500 text-white shadow-sm'
                     : 'text-text-muted hover:text-text-main'}"
-                >
-                  Tokens
-                </button>
+                >{t('Tokens')}</button>
               </div>
               {@render panelToggle(usageTrendOpen, 'Usage trend', () => (usageTrendOpen = !usageTrendOpen))}
             </div>
@@ -840,9 +834,7 @@
     </div>
 
     {#if !stats.recentRequests || stats.recentRequests.length === 0}
-      <div class="flex-1 flex items-center justify-center text-text-muted text-xs">
-        No requests recorded yet.
-      </div>
+      <div class="flex-1 flex items-center justify-center text-text-muted text-xs">{t('No requests recorded yet.')}</div>
     {:else}
       <div class="flex-1 overflow-y-auto">
         <table class="w-full table-fixed min-w-[280px] border-collapse text-xs">

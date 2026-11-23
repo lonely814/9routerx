@@ -271,9 +271,7 @@
         <AlertTriangle class="w-5 h-5 text-warning shrink-0" />
         <div class="flex-1">
           <p class="font-semibold text-warning">{t('Hermes Agent not detected locally')}</p>
-          <p class="text-sm text-text-muted">
-            Install: curl -fsSL https://raw.githubusercontent.com/NousResearch/hermes-agent/main/scripts/install.sh | bash
-          </p>
+          <p class="text-sm text-text-muted">{t('Install: curl -fsSL https://raw.githubusercontent.com/NousResearch/hermes-agent/main/scripts/install.sh | bash')}</p>
         </div>
       </div>
       <button
@@ -281,9 +279,7 @@
         onclick={() => (showManualConfig = true)}
         class="self-start flex items-center gap-1.5 px-3 py-1.5 rounded-[10px] text-xs font-semibold bg-warning/20 border border-warning/40 text-warning cursor-pointer"
       >
-        <Copy class="w-3.5 h-3.5" />
-        Manual Config
-      </button>
+        <Copy class="w-3.5 h-3.5" />{t('Manual Config')}</button>
     </div>
   {:else if settings?.installed}
     <div class="flex flex-col gap-4">
@@ -373,9 +369,7 @@
             onclick={() => (showRoles = !showRoles)}
             class="flex items-center gap-1 text-xs font-semibold text-text-main hover:text-brand-500 cursor-pointer"
           >
-            <ChevronRight class="w-4 h-4 text-text-muted transition-transform {showRoles ? 'rotate-90' : ''}" />
-            Model Roles (optional)
-          </button>
+            <ChevronRight class="w-4 h-4 text-text-muted transition-transform {showRoles ? 'rotate-90' : ''}" />{t('Model Roles (optional)')}</button>
           {#if showRoles}
             <div class="mt-2 flex flex-col gap-1.5">
               {#each HERMES_ROLES as role (role.id)}
@@ -416,8 +410,7 @@
           disabled={!selectedModel.trim() || applying}
           class="flex items-center gap-1.5 px-3 py-1.5 rounded-[10px] bg-brand-500 hover:bg-brand-600 text-white font-semibold text-xs disabled:opacity-50 cursor-pointer"
         >
-          <Save class="w-3.5 h-3.5" />Apply
-        </button>
+          <Save class="w-3.5 h-3.5" />{t('Apply')}</button>
         {#if profiles.length > 1}
           <button
             type="button"
@@ -426,8 +419,7 @@
             title={t('Set the endpoint and API key on every profile that routes through 9RouterX. Each profile keeps its own model.')}
             class="flex items-center gap-1.5 px-3 py-1.5 rounded-[10px] bg-surface-2 hover:bg-surface-3 text-text-main border border-border font-semibold text-xs disabled:opacity-50 cursor-pointer"
           >
-            <Layers class="w-3.5 h-3.5" />Apply to All Profiles
-          </button>
+            <Layers class="w-3.5 h-3.5" />{t('Apply to All Profiles')}</button>
         {/if}
         <button
           type="button"
@@ -435,15 +427,13 @@
           disabled={!settings.has9Router || resetting}
           class="flex items-center gap-1.5 px-3 py-1.5 rounded-[10px] border border-border text-text-main font-semibold text-xs disabled:opacity-50 cursor-pointer"
         >
-          <RotateCcw class="w-3.5 h-3.5" />Reset
-        </button>
+          <RotateCcw class="w-3.5 h-3.5" />{t('Reset')}</button>
         <button
           type="button"
           onclick={() => (showManualConfig = true)}
           class="flex items-center gap-1.5 px-3 py-1.5 rounded-[10px] text-text-muted font-semibold text-xs hover:text-text-main cursor-pointer"
         >
-          <Copy class="w-3.5 h-3.5" />Manual Config
-        </button>
+          <Copy class="w-3.5 h-3.5" />{t('Manual Config')}</button>
       </div>
     </div>
   {:else}
@@ -470,8 +460,7 @@
           <div class="flex items-center justify-between">
             <span class="text-xs font-bold text-text-main font-mono">{cfg.filename}</span>
             <button type="button" onclick={() => copyToClipboard(cfg.content)} class="flex items-center gap-1 text-xs font-semibold text-brand-500 hover:opacity-80 cursor-pointer">
-              <Copy class="w-3.5 h-3.5" />Copy
-            </button>
+              <Copy class="w-3.5 h-3.5" />{t('Copy')}</button>
           </div>
           <pre class="p-3 rounded-xl bg-bg border border-border font-mono text-xs text-text-main whitespace-pre-wrap select-all">{cfg.content}</pre>
         </div>

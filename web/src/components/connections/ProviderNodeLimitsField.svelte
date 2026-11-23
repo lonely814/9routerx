@@ -132,10 +132,7 @@
         />
       </div>
 
-      <p class="text-xs text-text-muted">
-        0 means unlimited. A request that cannot get a slot is served by another candidate; 429 only appears once no
-        candidate is left.
-      </p>
+      <p class="text-xs text-text-muted">{t('0 means unlimited. A request that cannot get a slot is served by another candidate; 429 only appears once no candidate is left.')}</p>
 
       {#if usage}
         <div class="flex flex-col gap-2 border-t border-border pt-3">
@@ -144,10 +141,7 @@
             <span class="text-xs text-text-muted font-mono">{nodeLimitsUsageSummary(usage)}</span>
           </div>
           {#if confirmingReset}
-            <p class="text-xs text-text-main">
-              Reset the counter to zero from this moment? The node's usage history is not deleted — the Usage page keeps
-              every request, and only the number this quota is measured against restarts.
-            </p>
+            <p class="text-xs text-text-main">{t('Reset the counter to zero from this moment? The node\'s usage history is not deleted — the Usage page keeps every request, and only the number this quota is measured against restarts.')}</p>
             <div class="flex gap-2">
               <Button variant="danger" size="sm" loading={resetting} onclick={handleReset}>{t('Yes, reset the count')}</Button>
               <Button variant="ghost" size="sm" onclick={() => (confirmingReset = false)}>{t('Cancel')}</Button>
@@ -161,9 +155,7 @@
                   Set a lifetime quota above, then this counter is what it is measured against.
                 {/if}
               </p>
-              <Button variant="secondary" size="sm" onclick={() => (confirmingReset = true)} disabled={!nodeId}>
-                Reset token count
-              </Button>
+              <Button variant="secondary" size="sm" onclick={() => (confirmingReset = true)} disabled={!nodeId}>{t('Reset token count')}</Button>
             </div>
           {/if}
         </div>

@@ -60,9 +60,7 @@
   <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
     <div class="min-w-0">
       <p class="text-sm font-medium text-text-main">{t('Vision Adapter')}</p>
-      <p class="text-xs text-text-muted mt-0.5">
-        Your model can't read image/audio? Auto-switches to a model in the pool below.
-      </p>
+      <p class="text-xs text-text-muted mt-0.5">{t('Your model can\'t read image/audio? Auto-switches to a model in the pool below.')}</p>
     </div>
   </div>
   <div class="flex flex-col gap-4">
@@ -157,9 +155,7 @@
             onclick={() => onOpenModelPicker('vision')}
             disabled={!capacityAdapter.vision.enabled}
             title={t('Add Vision model')}
-          >
-            Add Model
-          </Button>
+          >{t('Add Model')}</Button>
         </div>
       </div>
     </Card>
@@ -248,9 +244,7 @@
             onclick={() => onOpenModelPicker('audio')}
             disabled={!capacityAdapter.audioInput.enabled}
             title={t('Add Audio model')}
-          >
-            Add Model
-          </Button>
+          >{t('Add Model')}</Button>
         </div>
       </div>
     </Card>

@@ -212,8 +212,7 @@
           {/if}
         {/if}
         {#if session?.connectionName}
-          <span class="font-normal text-xs {tone.muted} ml-1.5">
-            · Account: <span class="font-mono font-medium px-1.5 py-0.5 rounded bg-black/5 dark:bg-white/10">{session.connectionName}</span>
+          <span class="font-normal text-xs {tone.muted} ml-1.5">{t('· Account:')}<span class="font-mono font-medium px-1.5 py-0.5 rounded bg-black/5 dark:bg-white/10">{session.connectionName}</span>
           </span>
         {/if}
       </p>

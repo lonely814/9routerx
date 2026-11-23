@@ -159,14 +159,10 @@
         <option value={level}>{level}</option>
       {/each}
     </select>
-    <span class="text-[11px] text-text-muted">
-      Applies immediately — lines below this level are not buffered.
-    </span>
+    <span class="text-[11px] text-text-muted">{t('Applies immediately — lines below this level are not buffered.')}</span>
 
     <Button size="sm" variant="outline" class="ml-auto" onclick={handleClear}>
-      <Trash2 class="h-3.5 w-3.5" />
-      Clear
-    </Button>
+      <Trash2 class="h-3.5 w-3.5" />{t('Clear')}</Button>
   </div>
 
   <ConsoleLogStream {entries} />

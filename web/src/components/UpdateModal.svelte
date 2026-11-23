@@ -276,9 +276,7 @@
           onclick={dismiss}
           disabled={isUpdating}
           class="px-3.5 py-2 text-xs font-medium rounded-lg text-text-muted hover:text-text-main hover:bg-surface-2 transition-colors cursor-pointer"
-        >
-          Cancel
-        </button>
+        >{t('Cancel')}</button>
         <button
           type="button"
           onclick={handleCopyAndShutdown}
@@ -309,16 +307,12 @@
         <span class="material-symbols-outlined text-[28px]">power_off</span>
       </div>
       <h2 class="text-lg font-semibold text-text-main mb-1">{t('Server Stopped')}</h2>
-      <p class="text-xs text-text-muted mb-4">
-        Now run <code class="px-1.5 py-0.5 rounded bg-surface-2 font-mono text-amber-500">{t('9routerx update')}</code> in your terminal.
-      </p>
+      <p class="text-xs text-text-muted mb-4">{t('Now run')}<code class="px-1.5 py-0.5 rounded bg-surface-2 font-mono text-amber-500">{t('9routerx update')}</code>{t('in your terminal.')}</p>
       <button
         type="button"
         onclick={() => globalThis.location.reload()}
         class="w-full py-2 px-4 rounded-lg bg-primary hover:bg-primary-hover text-white text-xs font-semibold transition-colors cursor-pointer"
-      >
-        Reload Dashboard
-      </button>
+      >{t('Reload Dashboard')}</button>
     </div>
   </div>
 {/if}

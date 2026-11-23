@@ -944,23 +944,11 @@
   <Card padding="sm" class="bg-surface-2/60">
     <details class="group">
       <summary class="cursor-pointer flex items-center gap-2 text-sm font-bold text-text-main">
-        <span class="material-symbols-outlined text-text-subtle text-[18px]">info</span>
-        How it works
-        <span class="material-symbols-outlined text-text-subtle text-[16px] ml-auto transition-transform group-open:rotate-180">expand_more</span>
+        <span class="material-symbols-outlined text-text-subtle text-[18px]">info</span>{t('How it works')}<span class="material-symbols-outlined text-text-subtle text-[16px] ml-auto transition-transform group-open:rotate-180">expand_more</span>
       </summary>
       <div class="pt-3 space-y-3 text-xs text-text-muted leading-relaxed">
-        <p>
-          This feature prepends a <span class="text-text-main">{t('system prompt')}</span> system prompt ahead of the original content for the models, providers, or combos you choose.
-          Injection is <span class="text-text-main">{t('opt-in')}</span> and off by default: a model is never injected just because it exists, only because you armed it.
-        </p>
-        <p>
-          A persona is simply a system prompt of your own — nothing about the mechanism limits what it
-          may say. Because it is prepended ahead of the model's original instructions, it is also the
-          usual way to apply <span class="text-text-main">{t('jailbreak prompting')}</span>: a persona that
-          reframes the assistant's role, drops its refusals, or replaces its rules entirely is written
-          here and armed exactly like any other. The gateway does not judge the content, it only
-          delivers it to the models you chose.
-        </p>
+        <p>{t('This feature prepends a')}<span class="text-text-main">{t('system prompt')}</span>{t('system prompt ahead of the original content for the models, providers, or combos you choose. Injection is')}<span class="text-text-main">{t('opt-in')}</span>{t('and off by default: a model is never injected just because it exists, only because you armed it.')}</p>
+        <p>{t('A persona is simply a system prompt of your own — nothing about the mechanism limits what it may say. Because it is prepended ahead of the model\'s original instructions, it is also the usual way to apply')}<span class="text-text-main">{t('jailbreak prompting')}</span>{t(': a persona that reframes the assistant\'s role, drops its refusals, or replaces its rules entirely is written here and armed exactly like any other. The gateway does not judge the content, it only delivers it to the models you chose.')}</p>
         <div class="space-y-1.5">
           <div class="text-[11px] font-semibold uppercase tracking-wide text-text-subtle">{t('Three ways to arm a preset')}</div>
           <ul class="space-y-1.5 pl-4">
@@ -1002,9 +990,7 @@
             <li class="flex gap-2"><span class="text-brand-500 shrink-0">•</span><span><span class="text-text-main">{t('Statistik pemakaian')}</span> {t('— every preset shows how many times it actually injected.')}</span></li>
           </ul>
         </div>
-        <p class="text-[11px] text-text-subtle">
-          Limits: prompt 512 KB, at most 20 rules per list, rule length 200 characters. A rule the gateway would reject is refused at save time with the reason, so a typo never becomes a preset that silently stops matching.
-        </p>
+        <p class="text-[11px] text-text-subtle">{t('Limits: prompt 512 KB, at most 20 rules per list, rule length 200 characters. A rule the gateway would reject is refused at save time with the reason, so a typo never becomes a preset that silently stops matching.')}</p>
       </div>
     </details>
   </Card>
@@ -1024,10 +1010,7 @@
         </Button>
       </div>
     </div>
-    <p class="text-xs text-text-subtle pt-2">
-      A model id matching one of these rules is never injected, whatever any preset or exact binding
-      says. Use it for the handful of models that must stay untouched.
-    </p>
+    <p class="text-xs text-text-subtle pt-2">{t('A model id matching one of these rules is never injected, whatever any preset or exact binding says. Use it for the handful of models that must stay untouched.')}</p>
     <div class="pt-3">
       <KeywordRules
         label={t('Excluded models')}
@@ -1044,16 +1027,11 @@
        floating inside a box. -->
   <Card padding="md" class="overflow-hidden">
     <div class="flex flex-wrap items-center justify-between gap-2">
-      <h2 class="text-sm font-bold text-text-main">
-        Presets <span class="text-text-subtle font-normal">({filteredPresets.length})</span>
+      <h2 class="text-sm font-bold text-text-main">{t('Presets')}<span class="text-text-subtle font-normal">({filteredPresets.length})</span>
       </h2>
       <div class="flex flex-wrap items-center gap-2">
-        <Button variant="outline" size="sm" onclick={() => (testMatchOpen = true)} icon="troubleshoot">
-          Test match
-        </Button>
-        <Button variant="primary" size="sm" onclick={openCreate} icon="note_add">
-          New preset
-        </Button>
+        <Button variant="outline" size="sm" onclick={() => (testMatchOpen = true)} icon="troubleshoot">{t('Test match')}</Button>
+        <Button variant="primary" size="sm" onclick={openCreate} icon="note_add">{t('New preset')}</Button>
       </div>
     </div>
     {#if batchStatus}<p class="text-xs text-text-muted pt-2">{batchStatus}</p>{/if}
@@ -1110,9 +1088,7 @@
             checked={pagedPresets.length > 0 && pagedPresets.every((p) => selectedPresetIds.has(p.id ?? p.name ?? ''))}
             onchange={toggleSelectAllOnPage}
             class="w-4 h-4 accent-brand-500"
-          />
-          Select page
-        </label>
+          />{t('Select page')}</label>
         <label class="flex items-center gap-2 text-xs text-text-subtle cursor-pointer select-none" title={t('Select every preset the current filter matches, across all pages')}>
           <input
             type="checkbox"
@@ -1128,15 +1104,11 @@
       </div>
       {#if selectedPresetIds.size > 0}
         <div class="flex flex-wrap items-center gap-2 pt-2">
-          <Button variant="outline" size="sm" onclick={batchExportPresets}>
-            Export JSON
-          </Button>
+          <Button variant="outline" size="sm" onclick={batchExportPresets}>{t('Export JSON')}</Button>
           <Button variant="danger" size="sm" onclick={batchDeletePresets} disabled={batchBusy}>
             {batchBusy ? 'Deleting…' : 'Delete'}
           </Button>
-          <button type="button" onclick={clearPresetSelection} class="text-xs text-text-subtle hover:underline">
-            Clear
-          </button>
+          <button type="button" onclick={clearPresetSelection} class="text-xs text-text-subtle hover:underline">{t('Clear')}</button>
         </div>
       {/if}
       <!-- The list is flush to the card edges: the toolbar keeps the card's
@@ -1227,18 +1199,11 @@
   <!-- Model bindings: the second workspace, same table treatment as presets. -->
   <Card padding="md" class="overflow-hidden">
     <div class="flex flex-wrap items-center justify-between gap-2">
-      <h2 class="text-sm font-bold text-text-main">
-        Model bindings <span class="text-text-subtle font-normal">({filteredBindings.length})</span>
+      <h2 class="text-sm font-bold text-text-main">{t('Model bindings')}<span class="text-text-subtle font-normal">({filteredBindings.length})</span>
       </h2>
-      <Button variant="primary" size="sm" onclick={() => openBindModal('single')} icon="add">
-        Add
-      </Button>
+      <Button variant="primary" size="sm" onclick={() => openBindModal('single')} icon="add">{t('Add')}</Button>
     </div>
-    <p class="text-xs text-text-subtle pt-2">
-      Bind a model, provider, or combo id to a preset. The id is matched exactly as the client sends it.
-      A keyword on a preset already covers every id it matches, so a binding is only needed to pick a
-      different preset for one specific id.
-    </p>
+    <p class="text-xs text-text-subtle pt-2">{t('Bind a model, provider, or combo id to a preset. The id is matched exactly as the client sends it. A keyword on a preset already covers every id it matches, so a binding is only needed to pick a different preset for one specific id.')}</p>
     {#if bindingBatchStatus}<p class="text-xs text-text-muted pt-2">{bindingBatchStatus}</p>{/if}
     {#if boundEntries.length === 0}
       <p class="text-xs text-text-subtle">{t('No models armed.')}</p>
@@ -1281,9 +1246,7 @@
             checked={pagedBindings.length > 0 && pagedBindings.every(([id]) => selectedBindingIds.has(id))}
             onchange={toggleSelectAllBindingsOnPage}
             class="w-4 h-4 accent-brand-500"
-          />
-          Select page
-        </label>
+          />{t('Select page')}</label>
         <label class="flex items-center gap-2 text-xs text-text-subtle cursor-pointer select-none" title={t('Select every binding the current filter matches, across all pages')}>
           <input
             type="checkbox"
@@ -1314,31 +1277,23 @@
             onclick={batchRebindPreset}
             disabled={bindingBatchBusy || !bindingBatchPresetId}
             class="px-2.5 py-1 rounded-[8px] bg-brand-500 text-white text-xs font-medium disabled:opacity-50 hover:bg-primary-hover"
-          >
-            Rebind
-          </button>
+          >{t('Rebind')}</button>
           <button
             type="button"
             onclick={() => batchSetBindingsEnabled(true)}
             disabled={bindingBatchBusy}
             class="px-2.5 py-1 rounded-[8px] border border-border-subtle text-text-main text-xs hover:bg-surface-2"
-          >
-            Turn on
-          </button>
+          >{t('Turn on')}</button>
           <button
             type="button"
             onclick={() => batchSetBindingsEnabled(false)}
             disabled={bindingBatchBusy}
             class="px-2.5 py-1 rounded-[8px] border border-border-subtle text-text-main text-xs hover:bg-surface-2"
-          >
-            Turn off
-          </button>
+          >{t('Turn off')}</button>
           <Button variant="danger" size="sm" onclick={batchUnbindModels} disabled={bindingBatchBusy}>
             {bindingBatchBusy ? 'Working…' : 'Unbind'}
           </Button>
-          <button type="button" onclick={clearBindingSelection} class="text-xs text-text-subtle hover:underline">
-            Clear
-          </button>
+          <button type="button" onclick={clearBindingSelection} class="text-xs text-text-subtle hover:underline">{t('Clear')}</button>
           </div>
       {/if}
 
@@ -1460,18 +1415,15 @@
           <span class="text-[11px] text-text-subtle font-code">{testMatchResult.reason}</span>
         </div>
         {#if testMatchResult.presetName || testMatchResult.presetId}
-          <p class="text-xs text-text-muted">
-            Preset: <span class="text-text-main">{testMatchResult.presetName || testMatchResult.presetId}</span>
+          <p class="text-xs text-text-muted">{t('Preset:')}<span class="text-text-main">{testMatchResult.presetName || testMatchResult.presetId}</span>
           </p>
         {/if}
         {#if testMatchResult.keyword}
-          <p class="text-xs text-text-muted">
-            Keyword: <span class="text-text-main font-code">{testMatchResult.keyword}</span>
+          <p class="text-xs text-text-muted">{t('Keyword:')}<span class="text-text-main font-code">{testMatchResult.keyword}</span>
           </p>
         {/if}
         {#if testMatchResult.matchedId}
-          <p class="text-xs text-text-muted">
-            Matched id: <span class="text-text-main font-code">{testMatchResult.matchedId}</span>
+          <p class="text-xs text-text-muted">{t('Matched id:')}<span class="text-text-main font-code">{testMatchResult.matchedId}</span>
           </p>
         {/if}
         {#if testMatchResult.detail}
@@ -1506,9 +1458,7 @@
                   </div>
                 {/if}
                 <div class="p-3 rounded-[10px] bg-surface-2 border border-border-subtle">
-                  <div class="text-[10px] font-semibold uppercase text-text-subtle mb-1">
-                    Final messages array
-                  </div>
+                  <div class="text-[10px] font-semibold uppercase text-text-subtle mb-1">{t('Final messages array')}</div>
                   <pre class="text-xs text-text-main font-code whitespace-pre-wrap break-all max-h-60 overflow-y-auto">{JSON.stringify(previewData.messages, null, 2)}</pre>
                 </div>
               </div>
@@ -1550,9 +1500,7 @@
             ? 'border-brand-500 bg-brand-500/10 text-text-main'
             : 'border-transparent text-text-muted hover:border-border hover:text-text-main'}"
         >
-          <span class="material-symbols-outlined text-[16px]">edit</span>
-          Write
-        </button>
+          <span class="material-symbols-outlined text-[16px]">edit</span>{t('Write')}</button>
         <button
           type="button"
           role="tab"
@@ -1562,9 +1510,7 @@
             ? 'border-brand-500 bg-brand-500/10 text-text-main'
             : 'border-transparent text-text-muted hover:border-border hover:text-text-main'}"
         >
-          <span class="material-symbols-outlined text-[16px]">upload_file</span>
-          From files
-        </button>
+          <span class="material-symbols-outlined text-[16px]">upload_file</span>{t('From files')}</button>
         <button
           type="button"
           role="tab"
@@ -1574,9 +1520,7 @@
             ? 'border-brand-500 bg-brand-500/10 text-text-main'
             : 'border-transparent text-text-muted hover:border-border hover:text-text-main'}"
         >
-          <span class="material-symbols-outlined text-[16px]">cloud_download</span>
-          From URL
-        </button>
+          <span class="material-symbols-outlined text-[16px]">cloud_download</span>{t('From URL')}</button>
       </div>
     {/if}
     {#if editingId || presetModalTab === 'write'}
@@ -1591,9 +1535,7 @@
           class="w-full px-3 py-2 rounded-[10px] bg-surface-2 border border-border-subtle text-text-main text-sm outline-none focus:border-brand-500 disabled:opacity-50"
         />
         {#if editingId}
-          <span class="text-[11px] text-text-subtle">
-            The id is what bindings and keyword rules already point at, so it cannot change here.
-          </span>
+          <span class="text-[11px] text-text-subtle">{t('The id is what bindings and keyword rules already point at, so it cannot change here.')}</span>
         {/if}
       </label>
       <label class="block space-y-1.5">
@@ -1648,10 +1590,7 @@
           />
         </label>
       </div>
-      <p class="text-[11px] text-text-subtle">
-        Kind is the instruction-file convention this preset came from — filled in automatically on import
-        from a name such as SOUL.md or AGENTS.md; leave empty for a prompt about a model.
-      </p>
+      <p class="text-[11px] text-text-subtle">{t('Kind is the instruction-file convention this preset came from — filled in automatically on import from a name such as SOUL.md or AGENTS.md; leave empty for a prompt about a model.')}</p>
       <datalist id="jailbreak-kinds">
         {#each ['AGENTS', 'CLAUDE', 'GEMINI', 'CURSORRULES', 'WINDSURF', 'COPILOT', 'SOUL', 'PERSONA', 'IDENTITY', 'CHARACTER', 'LOAD', 'SYSTEM', 'RULES', 'POLICY', 'MODELFILE', 'CONFIG'] as kind (kind)}
           <option value={kind}></option>
@@ -1693,10 +1632,7 @@
         }}
         ondrop={onDrop}
       >
-        <p class="text-xs text-text-subtle">
-          Pick or drop several files at once. The file name becomes the preset name and its keyword
-          chain, so a preset covers that model on every provider and combo leg.
-        </p>
+        <p class="text-xs text-text-subtle">{t('Pick or drop several files at once. The file name becomes the preset name and its keyword chain, so a preset covers that model on every provider and combo leg.')}</p>
         <div class="flex flex-wrap items-center gap-x-2 gap-y-1 text-[11px] text-text-subtle">
           <span class="font-medium">{t('Accepted:')}</span>
           <span class="font-code text-text-muted">{t('.md')}</span>
@@ -1731,9 +1667,7 @@
           <span class="text-xs font-medium text-text-main">
             {dragging ? 'Drop to queue' : 'Pick or drop several files'}
           </span>
-          <span class="text-[11px] text-text-subtle">
-            .md .markdown .txt — one Upload sends the whole queue
-          </span>
+          <span class="text-[11px] text-text-subtle">{t('.md .markdown .txt — one Upload sends the whole queue')}</span>
         </label>
         {#if pickedFiles.length > 0}
           <ul class="divide-y divide-border rounded-[10px] border border-border-subtle">
@@ -1759,19 +1693,14 @@
             {uploading ? 'Uploading…' : pickedFiles.length > 1 ? `Upload ${pickedFiles.length} files` : 'Upload'}
           </Button>
           {#if pickedFiles.length > 0}
-            <button type="button" onclick={clearPickedFiles} class="text-xs text-text-muted hover:text-error hover:underline">
-              Clear all
-            </button>
+            <button type="button" onclick={clearPickedFiles} class="text-xs text-text-muted hover:text-error hover:underline">{t('Clear all')}</button>
           {/if}
         </div>
         {#if importStatus}<p class="text-xs text-text-muted text-center">{importStatus}</p>{/if}
       </div>
     {:else}
       <div class="space-y-4">
-        <p class="text-xs text-text-subtle">
-          One URL per line. A GitHub repository pulls every prompt file in it; any other http(s)
-          address — GitLab, pastebin, hastebin, a raw file — is read as one prompt.
-        </p>
+        <p class="text-xs text-text-subtle">{t('One URL per line. A GitHub repository pulls every prompt file in it; any other http(s) address — GitLab, pastebin, hastebin, a raw file — is read as one prompt.')}</p>
         <textarea
           bind:value={importTarget}
           rows="6"
@@ -1792,18 +1721,14 @@
           </Button>
         </div>
         {#if importUrls.length > 1}
-          <p class="text-[11px] text-text-subtle text-center">
-            Each URL becomes its own preset, named after its source.
-          </p>
+          <p class="text-[11px] text-text-subtle text-center">{t('Each URL becomes its own preset, named after its source.')}</p>
         {/if}
         {#if importStatus}<p class="text-xs text-text-muted text-center">{importStatus}</p>{/if}
       </div>
     {/if}
     {#if importResult}
       <div class="space-y-1 pt-4 mt-4 border-t border-border-subtle">
-        <h3 class="text-xs font-semibold text-text-main">
-          Import log
-          <span class="text-text-subtle font-normal">
+        <h3 class="text-xs font-semibold text-text-main">{t('Import log')}<span class="text-text-subtle font-normal">
             ({importResult.imported.length} imported, {importResult.refused.length} skipped)
           </span>
         </h3>
@@ -1842,9 +1767,7 @@
         class="flex-1 rounded-md px-3 py-1.5 text-xs font-medium transition-colors {bindModalTab === 'single'
           ? 'bg-brand-500 text-white shadow-sm'
           : 'text-text-muted hover:text-text-main'}"
-      >
-        Single
-      </button>
+      >{t('Single')}</button>
       <button
         type="button"
         role="tab"
@@ -1853,9 +1776,7 @@
         class="flex-1 rounded-md px-3 py-1.5 text-xs font-medium transition-colors {bindModalTab === 'many'
           ? 'bg-brand-500 text-white shadow-sm'
           : 'text-text-muted hover:text-text-main'}"
-      >
-        Bulk
-      </button>
+      >{t('Bulk')}</button>
     </div>
     {/if}
 
@@ -1909,9 +1830,7 @@
                     class="w-full text-left px-3 py-2 text-sm text-text-main hover:bg-surface-2 {bindPresetId === ''
                       ? 'text-brand-500 font-medium'
                       : ''}"
-                  >
-                    Default document
-                  </button>
+                  >{t('Default document')}</button>
                 </li>
                 {#each bindPresetOptions as preset (preset.id ?? preset.name)}
                   <li>
@@ -1956,9 +1875,7 @@
       </div>
     {:else}
       <div class="space-y-4">
-      <p class="text-xs text-text-subtle">
-        Pick model ids from the live catalog, then choose the preset below. Every picked id is bound to it.
-      </p>
+      <p class="text-xs text-text-subtle">{t('Pick model ids from the live catalog, then choose the preset below. Every picked id is bound to it.')}</p>
 
       <!-- Search: plain substring, or an RE2 pattern when the query starts with "/" -->
       <div class="space-y-1.5">
@@ -1969,10 +1886,7 @@
           aria-label={t('Filter models')}
           class="w-full px-3 py-2 rounded-[10px] bg-surface-2 border border-border-subtle text-sm text-text-main font-code placeholder:text-text-subtle"
         />
-        <p class="text-[11px] text-text-subtle">
-          Substring by default. Start with <span class="font-code text-text-muted">/</span> for an RE2 regex,
-          matched case-insensitively — e.g. <span class="font-code text-text-muted">{t('/^deepseek')}</span> or
-          <span class="font-code text-text-muted">/(kimi|glm)-\d</span>.
+        <p class="text-[11px] text-text-subtle">{t('Substring by default. Start with')}<span class="font-code text-text-muted">/</span>{t('for an RE2 regex, matched case-insensitively — e.g.')}<span class="font-code text-text-muted">{t('/^deepseek')}</span>{t('or')}<span class="font-code text-text-muted">/(kimi|glm)-\d</span>.
         </p>
         {#if bulkArmRegexError}
           <p class="text-[11px] text-error">{bulkArmRegexError}</p>
@@ -2006,9 +1920,7 @@
             onclick={selectAllBulkArmFiltered}
             disabled={bulkArmFiltered.length === 0}
             class="text-xs text-brand-500 hover:underline disabled:opacity-40"
-          >
-            Select all matches
-          </button>
+          >{t('Select all matches')}</button>
         </div>
         <ul class="divide-y divide-border rounded-[10px] border border-border-subtle overflow-y-auto max-h-[40vh]">
           {#each bulkArmFiltered as id (id)}
@@ -2052,9 +1964,7 @@
                     bulkArmPresetDropdownOpen = false
                   }}
                   class="w-full text-left px-3 py-2 text-sm text-text-main hover:bg-surface-2"
-                >
-                  Default document
-                </button>
+                >{t('Default document')}</button>
               </li>
               {#each bulkArmPresetOptions as preset (preset.id ?? preset.name)}
                 <li>

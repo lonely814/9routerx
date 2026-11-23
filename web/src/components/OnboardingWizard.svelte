@@ -129,9 +129,7 @@
         onclick={finish}
         disabled={finishing}
         class="rounded-lg bg-brand-600 px-3 py-1.5 text-xs font-medium text-white hover:bg-brand-500 disabled:opacity-50 transition-colors"
-      >
-        Got it — don't ask again
-      </button>
+      >{t('Got it — don\'t ask again')}</button>
     </div>
 
     {#if checks}
@@ -156,9 +154,7 @@
     {/if}
   {:else}
     <div class="mt-3 flex items-center gap-2 text-xs text-text-muted">
-      <Loader2 class="w-3.5 h-3.5 animate-spin" aria-hidden="true" />
-      Reading the install state…
-    </div>
+      <Loader2 class="w-3.5 h-3.5 animate-spin" aria-hidden="true" />{t('Reading the install state…')}</div>
   {/if}
 </div>
 {/if}

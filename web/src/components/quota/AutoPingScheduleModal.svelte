@@ -205,17 +205,13 @@
         type="button"
         onclick={onClose}
         class="rounded-lg border border-border-subtle px-3 py-1.5 text-sm font-medium text-text-main transition-colors hover:bg-surface-2 cursor-pointer"
-      >
-        Cancel
-      </button>
+      >{t('Cancel')}</button>
       <button
         type="button"
         onclick={handleSave}
         disabled={!canSave}
         class="rounded-lg bg-primary px-3 py-1.5 text-sm font-medium text-white transition-opacity hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-50 cursor-pointer"
-      >
-        Save
-      </button>
+      >{t('Save')}</button>
     </div>
   {/snippet}
 </Modal>

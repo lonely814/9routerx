@@ -96,10 +96,7 @@
 <Modal {isOpen} {onClose} title={t('Import Provider')} icon="download" size="lg">
   {#snippet children()}
     <div class="flex flex-col gap-4">
-      <p class="text-sm text-text-muted">
-        Paste a share link, or drop a <span class="font-mono">{t('.9routerx.json')}</span> file. You will review every
-        provider before anything is written.
-      </p>
+      <p class="text-sm text-text-muted">{t('Paste a share link, or drop a')}<span class="font-mono">{t('.9routerx.json')}</span>{t('file. You will review every provider before anything is written.')}</p>
 
       <label class="flex flex-col gap-1.5">
         <span class="text-sm font-medium text-text-main">{t('Share link or file contents')}</span>
@@ -126,11 +123,7 @@
         ondrop={onDrop}
         class="rounded-[10px] border-2 border-dashed p-4 text-center transition-colors {dragging ? 'border-brand-500 bg-brand-500/5' : 'border-border-subtle bg-surface-2/40'}"
       >
-        <p class="text-xs text-text-muted">
-          Drop a <span class="font-mono">{t('.9routerx.json')}</span> file here, or
-          <button type="button" onclick={() => fileInput?.click()} class="cursor-pointer text-brand-500 underline">
-            browse
-          </button>
+        <p class="text-xs text-text-muted">{t('Drop a')}<span class="font-mono">{t('.9routerx.json')}</span>{t('file here, or')}<button type="button" onclick={() => fileInput?.click()} class="cursor-pointer text-brand-500 underline">{t('browse')}</button>
         </p>
         <input
           bind:this={fileInput}

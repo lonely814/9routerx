@@ -132,9 +132,7 @@
       {#if showSortLabel}
         <div
           class="rounded-md border border-border-subtle bg-surface-2 px-2 py-1 text-[10px] text-text-muted"
-        >
-          Sorted by account remaining
-        </div>
+        >{t('Sorted by account remaining')}</div>
       {/if}
     </div>
 
@@ -273,17 +271,13 @@
             onclick={() => (page = Math.max(1, page - 1))}
             disabled={page === 1}
             class="flex h-6 items-center rounded-md border border-border-subtle px-2 text-[10px] text-text-main transition-colors hover:bg-surface-3 disabled:cursor-not-allowed disabled:opacity-40"
-          >
-            Prev
-          </button>
+          >{t('Prev')}</button>
           <button
             type="button"
             onclick={() => (page = Math.min(totalPages, page + 1))}
             disabled={page === totalPages}
             class="flex h-6 items-center rounded-md border border-border-subtle px-2 text-[10px] text-text-main transition-colors hover:bg-surface-3 disabled:cursor-not-allowed disabled:opacity-40"
-          >
-            Next
-          </button>
+          >{t('Next')}</button>
         </div>
       </div>
     {/if}

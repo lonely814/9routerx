@@ -153,9 +153,7 @@
   {:else if loading}
     <Card padding="md">
       <div class="flex items-center justify-center gap-2 py-8 text-text-muted text-sm">
-        <span class="material-symbols-outlined animate-spin text-[20px]" aria-hidden="true">progress_activity</span>
-        Loading dashboard...
-      </div>
+        <span class="material-symbols-outlined animate-spin text-[20px]" aria-hidden="true">progress_activity</span>{t('Loading dashboard...')}</div>
     </Card>
   {:else if failed || !data}
     <Card padding="md">
@@ -239,8 +237,6 @@
     <span
       class="material-symbols-outlined text-[18px] transition-transform duration-200"
       style:transform={open ? 'rotate(180deg)' : 'rotate(0deg)'}
-    >
-      expand_more
-    </span>
+    >expand_more</span>
   </button>
 {/snippet}

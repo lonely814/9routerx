@@ -193,26 +193,19 @@
   <div class="flex items-start justify-between gap-4 flex-wrap">
     <div>
       <h1 class="text-2xl font-semibold text-text-main">{t('Plans')}</h1>
-      <p class="text-sm text-text-muted mt-1">
-        Reusable policy templates. A key assigned to a plan inherits its limits as defaults and can
-        still override them individually.
-      </p>
+      <p class="text-sm text-text-muted mt-1">{t('Reusable policy templates. A key assigned to a plan inherits its limits as defaults and can still override them individually.')}</p>
     </div>
     <div class="flex items-center gap-2">
       <button
         onclick={load}
         class="flex items-center gap-2 px-3 py-2 rounded-[10px] border border-border-subtle text-text-muted hover:text-text-main hover:bg-surface-2 transition-colors text-sm"
       >
-        <RefreshCw size={16} class={isLoading ? 'animate-spin' : ''} />
-        Reload
-      </button>
+        <RefreshCw size={16} class={isLoading ? 'animate-spin' : ''} />{t('Reload')}</button>
       <button
         onclick={openCreate}
         class="flex items-center gap-2 px-3 py-2 rounded-[10px] bg-primary text-white hover:bg-primary-hover transition-colors text-sm font-medium"
       >
-        <Plus size={16} />
-        New plan
-      </button>
+        <Plus size={16} />{t('New plan')}</button>
     </div>
   </div>
 
@@ -232,9 +225,7 @@
 
   {#if isLoading && plans.length === 0}
     <div class="flex items-center gap-2 text-text-muted text-sm py-8">
-      <Loader2 size={16} class="animate-spin" />
-      Loading plans…
-    </div>
+      <Loader2 size={16} class="animate-spin" />{t('Loading plans…')}</div>
   {:else if plans.length === 0}
     <div class="rounded-[14px] border border-border-subtle bg-surface px-5 py-8 text-center">
       <p class="text-sm text-text-muted">{t('No plans yet.')}</p>
@@ -263,9 +254,7 @@
                 {#if plan.hardCutoff}
                   <span
                     class="inline-block mt-1 px-1.5 py-0.5 rounded text-[10px] uppercase tracking-wide bg-warning/15 text-warning"
-                  >
-                    hard cutoff
-                  </span>
+                  >{t('hard cutoff')}</span>
                 {/if}
               </td>
               <td data-label={t('Rate limits')} class="px-4 py-3 text-text-muted hidden md:table-cell">{describeLimits(plan)}</td>
@@ -416,16 +405,10 @@
       </div>
 
       <label class="flex items-center gap-2 text-sm text-text-main">
-        <input type="checkbox" bind:checked={formHardCutoff} class="rounded" />
-        Hard cutoff — refuse requests once the budget is exhausted (checked when a request starts;
-        one already in flight may overshoot slightly)
-      </label>
+        <input type="checkbox" bind:checked={formHardCutoff} class="rounded" />{t('Hard cutoff — refuse requests once the budget is exhausted (checked when a request starts; one already in flight may overshoot slightly)')}</label>
 
       <label class="flex flex-col gap-1">
-        <span class="text-xs text-text-muted">
-          Allowed models — one pattern per line, empty means every model. A trailing * is a
-          wildcard. A key's own list is added to this one.
-        </span>
+        <span class="text-xs text-text-muted">{t('Allowed models — one pattern per line, empty means every model. A trailing * is a wildcard. A key\'s own list is added to this one.')}</span>
         <textarea
           bind:value={formModels}
           rows="4"
@@ -439,9 +422,7 @@
           type="button"
           onclick={() => (isEditorOpen = false)}
           class="px-3 py-2 rounded-[10px] border border-border-subtle text-sm text-text-muted hover:text-text-main"
-        >
-          Cancel
-        </button>
+        >{t('Cancel')}</button>
         <button
           type="submit"
           disabled={isSaving}

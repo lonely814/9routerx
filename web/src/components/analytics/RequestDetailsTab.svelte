@@ -151,9 +151,7 @@
     <div class="flex items-center gap-2">
       <!-- Search Filter -->
       <div class="relative">
-        <span class="material-symbols-outlined absolute left-2.5 top-1/2 -translate-y-1/2 text-[15px] text-text-subtle">
-          search
-        </span>
+        <span class="material-symbols-outlined absolute left-2.5 top-1/2 -translate-y-1/2 text-[15px] text-text-subtle">search</span>
         <input
           type="text"
           placeholder={t('Filter model, account, provider...')}
@@ -163,9 +161,7 @@
       </div>
 
       <Button variant="secondary" size="sm" onclick={onRefresh} disabled={detailsLoading}>
-        <RefreshCw class="w-3.5 h-3.5 mr-1 {detailsLoading ? 'animate-spin' : ''}" />
-        Refresh
-      </Button>
+        <RefreshCw class="w-3.5 h-3.5 mr-1 {detailsLoading ? 'animate-spin' : ''}" />{t('Refresh')}</Button>
     </div>
   </div>
 
@@ -181,9 +177,7 @@
 
   {#if detailsLoading}
     <div class="p-12 text-center text-text-muted text-sm flex items-center justify-center gap-2">
-      <RefreshCw class="w-4 h-4 animate-spin" />
-      Loading request history...
-    </div>
+      <RefreshCw class="w-4 h-4 animate-spin" />{t('Loading request history...')}</div>
   {:else if displayDetails.length === 0}
     <div class="p-12 text-center text-text-muted text-sm font-body">
       {#if detailsError}
@@ -297,9 +291,7 @@
                     openDetail(item)
                   }}
                   class="text-xs text-brand-500 hover:underline font-semibold cursor-pointer"
-                >
-                  View
-                </button>
+                >{t('View')}</button>
               </td>
               {/if}
             </tr>
@@ -320,17 +312,13 @@
             size="sm"
             disabled={detailsPage <= 1}
             onclick={() => onPageChange(detailsPage - 1)}
-          >
-            Previous
-          </Button>
+          >{t('Previous')}</Button>
           <Button
             variant="secondary"
             size="sm"
             disabled={detailsPage * pageSize >= detailsTotal}
             onclick={() => onPageChange(detailsPage + 1)}
-          >
-            Next
-          </Button>
+          >{t('Next')}</Button>
         </div>
       </div>
     {/if}
@@ -429,9 +417,7 @@
         {:else if selectedDetail.loopWarning}
           <div class="p-3.5 rounded-xl bg-amber-500/10 border border-amber-500/30 space-y-1.5">
             <div class="text-[10px] text-amber-600 dark:text-amber-400 uppercase font-bold tracking-wider flex items-center gap-1.5">
-              <span class="material-symbols-outlined text-[16px]">warning</span>
-              Anomaly Detected: Possible Loop
-            </div>
+              <span class="material-symbols-outlined text-[16px]">warning</span>{t('Anomaly Detected: Possible Loop')}</div>
             <div class="font-code text-xs text-amber-600 dark:text-amber-300">
               {selectedDetail.loopWarning}
             </div>
@@ -479,9 +465,7 @@
           {@const reasoningTokens = selectedDetail.tokens.reasoning_tokens ?? 0}
 
           <div class="p-3.5 rounded-xl bg-surface-2/60 border border-border space-y-1.5">
-            <div class="text-[10px] text-text-muted uppercase font-bold tracking-wider">
-              Input
-            </div>
+            <div class="text-[10px] text-text-muted uppercase font-bold tracking-wider">{t('Input')}</div>
             <div class="flex flex-wrap items-center gap-1.5 font-code">
               <span class="px-2 py-0.5 rounded bg-blue-500/20 text-blue-700 dark:text-blue-300 text-xs font-bold">
                 Total In: {fmt(promptTokens)}
@@ -507,9 +491,7 @@
 
           <!-- Token Group: Output (OmniRoute style) -->
           <div class="p-3.5 rounded-xl bg-surface-2/60 border border-border space-y-1.5">
-            <div class="text-[10px] text-text-muted uppercase font-bold tracking-wider">
-              Output
-            </div>
+            <div class="text-[10px] text-text-muted uppercase font-bold tracking-wider">{t('Output')}</div>
             <div class="flex flex-wrap items-center gap-1.5 font-code">
               <span class="px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-700 dark:text-emerald-400 text-xs font-bold">
                 Total Out: {fmt(compTokens)}
@@ -642,9 +624,7 @@
               onclick={() => copyToClipboard(JSON.stringify(selectedDetail, null, 2))}
               class="flex items-center gap-1 text-text-muted hover:text-text-main transition-colors lowercase font-normal"
             >
-              <span class="material-symbols-outlined text-[13px]">content_copy</span>
-              copy json
-            </button>
+              <span class="material-symbols-outlined text-[13px]">content_copy</span>{t('copy json')}</button>
           </div>
           {#if detailError}
             <div role="alert" class="p-3 rounded-xl bg-red-500/10 border border-red-500/25 font-body text-[11px] text-red-600 dark:text-red-400 break-words">
@@ -652,9 +632,7 @@
             </div>
           {:else if detailLoading}
             <div class="p-8 rounded-xl bg-bg border border-border flex items-center justify-center gap-2 font-body text-[11px] text-text-muted">
-              <span class="w-3.5 h-3.5 border-2 border-brand-500 border-t-transparent rounded-full animate-spin"></span>
-              Loading full payload...
-            </div>
+              <span class="w-3.5 h-3.5 border-2 border-brand-500 border-t-transparent rounded-full animate-spin"></span>{t('Loading full payload...')}</div>
           {:else}
             <pre class="font-code text-[11px] p-3 rounded-lg bg-surface-3/80 border border-border-subtle max-h-60 overflow-y-auto overflow-x-auto text-text-main whitespace-pre-wrap">
 {JSON.stringify(selectedDetail, null, 2)}
@@ -665,9 +643,7 @@
 
       <!-- Modal Footer -->
       <div class="px-6 py-3 border-t border-border bg-surface-2 flex justify-end">
-        <Button variant="secondary" size="sm" onclick={closeDetail}>
-          Close
-        </Button>
+        <Button variant="secondary" size="sm" onclick={closeDetail}>{t('Close')}</Button>
       </div>
     </div>
   </div>

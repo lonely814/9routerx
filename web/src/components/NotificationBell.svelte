@@ -158,9 +158,7 @@
               type="button"
               onclick={markAllRead}
               class="text-[11px] text-primary hover:underline cursor-pointer"
-            >
-              Mark all read
-            </button>
+            >{t('Mark all read')}</button>
           {/if}
           {#if items.length > 0}
             <button
@@ -168,9 +166,7 @@
               onclick={clearAll}
               class="text-[11px] text-text-muted hover:text-danger cursor-pointer ml-1"
               title={t('Clear all notifications')}
-            >
-              Clear all
-            </button>
+            >{t('Clear all')}</button>
           {/if}
         </div>
       </div>

@@ -217,9 +217,7 @@
 
       {#if !isOAuth}
         <div>
-          <label class="block text-xs font-medium text-text-muted mb-1" for="edit-conn-key">
-            API (leave blank to keep the key on file)
-          </label>
+          <label class="block text-xs font-medium text-text-muted mb-1" for="edit-conn-key">{t('API (leave blank to keep the key on file)')}</label>
           <div class="flex gap-2">
             <input
               id="edit-conn-key"
@@ -243,9 +241,7 @@
           {#if keyCheck === 'valid'}
             <p class="mt-1.5 text-xs text-emerald-600 dark:text-emerald-400">{t('The provider accepted this key.')}</p>
           {:else if keyCheck === 'unsupported'}
-            <p class="mt-1.5 text-xs text-text-subtle">
-              This provider has no key check, so the new key is saved unverified.
-            </p>
+            <p class="mt-1.5 text-xs text-text-subtle">{t('This provider has no key check, so the new key is saved unverified.')}</p>
           {:else if keyError}
             <p class="mt-1.5 text-xs text-red-500">{keyError}</p>
           {/if}
@@ -289,9 +285,7 @@
             type="button"
             onclick={onClose}
             class="px-3 py-1.5 text-xs font-semibold rounded-[8px] bg-surface-2 hover:bg-surface-3 text-text-main border border-border cursor-pointer"
-          >
-            Cancel
-          </button>
+          >{t('Cancel')}</button>
           <button
             type="button"
             onclick={save}

@@ -55,26 +55,18 @@
 <Card padding="md" class="space-y-3">
   <div class="pb-2 border-b border-border">
     <h2 class="text-sm font-bold text-text-main">{t('Connect an AI client')}</h2>
-    <p class="text-[11px] text-text-subtle mt-0.5">
-      Writes the gateway endpoint and credential into the client's config file — nothing else, ever.
-    </p>
+    <p class="text-[11px] text-text-subtle mt-0.5">{t('Writes the gateway endpoint and credential into the client\'s config file — nothing else, ever.')}</p>
   </div>
   <div class="grid grid-cols-1 sm:grid-cols-3 gap-2">
-    <label class="text-xs text-text-muted">
-      Client
-      <select bind:value={client} class="mt-1 w-full rounded-[10px] border border-border-subtle bg-bg px-2 py-1.5 text-xs text-text-main">
+    <label class="text-xs text-text-muted">{t('Client')}<select bind:value={client} class="mt-1 w-full rounded-[10px] border border-border-subtle bg-bg px-2 py-1.5 text-xs text-text-main">
         {#each CLIENTS as c (c)}
           <option value={c}>{c}</option>
         {/each}
       </select>
     </label>
-    <label class="text-xs text-text-muted sm:col-span-2">
-      Gateway base URL
-      <input bind:value={baseUrl} class="mt-1 w-full rounded-[10px] border border-border-subtle bg-bg px-2 py-1.5 text-xs font-mono text-text-main" />
+    <label class="text-xs text-text-muted sm:col-span-2">{t('Gateway base URL')}<input bind:value={baseUrl} class="mt-1 w-full rounded-[10px] border border-border-subtle bg-bg px-2 py-1.5 text-xs font-mono text-text-main" />
     </label>
-    <label class="text-xs text-text-muted sm:col-span-3">
-      Gateway API key
-      <input type="password" bind:value={apiKey} placeholder={t('sk-...')} class="mt-1 w-full rounded-[10px] border border-border-subtle bg-bg px-2 py-1.5 text-xs font-mono text-text-main" />
+    <label class="text-xs text-text-muted sm:col-span-3">{t('Gateway API key')}<input type="password" bind:value={apiKey} placeholder={t('sk-...')} class="mt-1 w-full rounded-[10px] border border-border-subtle bg-bg px-2 py-1.5 text-xs font-mono text-text-main" />
     </label>
   </div>
   <div class="flex flex-wrap gap-2">

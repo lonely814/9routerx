@@ -234,9 +234,7 @@
       </Menu>
     </div>
 
-    <p class="text-sm text-text-muted">
-      Prompt token reduction, engine execution efficiency, and savings telemetry.
-    </p>
+    <p class="text-sm text-text-muted">{t('Prompt token reduction, engine execution efficiency, and savings telemetry.')}</p>
   </div>
 
   <!-- Hero StatCards -->
@@ -352,9 +350,7 @@
     <div class="mb-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
       <div>
         <h3 class="text-sm font-semibold text-text-main flex items-center gap-1.5">
-          <span class="material-symbols-outlined text-[18px] text-brand-500">monitoring</span>
-          Hourly Token Savings Trend
-        </h3>
+          <span class="material-symbols-outlined text-[18px] text-brand-500">monitoring</span>{t('Hourly Token Savings Trend')}</h3>
         <p class="text-xs text-text-subtle">{t('Tokens saved over recent hours.')}</p>
       </div>
 
@@ -370,17 +366,12 @@
           <span class="text-emerald-500">{t('Tokens Saved:')} <strong class="font-mono">{hoveredTrendHour.tokensSaved.toLocaleString()}</strong></span>
         </div>
       {:else}
-        <div class="text-[11px] text-text-subtle hidden sm:block">
-          Hover over any column to inspect hourly savings
-        </div>
+        <div class="text-[11px] text-text-subtle hidden sm:block">{t('Hover over any column to inspect hourly savings')}</div>
       {/if}
     </div>
 
     {#if trendUnavailable}
-      <div class="py-12 text-center text-xs text-text-subtle">
-        The hourly trend needs a bounded window — over "All time" it is one
-        bucket per hour since the ledger began. Pick a shorter period to see it.
-      </div>
+      <div class="py-12 text-center text-xs text-text-subtle">{t('The hourly trend needs a bounded window — over "All time" it is one bucket per hour since the ledger began. Pick a shorter period to see it.')}</div>
     {:else if !stats?.trend || stats.trend.length === 0}
       <div class="py-12 text-center text-xs text-text-subtle">
         No compression activity recorded in the {periodLabel(since).toLowerCase()}.
@@ -418,16 +409,12 @@
     <div class="rounded-2xl border border-border bg-surface p-5 shadow-sm space-y-4">
       <div class="flex items-center justify-between">
         <h3 class="text-sm font-semibold text-text-main flex items-center gap-1.5">
-          <span class="material-symbols-outlined text-[18px] text-brand-500">tune</span>
-          Breakdown by Mode
-        </h3>
+          <span class="material-symbols-outlined text-[18px] text-brand-500">tune</span>{t('Breakdown by Mode')}</h3>
         <span class="text-xs text-text-muted">{modeList.length} mode(s)</span>
       </div>
 
       {#if modeList.length === 0}
-        <div class="py-8 text-center text-xs text-text-subtle">
-          No compression mode data recorded yet.
-        </div>
+        <div class="py-8 text-center text-xs text-text-subtle">{t('No compression mode data recorded yet.')}</div>
       {:else}
         <div class="space-y-4">
           {#each modeList as m}
@@ -435,8 +422,7 @@
               <div class="flex flex-wrap items-center justify-between text-xs gap-1">
                 <span class="font-semibold text-text-main uppercase font-mono">{m.mode}</span>
                 <span class="text-text-muted">
-                  <span class="text-text-main font-medium">{m.count}</span> runs •
-                  <span class="text-emerald-500 font-mono">{m.tokensSaved.toLocaleString()}</span> tokens
+                  <span class="text-text-main font-medium">{m.count}</span>{t('runs •')}<span class="text-emerald-500 font-mono">{m.tokensSaved.toLocaleString()}</span> tokens
                   {#if m.avgSavingsPct > 0}
                     • {m.avgSavingsPct}% avg
                   {/if}
@@ -463,9 +449,7 @@
     <div class="rounded-2xl border border-border bg-surface p-5 shadow-sm space-y-4">
       <div class="flex items-center justify-between">
         <h3 class="text-sm font-semibold text-text-main flex items-center gap-1.5">
-          <span class="material-symbols-outlined text-[18px] text-brand-500">dns</span>
-          Breakdown by Provider
-        </h3>
+          <span class="material-symbols-outlined text-[18px] text-brand-500">dns</span>{t('Breakdown by Provider')}</h3>
         <span class="text-xs text-text-muted">
           {providerList.length} provider(s){(stats?.truncatedProviders ?? 0) > 0
             ? ` of ${providerList.length + (stats?.truncatedProviders ?? 0)}`
@@ -474,9 +458,7 @@
       </div>
 
       {#if providerList.length === 0}
-        <div class="py-8 text-center text-xs text-text-subtle">
-          No provider compression data recorded yet.
-        </div>
+        <div class="py-8 text-center text-xs text-text-subtle">{t('No provider compression data recorded yet.')}</div>
       {:else}
         <div class="space-y-4">
           {#each providerList as p}
@@ -487,9 +469,7 @@
                   {p.provider}
                 </span>
                 <span class="text-text-muted">
-                  <span class="text-text-main font-medium">{p.count}</span> runs •
-                  <span class="text-cyan-400 font-mono font-medium">{p.tokensSaved.toLocaleString()}</span> tokens
-                </span>
+                  <span class="text-text-main font-medium">{p.count}</span>{t('runs •')}<span class="text-cyan-400 font-mono font-medium">{p.tokensSaved.toLocaleString()}</span>{t('tokens')}</span>
               </div>
               <div class="h-2 w-full glyph-bar-track">
                 <div
@@ -509,9 +489,7 @@
     <div class="rounded-2xl border border-border bg-surface p-5 shadow-sm space-y-4">
       <div class="flex items-center justify-between">
         <h3 class="text-sm font-semibold text-text-main flex items-center gap-1.5">
-          <span class="material-symbols-outlined text-[18px] text-brand-500">model_training</span>
-          Breakdown by Model
-        </h3>
+          <span class="material-symbols-outlined text-[18px] text-brand-500">model_training</span>{t('Breakdown by Model')}</h3>
         <span class="text-xs text-text-muted">
           {modelList.length} model(s){(stats?.truncatedModels ?? 0) > 0
             ? ` of ${modelList.length + (stats?.truncatedModels ?? 0)}`
@@ -520,9 +498,7 @@
       </div>
 
       {#if modelList.length === 0}
-        <div class="py-8 text-center text-xs text-text-subtle">
-          No model compression data recorded yet.
-        </div>
+        <div class="py-8 text-center text-xs text-text-subtle">{t('No model compression data recorded yet.')}</div>
       {:else}
         <div class="space-y-4">
           {#each modelList as m}
@@ -532,8 +508,7 @@
                   {m.model}
                 </span>
                 <span class="text-text-muted text-[11px]">
-                  <span class="text-text-main font-medium">{m.count}</span> runs •
-                  <span class="text-cyan-400 font-mono font-medium">{m.tokensSaved.toLocaleString()}</span> tokens
+                  <span class="text-text-main font-medium">{m.count}</span>{t('runs •')}<span class="text-cyan-400 font-mono font-medium">{m.tokensSaved.toLocaleString()}</span> tokens
                   {#if m.avgSavingsPct > 0}
                     • {m.avgSavingsPct}%
                   {/if}
@@ -559,9 +534,7 @@
     <div class="flex items-center justify-between">
       <div>
         <h3 class="text-sm font-semibold text-text-main flex items-center gap-1.5">
-          <span class="material-symbols-outlined text-[18px] text-brand-500">trophy</span>
-          Top 10 Biggest Token Savers
-        </h3>
+          <span class="material-symbols-outlined text-[18px] text-brand-500">trophy</span>{t('Top 10 Biggest Token Savers')}</h3>
         <p class="text-xs text-text-subtle">{t('Individual requests with the highest prompt token reduction.')}</p>
       </div>
       <span class="rounded-full bg-surface-2 px-2.5 py-1 text-xs font-semibold text-text-muted">
@@ -570,9 +543,7 @@
     </div>
 
     {#if !stats?.topSavers || stats.topSavers.length === 0}
-      <div class="py-8 text-center text-xs text-text-subtle">
-        No recorded top compression runs yet.
-      </div>
+      <div class="py-8 text-center text-xs text-text-subtle">{t('No recorded top compression runs yet.')}</div>
     {:else}
       <div class="overflow-x-auto -mx-5 px-5">
         <table class="glyph-table w-full text-left text-xs min-w-[850px]">
@@ -646,9 +617,7 @@
   {#if isPanelVisible('compression.receipts')}
   <div class="rounded-2xl border border-border bg-surface p-5 shadow-sm">
     <h3 class="text-sm font-semibold text-text-main mb-3 flex items-center gap-1.5">
-      <span class="material-symbols-outlined text-[18px] text-brand-500">receipt_long</span>
-      Upstream Usage Receipts Telemetry
-    </h3>
+      <span class="material-symbols-outlined text-[18px] text-brand-500">receipt_long</span>{t('Upstream Usage Receipts Telemetry')}</h3>
 
     <div class="grid grid-cols-2 gap-4 sm:grid-cols-4 pt-2">
       <div class="p-3 rounded-xl bg-surface-2/60 border border-border-subtle">

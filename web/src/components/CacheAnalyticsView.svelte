@@ -330,9 +330,7 @@
       </div>
     </div>
 
-    <p class="text-sm text-text-muted">
-      Prompt caching and semantic deduplication tracking across all AI providers.
-    </p>
+    <p class="text-sm text-text-muted">{t('Prompt caching and semantic deduplication tracking across all AI providers.')}</p>
   </div>
 
   {#if activeView === 'prompt'}
@@ -415,9 +413,7 @@
       <div class="mb-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
         <div>
           <h3 class="text-sm font-semibold text-text-main flex items-center gap-1.5">
-            <span class="material-symbols-outlined text-[18px] text-brand-500">monitoring</span>
-            Hourly Cache Trend
-          </h3>
+            <span class="material-symbols-outlined text-[18px] text-brand-500">monitoring</span>{t('Hourly Cache Trend')}</h3>
           <p class="text-xs text-text-subtle">{t('Requests and cached tokens over time.')}</p>
         </div>
 
@@ -435,17 +431,12 @@
             <span class="text-cyan-400">{t('Tokens:')} <strong class="font-mono">{hoveredTrendPoint.cachedTokens.toLocaleString()}</strong></span>
           </div>
         {:else}
-          <div class="text-[11px] text-text-subtle hidden sm:block">
-            Hover over any column to inspect hourly breakdown
-          </div>
+          <div class="text-[11px] text-text-subtle hidden sm:block">{t('Hover over any column to inspect hourly breakdown')}</div>
         {/if}
       </div>
 
       {#if period === 'all'}
-        <div class="py-12 text-center text-xs text-text-subtle">
-          The hourly trend needs a bounded window — it is one bucket per hour
-          since the ledger began over "All time". Pick a shorter period to see it.
-        </div>
+        <div class="py-12 text-center text-xs text-text-subtle">{t('The hourly trend needs a bounded window — it is one bucket per hour since the ledger began over "All time". Pick a shorter period to see it.')}</div>
       {:else if !stats?.trend || stats.trend.length === 0}
         <div class="py-12 text-center text-xs text-text-subtle">
           No cache activity recorded in the {periodLabel(period).toLowerCase()}.
@@ -478,11 +469,9 @@
         <div class="flex flex-wrap items-center justify-between text-[11px] text-text-subtle mt-2 pt-2 border-t border-border-subtle gap-2">
           <div class="flex items-center gap-4">
             <span class="inline-flex items-center gap-1.5">
-              <span class="w-2.5 h-2.5 rounded-sm bg-primary/30"></span> Total Requests
-            </span>
+              <span class="w-2.5 h-2.5 rounded-sm bg-primary/30"></span>{t('Total Requests')}</span>
             <span class="inline-flex items-center gap-1.5">
-              <span class="w-2.5 h-2.5 rounded-sm bg-emerald-500"></span> Cached Requests
-            </span>
+              <span class="w-2.5 h-2.5 rounded-sm bg-emerald-500"></span>{t('Cached Requests')}</span>
           </div>
           <span>{periodLabel(period)}</span>
         </div>
@@ -494,14 +483,10 @@
     {#if isPanelVisible('cache.provider')}
     <div class="rounded-2xl border border-border bg-surface p-5 shadow-sm">
       <h3 class="text-sm font-semibold text-text-main mb-3 flex items-center gap-1.5">
-        <span class="material-symbols-outlined text-[18px] text-brand-500">dns</span>
-        Breakdown by Provider
-      </h3>
+        <span class="material-symbols-outlined text-[18px] text-brand-500">dns</span>{t('Breakdown by Provider')}</h3>
 
       {#if providerRows.length === 0}
-        <div class="py-8 text-center text-xs text-text-subtle">
-          No provider prompt cache data recorded yet.
-        </div>
+        <div class="py-8 text-center text-xs text-text-subtle">{t('No provider prompt cache data recorded yet.')}</div>
       {:else}
         <div class="overflow-x-auto -mx-5 px-5">
           <table class="glyph-table w-full text-left text-xs min-w-[540px]">
@@ -552,14 +537,10 @@
     {#if isPanelVisible('cache.model')}
     <div class="rounded-2xl border border-border bg-surface p-5 shadow-sm">
       <h3 class="text-sm font-semibold text-text-main mb-3 flex items-center gap-1.5">
-        <span class="material-symbols-outlined text-[18px] text-brand-500">model_training</span>
-        Breakdown by Model
-      </h3>
+        <span class="material-symbols-outlined text-[18px] text-brand-500">model_training</span>{t('Breakdown by Model')}</h3>
 
       {#if modelRows.length === 0}
-        <div class="py-8 text-center text-xs text-text-subtle">
-          No model prompt cache data recorded yet.
-        </div>
+        <div class="py-8 text-center text-xs text-text-subtle">{t('No model prompt cache data recorded yet.')}</div>
       {:else}
         <div class="overflow-x-auto -mx-5 px-5">
           <table class="w-full text-left text-xs min-w-[540px]">
@@ -675,9 +656,7 @@
             onclick={handleClearAll}
             class="flex items-center gap-1.5 rounded-xl border border-red-500/30 bg-red-500/10 px-3.5 py-2 text-xs font-semibold text-red-500 hover:bg-red-500/20 transition-colors"
           >
-            <span class="material-symbols-outlined text-[16px]">delete_sweep</span>
-            Clear All Cache
-          </button>
+            <span class="material-symbols-outlined text-[16px]">delete_sweep</span>{t('Clear All Cache')}</button>
         </div>
       </div>
 
@@ -693,9 +672,7 @@
           type="button"
           onclick={handleInvalidateByModel}
           class="rounded-xl border border-border bg-surface px-3 py-1.5 text-xs font-semibold text-text-main hover:bg-surface-2 transition-colors"
-        >
-          Invalidate Model
-        </button>
+        >{t('Invalidate Model')}</button>
       </div>
     </div>
     {/if}
@@ -706,9 +683,7 @@
       <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <div class="flex items-center gap-2">
           <h3 class="text-sm font-semibold text-text-main flex items-center gap-1.5">
-            <span class="material-symbols-outlined text-[18px] text-brand-500">table_rows</span>
-            Cached Entries
-          </h3>
+            <span class="material-symbols-outlined text-[18px] text-brand-500">table_rows</span>{t('Cached Entries')}</h3>
           <span class="rounded-full bg-surface-2 px-2 py-0.5 text-[10px] font-semibold text-text-muted">
             {totalEntries}
           </span>
@@ -717,9 +692,7 @@
         <!-- Search input -->
         <div class="flex items-center gap-2">
           <div class="relative">
-            <span class="material-symbols-outlined absolute left-2.5 top-1/2 -translate-y-1/2 text-[16px] text-text-subtle">
-              search
-            </span>
+            <span class="material-symbols-outlined absolute left-2.5 top-1/2 -translate-y-1/2 text-[16px] text-text-subtle">search</span>
             <input
               type="text"
               placeholder={t('Search signature/key...')}
@@ -733,13 +706,9 @@
 
       {#if entriesLoading}
         <div class="py-12 text-center text-xs text-text-subtle flex items-center justify-center gap-2">
-          <span class="material-symbols-outlined animate-spin text-[18px]">sync</span>
-          Loading entries...
-        </div>
+          <span class="material-symbols-outlined animate-spin text-[18px]">sync</span>{t('Loading entries...')}</div>
       {:else if entries.length === 0}
-        <div class="py-12 text-center text-xs text-text-subtle">
-          No cached entries found.
-        </div>
+        <div class="py-12 text-center text-xs text-text-subtle">{t('No cached entries found.')}</div>
       {:else}
         <div class="overflow-x-auto">
           <table class="w-full text-left text-xs">
@@ -814,9 +783,7 @@
                   loadEntries()
                 }}
                 class="rounded-lg border border-border bg-surface px-2.5 py-1 text-xs disabled:opacity-40 hover:bg-surface-2"
-              >
-                Previous
-              </button>
+              >{t('Previous')}</button>
               <button
                 type="button"
                 disabled={page >= totalPages}
@@ -825,9 +792,7 @@
                   loadEntries()
                 }}
                 class="rounded-lg border border-border bg-surface px-2.5 py-1 text-xs disabled:opacity-40 hover:bg-surface-2"
-              >
-                Next
-              </button>
+              >{t('Next')}</button>
             </div>
           </div>
         {/if}

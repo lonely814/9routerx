@@ -69,9 +69,7 @@
             {#if isAllDisabled}
               <Badge variant="default" size="sm">
                 <span class="flex items-center gap-1">
-                  <PauseCircle class="w-3 h-3" />
-                  Disabled
-                </span>
+                  <PauseCircle class="w-3 h-3" />{t('Disabled')}</span>
               </Badge>
             {:else if stats.errorCount > 0}
               <Badge variant="error" size="sm" dot>

@@ -88,9 +88,7 @@
           type="button"
           onclick={copyRaw}
           class="mt-4 px-4 py-2 text-xs font-semibold rounded-lg bg-surface-2 hover:bg-surface-3 border border-border cursor-pointer"
-        >
-          Copy manually (if auto-submit fails)
-        </button>
+        >{t('Copy manually (if auto-submit fails)')}</button>
       {/if}
     {:else}
       <p class="text-lg font-semibold text-red-500">{t('Callback failed')}</p>

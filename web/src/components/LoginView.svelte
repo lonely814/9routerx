@@ -245,15 +245,12 @@
             <!-- Text-scramble decode on first appearance (spec 2.5.4); the
                  action only rewrites text node values, so the accent span
                  below survives it. -->
-            <h1 class="font-headline font-light lowercase text-[clamp(24px,5vw,30px)] leading-tight mb-6 tracking-tight" use:scramble>
-              welcome back, <span class="text-[var(--9x-accent)]">&rarr;9x:</span>
+            <h1 class="font-headline font-light lowercase text-[clamp(24px,5vw,30px)] leading-tight mb-6 tracking-tight" use:scramble>{t('welcome back,')}<span class="text-[var(--9x-accent)]">&rarr;9x:</span>
             </h1>
 
             {#if mustChange}
               <form onsubmit={handleSetNewPassword} class="flex flex-col gap-4">
-                <p class="text-sm text-[var(--9x-wait)] text-center font-code text-xs leading-relaxed">
-                  Set a new password before accessing the dashboard remotely.
-                </p>
+                <p class="text-sm text-[var(--9x-wait)] text-center font-code text-xs leading-relaxed">{t('Set a new password before accessing the dashboard remotely.')}</p>
                 <div class="flex flex-col gap-2">
                   <label for="login-new-password" class="text-sm font-medium text-[var(--9x-ink)]/80 font-headline">{t('New password')}</label>
                   <input
@@ -336,8 +333,7 @@
                         <p class="gl-error" role="alert">{errorMessage}</p>
                       {/if}
                       {#if retryAfter > 0}
-                        <p class="text-xs text-[var(--9x-wait)] font-code">
-                          Locked. Retry in <span>{retryAfter}s</span>.
+                        <p class="text-xs text-[var(--9x-wait)] font-code">{t('Locked. Retry in')}<span>{retryAfter}s</span>.
                         </p>
                       {/if}
                       {#if resetHint}
@@ -362,13 +358,10 @@
 
                     <p class="gl-kbd-hint hidden md:block" aria-hidden="true">&#8629; sign in</p>
 
-                    <p class="text-xs text-center text-[var(--9x-ink)]/50 font-code">
-                      default password is <code class="bg-[var(--9x-btn)] border border-[var(--9x-line)] px-1.5 py-0.5 rounded text-[var(--9x-ink)]">123456</code>
+                    <p class="text-xs text-center text-[var(--9x-ink)]/50 font-code">{t('default password is')}<code class="bg-[var(--9x-btn)] border border-[var(--9x-line)] px-1.5 py-0.5 rounded text-[var(--9x-ink)]">123456</code>
                     </p>
                     {#if hasPassword === false}
-                      <p class="text-xs text-center text-[var(--9x-wait)] font-code">
-                        Security risk: no password set. You will be asked to set one when logging in remotely.
-                      </p>
+                      <p class="text-xs text-center text-[var(--9x-wait)] font-code">{t('Security risk: no password set. You will be asked to set one when logging in remotely.')}</p>
                     {/if}
                   </form>
                 {:else if errorMessage}

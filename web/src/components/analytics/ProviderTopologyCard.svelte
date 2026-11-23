@@ -396,9 +396,7 @@
         loading="lazy"
         decoding="async"
       />
-      <span class="text-sm font-bold {activeCount > 0 ? 'topology-router-label topology-router-ink' : 'text-primary'}">
-        9RouterX
-      </span>
+      <span class="text-sm font-bold {activeCount > 0 ? 'topology-router-label topology-router-ink' : 'text-primary'}">{t('9RouterX')}</span>
       {#if activeCount > 0}
         <span class="ml-2 px-1.5 py-0.5 rounded-full bg-yellow-400 text-black text-xs font-bold topology-router-badge">
           {activeCount}
@@ -434,9 +432,7 @@
         <!-- Active indicator -->
         {#if node.isActive}
           <div class="flex items-center gap-1.5 ml-auto shrink-0">
-            <span class="text-[10px] font-bold uppercase tracking-wider px-1.5 py-0.5 rounded bg-emerald-500/15 text-emerald-400 border border-emerald-500/30">
-              Live
-            </span>
+            <span class="text-[10px] font-bold uppercase tracking-wider px-1.5 py-0.5 rounded bg-emerald-500/15 text-emerald-400 border border-emerald-500/30">{t('Live')}</span>
             <span class="relative flex h-2 w-2">
               <span
                 class="animate-ping absolute inline-flex h-full w-full rounded-full opacity-75"
@@ -456,9 +452,7 @@
        nothing honest to draw. The router core and the zoom controls stay put so
        the card keeps its shape instead of collapsing. -->
   {#if displayProviders.length === 0}
-    <div class="pointer-events-none absolute inset-0 z-10 flex items-center justify-center px-4 text-center text-sm text-text-muted">
-      No providers connected
-    </div>
+    <div class="pointer-events-none absolute inset-0 z-10 flex items-center justify-center px-4 text-center text-sm text-text-muted">{t('No providers connected')}</div>
   {/if}
 
   <!-- Bottom-left React Flow style controls -->

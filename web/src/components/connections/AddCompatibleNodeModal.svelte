@@ -225,9 +225,7 @@
           </button>
         {/each}
       </div>
-      <p class="text-xs text-text-muted">
-        Already entered your endpoint? Switch type here — your name, prefix and base URL stay put.
-      </p>
+      <p class="text-xs text-text-muted">{t('Already entered your endpoint? Switch type here — your name, prefix and base URL stay put.')}</p>
     </fieldset>
 
     <Input
@@ -336,9 +334,7 @@
       >
         {submitting ? 'Creating...' : 'Create'}
       </Button>
-      <Button onclick={onClose} variant="ghost" fullWidth>
-        Cancel
-      </Button>
+      <Button onclick={onClose} variant="ghost" fullWidth>{t('Cancel')}</Button>
     </div>
   </div>
 </Modal>

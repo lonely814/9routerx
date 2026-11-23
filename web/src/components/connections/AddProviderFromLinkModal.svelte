@@ -391,9 +391,7 @@
               aria-expanded={expanded}
               class="flex min-w-0 flex-1 items-center gap-2 text-left cursor-pointer"
             >
-              <span class="material-symbols-outlined shrink-0 text-[16px] text-text-muted transition-transform {expanded ? 'rotate-90' : ''}">
-                chevron_right
-              </span>
+              <span class="material-symbols-outlined shrink-0 text-[16px] text-text-muted transition-transform {expanded ? 'rotate-90' : ''}">chevron_right</span>
               <span class="min-w-0 flex-1 truncate font-mono text-xs text-text-main">{link.prov}</span>
               {#if link.name && link.name !== link.prov}
                 <span class="shrink-0 text-[11px] text-text-muted">{link.name}</span>
@@ -411,9 +409,7 @@
 
           {#if existing && link.url && existing.baseUrl && existing.baseUrl !== link.url}
             <div class="mb-2 rounded border border-warning/40 bg-warning/10 p-2 text-xs text-text-main">
-              <p class="mb-1.5">
-                This instance already has <strong>{link.prov}</strong> at <span class="font-mono">{existing.baseUrl}</span>,
-                but the link points at <span class="font-mono">{link.url}</span>.
+              <p class="mb-1.5">{t('This instance already has')}<strong>{link.prov}</strong> at <span class="font-mono">{existing.baseUrl}</span>{t(', but the link points at')}<span class="font-mono">{link.url}</span>.
               </p>
               <div class="flex gap-2">
                 <button
@@ -422,18 +418,14 @@
                   class="rounded-[8px] border px-2 py-1 text-[11px] font-medium transition-colors cursor-pointer {(endpointChoice[link.prov] ?? 'link') === 'stored'
                     ? 'border-brand-500 bg-brand-500/10 text-brand-500'
                     : 'border-border bg-surface-2 text-text-muted'}"
-                >
-                  Keep stored
-                </button>
+                >{t('Keep stored')}</button>
                 <button
                   type="button"
                   onclick={() => (endpointChoice = { ...endpointChoice, [link.prov]: 'link' })}
                   class="rounded-[8px] border px-2 py-1 text-[11px] font-medium transition-colors cursor-pointer {(endpointChoice[link.prov] ?? 'link') === 'link'
                     ? 'border-brand-500 bg-brand-500/10 text-brand-500'
                     : 'border-border bg-surface-2 text-text-muted'}"
-                >
-                  Use link
-                </button>
+                >{t('Use link')}</button>
               </div>
             </div>
           {/if}

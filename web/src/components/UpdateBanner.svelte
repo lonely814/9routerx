@@ -105,8 +105,7 @@
           <span class="text-amber-800/70 dark:text-amber-300/70">{t('asset:')}</span>
           {assetName}
           {#if check.sha256}
-            <span class="block break-all text-amber-800/70 dark:text-amber-300/70">
-              sha256: <span class="break-all">{check.sha256}</span>
+            <span class="block break-all text-amber-800/70 dark:text-amber-300/70">{t('sha256:')}<span class="break-all">{check.sha256}</span>
             </span>
           {/if}
         </p>
@@ -154,9 +153,7 @@
           type="button"
           onclick={skipThisVersion}
           class="flex-1 sm:flex-none justify-center px-3 py-2 text-xs rounded-lg text-text-muted hover:text-text-main hover:bg-surface-2 transition-colors cursor-pointer"
-        >
-          Skip this version
-        </button>
+        >{t('Skip this version')}</button>
       {/if}
 
       <button

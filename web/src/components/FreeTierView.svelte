@@ -80,9 +80,7 @@
   <Card>
     <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-3">
       <div>
-        <p class="text-xs font-medium text-text-muted uppercase tracking-wide">
-          Combined steady-monthly free tokens
-        </p>
+        <p class="text-xs font-medium text-text-muted uppercase tracking-wide">{t('Combined steady-monthly free tokens')}</p>
         <p class="text-3xl font-bold text-text-main mt-1">
           {formatTokenEstimate(headline)}
           <span class="text-sm font-medium text-text-muted">{t('tokens / month')}</span>
@@ -100,10 +98,7 @@
 
   <div class="overflow-x-auto">
     <table class="glyph-table w-full text-left text-xs min-w-[760px]">
-      <caption class="sr-only">
-        Provider free tiers with monthly token estimates, live usage this period,
-        reset regime and terms-of-service verdict
-      </caption>
+      <caption class="sr-only">{t('Provider free tiers with monthly token estimates, live usage this period, reset regime and terms-of-service verdict')}</caption>
       <thead>
         <tr class="text-text-muted border-b border-border-subtle">
           <th scope="col" class="py-2.5 pr-3 font-medium">{t('Provider')}</th>
@@ -159,10 +154,7 @@
   </div>
 
   {#if liveFailed && liveLoaded}
-    <p class="text-[11px] text-text-muted border border-border-subtle rounded-lg px-3 py-2">
-      Live usage is stale — the last refresh failed and the numbers on screen are
-      the most recent ones served. It retries every 60 seconds.
-    </p>
+    <p class="text-[11px] text-text-muted border border-border-subtle rounded-lg px-3 py-2">{t('Live usage is stale — the last refresh failed and the numbers on screen are the most recent ones served. It retries every 60 seconds.')}</p>
   {/if}
 
   <p class="text-[11px] text-text-muted leading-relaxed">
@@ -170,7 +162,5 @@
     on them. Estimates convert published request caps at
     {TOKENS_PER_REQUEST_ASSUMPTION.toLocaleString()} tokens per request; a tier
     whose cap the provider does not publish shows no number at all. The
-    <span class="font-code">{t('used this period')}</span> column is tracked live by the
-    gateway (60s refresh) and badges a tier that drops under 10% of its quota.
-  </p>
+    <span class="font-code">{t('used this period')}</span>{t('column is tracked live by the gateway (60s refresh) and badges a tier that drops under 10% of its quota.')}</p>
 </div>

@@ -1130,9 +1130,7 @@
         <Radio class="w-5 h-5" />
       </div>
       <div class="min-w-0 flex-1">
-        <h1 class="text-lg font-semibold text-text-main flex items-center gap-2">
-          API Endpoint
-        </h1>
+        <h1 class="text-lg font-semibold text-text-main flex items-center gap-2">{t('API Endpoint')}</h1>
         <p class="text-xs text-text-muted">{t('Direct, secure connection points to your local AI router')}</p>
       </div>
     </div>
@@ -1197,9 +1195,7 @@
             <p class="text-[11px] text-text-muted leading-relaxed">
               The tunnel reconnected and now serves a new address
               {tunnelRotation.when ? ` (${tunnelRotation.when})` : ''}. Anything still pointed at
-              <span class="font-mono break-all">{tunnelRotation.previous}</span> will fail until it is updated. The stable URL
-              above keeps working.
-            </p>
+              <span class="font-mono break-all">{tunnelRotation.previous}</span>{t('will fail until it is updated. The stable URL above keeps working.')}</p>
           </div>
         {/if}
       {/if}
@@ -1231,9 +1227,7 @@
             }
           }}
           class="font-semibold underline hover:opacity-80 shrink-0"
-        >
-          Open settings
-        </a>
+        >{t('Open settings')}</a>
       </div>
     {/if}
     <!-- Security warnings when tunnel or tailscale is active -->
@@ -1242,16 +1236,12 @@
         {#if !requireApiKey}
           <div class="flex items-center gap-2 max-[400px]:flex-col max-[400px]:items-start px-3 py-2 rounded-lg bg-amber-500/10 border border-amber-500/20 text-amber-800 dark:text-amber-400 text-xs">
             <AlertTriangle class="w-4 h-4 shrink-0 text-amber-500" />
-            <p class="flex-1 leading-relaxed">
-              Require API key is disabled — your endpoint is publicly accessible without authentication.
-            </p>
+            <p class="flex-1 leading-relaxed">{t('Require API key is disabled — your endpoint is publicly accessible without authentication.')}</p>
             <button
               type="button"
               onclick={() => toggleRequireApiKey(true)}
               class="font-semibold underline hover:opacity-80 shrink-0 cursor-pointer"
-            >
-              Enable
-            </button>
+            >{t('Enable')}</button>
           </div>
         {/if}
         {#if isLoginUnsafe}
@@ -1323,9 +1313,7 @@
           class="flex-1 rounded-md px-3 py-1.5 text-xs font-semibold transition cursor-pointer {createKeyTab === 'single'
             ? 'bg-surface text-text-main shadow-sm'
             : 'text-text-muted hover:text-text-main'}"
-        >
-          Single
-        </button>
+        >{t('Single')}</button>
         <button
           type="button"
           disabled={isSubmittingKey || bulkKeyBusy}
@@ -1333,16 +1321,12 @@
           class="flex-1 rounded-md px-3 py-1.5 text-xs font-semibold transition cursor-pointer {createKeyTab === 'bulk'
             ? 'bg-surface text-text-main shadow-sm'
             : 'text-text-muted hover:text-text-main'}"
-        >
-          Bulk
-        </button>
+        >{t('Bulk')}</button>
       </div>
       {#if createKeyTab === 'single'}
       <form onsubmit={handleCreateKey} class="space-y-4">
         <div class="space-y-1">
-          <label for="key-name-input" class="block text-xs font-semibold text-text-muted">
-            Key Name
-          </label>
+          <label for="key-name-input" class="block text-xs font-semibold text-text-muted">{t('Key Name')}</label>
           <input
             id="key-name-input"
             type="text"
@@ -1370,9 +1354,7 @@
             disabled={isSubmittingKey || bulkKeyBusy}
             onclick={closeCreateKeyModal}
             class="flex-1 py-2 px-4 rounded-lg bg-surface-2 hover:bg-surface-3 text-text-main font-semibold text-xs transition cursor-pointer border border-border"
-          >
-            Cancel
-          </button>
+          >{t('Cancel')}</button>
         </div>
       </form>
       {:else}
@@ -1382,8 +1364,7 @@
            batch never invents one. -->
       <div class="space-y-3">
         <div class="space-y-1">
-          <label for="bulk-keys-input" class="block text-xs font-semibold text-text-muted">
-            One key per line — <span class="font-code">{t('name | machineId')}</span>
+          <label for="bulk-keys-input" class="block text-xs font-semibold text-text-muted">{t('One key per line —')}<span class="font-code">{t('name | machineId')}</span>
           </label>
           <textarea
             id="bulk-keys-input"
@@ -1392,8 +1373,7 @@
             placeholder={'office | m-abc-123\nlaptop\n| m-def-456'}
             class="w-full px-3 py-2 rounded-lg bg-bg border border-border text-xs font-mono text-text-main placeholder:text-text-subtle focus:outline-none focus:border-brand-500 resize-y"
           />
-          <p class="text-[11px] text-text-subtle">
-            Both halves are optional. A blank name becomes <span class="font-code">{t('Key N')}</span>.
+          <p class="text-[11px] text-text-subtle">{t('Both halves are optional. A blank name becomes')}<span class="font-code">{t('Key N')}</span>.
           </p>
         </div>
 
@@ -1450,9 +1430,7 @@
             disabled={isSubmittingKey || bulkKeyBusy}
             onclick={closeCreateKeyModal}
             class="flex-1 py-2 px-4 rounded-lg bg-surface-2 hover:bg-surface-3 text-text-main font-semibold text-xs transition cursor-pointer border border-border"
-          >
-            Cancel
-          </button>
+          >{t('Cancel')}</button>
         </div>
       </div>
       {/if}
@@ -1524,9 +1502,7 @@
             createKeyTab = 'single'
           }}
           class="flex-1 py-2 px-4 rounded-lg bg-surface-2 hover:bg-surface-3 text-text-main font-semibold text-xs transition cursor-pointer border border-border"
-        >
-          Done
-        </button>
+        >{t('Done')}</button>
       </div>
     </div>
   </div>
@@ -1575,9 +1551,7 @@
           type="button"
           onclick={() => (newlyCreatedKey = null)}
           class="w-full py-2 px-4 rounded-lg bg-brand-500 hover:bg-brand-600 text-white font-semibold text-xs transition cursor-pointer"
-        >
-          Done
-        </button>
+        >{t('Done')}</button>
       </div>
     </div>
   </div>
@@ -1629,9 +1603,7 @@
               : 'border-transparent text-text-muted hover:text-text-main'}"
           >
             <span class="flex items-center justify-center gap-1.5">
-              <SettingsIcon class="w-3.5 h-3.5" />
-              Global
-            </span>
+              <SettingsIcon class="w-3.5 h-3.5" />{t('Global')}</span>
           </button>
           <button
             type="button"
@@ -1644,9 +1616,7 @@
               : 'border-transparent text-text-muted hover:text-text-main'}"
           >
             <span class="flex items-center justify-center gap-1.5">
-              <CloudUpload class="w-3.5 h-3.5" />
-              Cloudflare
-            </span>
+              <CloudUpload class="w-3.5 h-3.5" />{t('Cloudflare')}</span>
           </button>
           <button
             type="button"
@@ -1659,9 +1629,7 @@
               : 'border-transparent text-text-muted hover:text-text-main'}"
           >
             <span class="flex items-center justify-center gap-1.5">
-              <Shield class="w-3.5 h-3.5" />
-              Tailscale
-            </span>
+              <Shield class="w-3.5 h-3.5" />{t('Tailscale')}</span>
           </button>
         </div>
       </div>
@@ -1729,10 +1697,7 @@
                  directly under it, so nothing is lost by not listing all three
                  at once.
 
-                 The label is the only heading: a section <h4> above it repeated
-                 the same word, so the field read as two stacked titles. The
-                 label is also what announces the dropdown to a screen reader
-                 and what focuses it when clicked — an <h4> does neither.
+                 The label is the only heading: a section <h4>{t('above it repeated the same word, so the field read as two stacked titles. The label is also what announces the dropdown to a screen reader and what focuses it when clicked — an')}<h4> does neither.
 
                  The three names describe who does the work, which is the only
                  distinction an operator choosing between them can act on.
@@ -1765,9 +1730,7 @@
                   <!-- Fastest of the three and the only one that needs nothing at
                        all — no account, no token, no domain. The cost is stated
                        in the same breath: the address is not yours to choose,
-                       which is the whole reason the other two modes exist. -->
-                  Fastest of the three and needs nothing at all — no account, no token, no domain. You get a
-                  <span class="font-mono">{t('*.trycloudflare.com')}</span> address plus a stable alias from the mapping service,
+                       which is the whole reason the other two modes exist. -->{t('Fastest of the three and needs nothing at all — no account, no token, no domain. You get a')}<span class="font-mono">{t('*.trycloudflare.com')}</span> address plus a stable alias from the mapping service,
                   though the address itself is not yours to choose.{#if currentTunnelMode === 'quick' && tunnelRunning}<span
                     class="text-brand-500 font-semibold">{t('· active')}</span
                   >{/if}
@@ -1787,10 +1750,7 @@
                        requirement below reads as a cost, and on its own it is
                        enough to send someone back to the mode with six manual
                        steps. Stating the trade in one line lets them decide
-                       instead of guessing. -->
-                  Fewest steps of the three, but you need a Cloudflare API token first. The gateway then creates the tunnel,
-                  its route and its DNS record for you — no Zero Trust dashboard, no ingress rule to type by hand. Needs a
-                  token with <span class="font-mono">{t('Tunnel:Edit')}</span> and <span class="font-mono">{t('Zone:DNS:Edit')}</span>.{#if currentTunnelMode ===
+                       instead of guessing. -->{t('Fewest steps of the three, but you need a Cloudflare API token first. The gateway then creates the tunnel, its route and its DNS record for you — no Zero Trust dashboard, no ingress rule to type by hand. Needs a token with')}<span class="font-mono">{t('Tunnel:Edit')}</span> and <span class="font-mono">{t('Zone:DNS:Edit')}</span>.{#if currentTunnelMode ===
                     'auto' &&
                     tunnelRunning}<span class="text-brand-500 font-semibold">{t('· active')}</span>{/if}
                 {/if}
@@ -1805,8 +1765,7 @@
                 <!-- The URL is named rather than described as "the old URL". An
                      operator who has already handed the address to a client
                      needs to know which one to update, and "the old URL" makes
-                     them go and look. -->
-                Switching method disconnects <span class="font-mono text-text-muted break-all">{publicUrl || tunnelUrl}</span> and
+                     them go and look. -->{t('Switching method disconnects')}<span class="font-mono text-text-muted break-all">{publicUrl || tunnelUrl}</span> and
                 builds a new one — expect a short outage, and that address stops working.
               {:else}
                 Switching method disconnects the current tunnel and builds a new one — expect a short outage, and the old URL
@@ -1821,8 +1780,7 @@
 
             {#if tunnelMode === 'quick'}
               <div class="space-y-1.5">
-                <label for="tunnel-shortid" class="text-xs font-semibold text-text-main">
-                  Short ID <span class="font-normal text-text-subtle">{t('(optional)')}</span>
+                <label for="tunnel-shortid" class="text-xs font-semibold text-text-main">{t('Short ID')}<span class="font-normal text-text-subtle">{t('(optional)')}</span>
                 </label>
                 <div class="relative">
                   <!-- The `r` is part of the URL the worker serves, so it is a
@@ -1866,24 +1824,18 @@
                     class="w-full font-mono text-sm bg-bg border border-border rounded-lg pl-7 pr-3 py-2 text-text-main placeholder:text-text-subtle focus:outline-none focus:border-brand-500/50"
                   />
                 </div>
-                <p class="text-[11px] text-text-subtle leading-relaxed">
-                  Lowercase letters, digits and hyphens (3-20 chars). The <span class="font-mono">r</span> is added for you —
-                  your stable URL becomes
-                  <!-- The address is the one thing in this paragraph the operator
+                <p class="text-[11px] text-text-subtle leading-relaxed">{t('Lowercase letters, digits and hyphens (3-20 chars). The')}<span class="font-mono">r</span>{t('is added for you — your stable URL becomes')}<!-- The address is the one thing in this paragraph the operator
                        has to read carefully, and it was the same colour as the
                        prose around it — so the sentence read as an explanation
                        rather than a result. Brand-500 is the accent the rest of
                        this modal already uses for the live value, which keeps
                        "this is the thing you get" consistent across screens. -->
-                  <span class="font-mono text-brand-500">r{tunnelShortId.trim() || 'yourid'}.abc-tunnel.us</span>.
-                  Leave empty for a random one. Not used by the other methods, which already have a fixed address.
-                </p>
+                  <span class="font-mono text-brand-500">r{tunnelShortId.trim() || 'yourid'}.abc-tunnel.us</span>{t('. Leave empty for a random one. Not used by the other methods, which already have a fixed address.')}</p>
               </div>
             {/if}
             {#if tunnelMode === 'quick'}
               <div class="space-y-1.5">
-                <label for="tunnel-worker-url" class="text-xs font-semibold text-text-main">
-                  Mapping service <span class="font-normal text-text-subtle">{t('(optional)')}</span>
+                <label for="tunnel-worker-url" class="text-xs font-semibold text-text-main">{t('Mapping service')}<span class="font-normal text-text-subtle">{t('(optional)')}</span>
                 </label>
                 <div class="flex items-center gap-2">
                   <input
@@ -1912,11 +1864,7 @@
                     <RotateCcw class="w-3.5 h-3.5" />
                   </button>
                 </div>
-                <p class="text-[11px] text-text-subtle leading-relaxed">
-                  A quick tunnel's <span class="font-mono">{t('*.trycloudflare.com')}</span> address changes on every reconnect. This
-                  service records your short ID against the current address, so one stable URL keeps working across reconnects.
-                  Leave empty for the default; only change it if you run your own.
-                </p>
+                <p class="text-[11px] text-text-subtle leading-relaxed">{t('A quick tunnel\'s')}<span class="font-mono">{t('*.trycloudflare.com')}</span>{t('address changes on every reconnect. This service records your short ID against the current address, so one stable URL keeps working across reconnects. Leave empty for the default; only change it if you run your own.')}</p>
                 <!-- What the URL will be, before the tunnel is running. Once it
                      is running the address is already on screen — in the status
                      card's own field, with its copy button — so repeating it
@@ -1925,10 +1873,7 @@
                      preview below covers the only case that is not already
                      answered elsewhere: what the operator is about to get. -->
                 {#if !publicUrl && previewStableUrl}
-                  <p class="text-[11px] text-text-subtle leading-relaxed">
-                    Your stable URL will be
-                    <span class="font-mono text-brand-500">{previewStableUrl}</span> once the tunnel is running.
-                  </p>
+                  <p class="text-[11px] text-text-subtle leading-relaxed">{t('Your stable URL will be')}<span class="font-mono text-brand-500">{previewStableUrl}</span>{t('once the tunnel is running.')}</p>
                 {/if}
                 {#if workerUrlSaved}
                   <p class="text-[11px] text-success">{t('Saved.')}</p>
@@ -1947,9 +1892,7 @@
                    afterthought to a value already entered. -->
               <div class="rounded-xl border border-brand-500/25 bg-brand-500/5 p-3 space-y-2">
                 <p class="text-xs font-semibold text-text-main">{t('Point your hostname at this gateway')}</p>
-                <p class="text-[11px] text-text-muted leading-relaxed">
-                  In Cloudflare Zero Trust → Networks → Tunnels → your tunnel → Public Hostname, set the service to:
-                </p>
+                <p class="text-[11px] text-text-muted leading-relaxed">{t('In Cloudflare Zero Trust → Networks → Tunnels → your tunnel → Public Hostname, set the service to:')}</p>
                 <div class="flex items-center gap-2">
                   <code class="flex-1 min-w-0 font-mono text-xs bg-bg border border-border rounded-lg px-3 py-2 text-text-main truncate">
                     {localOrigin}
@@ -1967,10 +1910,7 @@
                     {/if}
                   </button>
                 </div>
-                <p class="text-[11px] text-text-subtle leading-relaxed">
-                  Service type <span class="font-mono">{t('HTTP')}</span>, and use the address exactly as shown — the port is this
-                  gateway's own. A different port is the usual cause of a tunnel that connects but never answers.
-                </p>
+                <p class="text-[11px] text-text-subtle leading-relaxed">{t('Service type')}<span class="font-mono">{t('HTTP')}</span>{t(', and use the address exactly as shown — the port is this gateway\'s own. A different port is the usual cause of a tunnel that connects but never answers.')}</p>
                 {#if tunnelCfApiToken.trim()}
                   <!-- The repair writes the ingress rule through the Cloudflare API,
                        which is only possible when the Auto Setup token is saved.
@@ -1987,10 +1927,7 @@
                       <Wrench class="w-3.5 h-3.5" />
                       {isRepairingOrigin ? 'Repairing…' : 'Repair origin'}
                     </button>
-                    <p class="text-[11px] text-text-subtle leading-relaxed pt-1.5">
-                      Rewrites the tunnel's ingress rule to point at <span class="font-mono">{localOrigin}</span>. Use it when
-                      the tunnel connects but never answers.
-                    </p>
+                    <p class="text-[11px] text-text-subtle leading-relaxed pt-1.5">{t('Rewrites the tunnel\'s ingress rule to point at')}<span class="font-mono">{localOrigin}</span>{t('. Use it when the tunnel connects but never answers.')}</p>
                     {#if originRepairMessage}
                       <p class="text-[11px] pt-1 {originRepairError ? 'text-error' : 'text-success'}">
                         {originRepairMessage}
@@ -2045,10 +1982,7 @@
                     {/if}
                   </button>
                 </div>
-                <p class="text-[11px] text-text-subtle leading-relaxed">
-                  From Cloudflare Zero Trust → Networks → Tunnels → your tunnel → Install connector. You can paste the whole
-                  command — the token is picked out of it.
-                </p>
+                <p class="text-[11px] text-text-subtle leading-relaxed">{t('From Cloudflare Zero Trust → Networks → Tunnels → your tunnel → Install connector. You can paste the whole command — the token is picked out of it.')}</p>
               </div>
             {/if}
             {#if tunnelMode === 'auto'}
@@ -2078,11 +2012,7 @@
                     {/if}
                   </button>
                   </div>
-                  <p class="text-[11px] text-text-subtle leading-relaxed">
-                    Create one at My Profile → API Tokens with <span class="font-mono">{t('Cloudflare Tunnel:Edit')}</span> on the
-                    account and <span class="font-mono">{t('Zone:DNS:Edit')}</span> on your zone. Used once to create the tunnel and
-                    its DNS record; it is not stored.
-                  </p>
+                  <p class="text-[11px] text-text-subtle leading-relaxed">{t('Create one at My Profile → API Tokens with')}<span class="font-mono">{t('Cloudflare Tunnel:Edit')}</span>{t('on the account and')}<span class="font-mono">{t('Zone:DNS:Edit')}</span>{t('on your zone. Used once to create the tunnel and its DNS record; it is not stored.')}</p>
                 </div>
                 <div class="space-y-1.5">
                   <label for="tunnel-cf-zone" class="text-xs font-semibold text-text-main">{t('Zone')}</label>
@@ -2093,13 +2023,10 @@
                     placeholder={t('example.com')}
                     class="w-full font-mono text-sm bg-bg border border-border rounded-lg px-3 py-2 text-text-main placeholder:text-text-subtle focus:outline-none focus:border-brand-500/50"
                   />
-                  <p class="text-[11px] text-text-subtle leading-relaxed">
-                    The domain on your Cloudflare account that will host the hostname above.
-                  </p>
+                  <p class="text-[11px] text-text-subtle leading-relaxed">{t('The domain on your Cloudflare account that will host the hostname above.')}</p>
                 </div>
                 <div class="space-y-1.5">
-                  <label for="tunnel-cf-account" class="text-xs font-semibold text-text-main">
-                    Account ID <span class="font-normal text-text-subtle">{t('(optional)')}</span>
+                  <label for="tunnel-cf-account" class="text-xs font-semibold text-text-main">{t('Account ID')}<span class="font-normal text-text-subtle">{t('(optional)')}</span>
                   </label>
                   <input
                     id="tunnel-cf-account"
@@ -2108,9 +2035,7 @@
                     placeholder={t('auto-detected')}
                     class="w-full font-mono text-xs bg-bg border border-border rounded-lg px-3 py-2 text-text-main placeholder:text-text-subtle focus:outline-none focus:border-brand-500/50"
                   />
-                  <p class="text-[11px] text-text-subtle leading-relaxed">
-                    Leave empty unless your token reaches more than one account.
-                  </p>
+                  <p class="text-[11px] text-text-subtle leading-relaxed">{t('Leave empty unless your token reaches more than one account.')}</p>
                 </div>
               </div>
             {/if}
@@ -2125,11 +2050,7 @@
           {#if tunnelEnabled && tunnelConfigChanged}
             <div class="rounded-xl border border-amber-500/25 bg-amber-500/5 p-3 space-y-1">
               <p class="text-xs font-semibold text-amber-700 dark:text-amber-300">{t('Unsaved changes')}</p>
-              <p class="text-[11px] text-amber-700 dark:text-amber-300 leading-relaxed">
-                Applying them disconnects the current tunnel and builds a new one — expect a short outage, and the current URL
-                stops working until the new tunnel is up. Press <span class="font-semibold">{t('Restart')}</span> below to apply them, or
-                to rebuild the tunnel as it stands.
-              </p>
+              <p class="text-[11px] text-amber-700 dark:text-amber-300 leading-relaxed">{t('Applying them disconnects the current tunnel and builds a new one — expect a short outage, and the current URL stops working until the new tunnel is up. Press')}<span class="font-semibold">{t('Restart')}</span>{t('below to apply them, or to rebuild the tunnel as it stands.')}</p>
             </div>
           {/if}
         {/if}
@@ -2163,12 +2084,8 @@
               </div>
             {:else if tailscaleInstalled === false}
               <div class="rounded-xl border border-border bg-surface-2/50 p-3 space-y-2">
-                <p class="text-xs text-text-muted leading-relaxed">
-                  Tailscale CLI is not installed or detected on your system path. Install it to use Funnel.
-                </p>
-                <div class="p-2 rounded-lg bg-bg border border-border font-mono text-[11px] text-text-main select-all">
-                  curl -fsSL https://tailscale.com/install.sh | sh
-                </div>
+                <p class="text-xs text-text-muted leading-relaxed">{t('Tailscale CLI is not installed or detected on your system path. Install it to use Funnel.')}</p>
+                <div class="p-2 rounded-lg bg-bg border border-border font-mono text-[11px] text-text-main select-all">{t('curl -fsSL https://tailscale.com/install.sh | sh')}</div>
               </div>
             {:else}
               <div class="rounded-xl border border-border bg-surface-2/50 p-3">
@@ -2241,10 +2158,7 @@
                   {/if}
                 </button>
                 </div>
-                <p class="text-[11px] text-text-subtle leading-relaxed">
-                  From the Tailscale admin console → Settings → Keys. Stored once the connection succeeds, so the gateway can
-                  re-authenticate on its own if the key expires.
-                </p>
+                <p class="text-[11px] text-text-subtle leading-relaxed">{t('From the Tailscale admin console → Settings → Keys. Stored once the connection succeeds, so the gateway can re-authenticate on its own if the key expires.')}</p>
               </div>
             {/if}
             <!-- Login in progress. The endpoint card also carries a Login
@@ -2254,18 +2168,13 @@
             {#if isTailscaleLoading && tailscaleAuthUrl}
               <div class="rounded-xl border border-indigo-500/25 bg-indigo-500/5 p-3 space-y-2">
                 <p class="text-xs font-semibold text-text-main">{t('Login required')}</p>
-                <p class="text-[11px] text-text-muted leading-relaxed">
-                  Open the Tailscale login page to authorise this machine, then come back — the connection continues on its
-                  own.
-                </p>
+                <p class="text-[11px] text-text-muted leading-relaxed">{t('Open the Tailscale login page to authorise this machine, then come back — the connection continues on its own.')}</p>
                 <button
                   type="button"
                   onclick={() => window.open(tailscaleAuthUrl, '_blank')}
                   class="w-full py-2 px-4 rounded-lg bg-indigo-600 hover:bg-indigo-700 text-white font-semibold text-xs transition cursor-pointer flex items-center justify-center gap-1.5"
                 >
-                  <ExternalLink class="w-3.5 h-3.5" />
-                  Open login page
-                </button>
+                  <ExternalLink class="w-3.5 h-3.5" />{t('Open login page')}</button>
               </div>
             {/if}
           </section>
@@ -2274,9 +2183,7 @@
           <section class="space-y-3">
             <div class="space-y-0.5">
               <h4 class="text-xs font-semibold text-text-main">{t('Cloudflare behaviour')}</h4>
-              <p class="text-[11px] text-text-muted leading-relaxed">
-                Rebuild the Cloudflare tunnel after a network change, a wake from sleep, or an unexpected exit.
-              </p>
+              <p class="text-[11px] text-text-muted leading-relaxed">{t('Rebuild the Cloudflare tunnel after a network change, a wake from sleep, or an unexpected exit.')}</p>
             </div>
             <div class="flex items-center justify-between gap-3">
               <p class="text-xs text-text-main">{t('Restart tunnel if it drops')}</p>
@@ -2291,10 +2198,7 @@
           <section class="space-y-3 pt-4 border-t border-border">
             <div class="space-y-0.5">
               <h4 class="text-xs font-semibold text-text-main">{t('Tailscale behaviour')}</h4>
-              <p class="text-[11px] text-text-muted leading-relaxed">
-                Re-establish the funnel after a network change or a wake from sleep. The Tailscale daemon itself is left
-                alone — it reconnects on its own and restarting it would discard your login.
-              </p>
+              <p class="text-[11px] text-text-muted leading-relaxed">{t('Re-establish the funnel after a network change or a wake from sleep. The Tailscale daemon itself is left alone — it reconnects on its own and restarting it would discard your login.')}</p>
             </div>
             <div class="flex items-center justify-between gap-3">
               <p class="text-xs text-text-main">{t('Restore funnel if it drops')}</p>
@@ -2309,10 +2213,7 @@
           <section class="space-y-3 pt-4 border-t border-border">
             <div class="space-y-0.5">
               <h4 class="text-xs font-semibold text-text-main">{t('Dashboard access')}</h4>
-              <p class="text-[11px] text-text-muted leading-relaxed">
-                When enabled, the dashboard can be reached through whichever tunnel is running. A login is still
-                required — the tunnel decides who can reach the door, not who gets in.
-              </p>
+              <p class="text-[11px] text-text-muted leading-relaxed">{t('When enabled, the dashboard can be reached through whichever tunnel is running. A login is still required — the tunnel decides who can reach the door, not who gets in.')}</p>
             </div>
             <div class="flex items-center justify-between gap-3">
               <p class="text-xs text-text-main">{t('Allow dashboard access via tunnel')}</p>
@@ -2326,10 +2227,7 @@
           <section class="space-y-3 pt-4 border-t border-border">
             <div class="space-y-0.5">
               <h4 class="text-xs font-semibold text-text-main">{t('Visibility')}</h4>
-              <p class="text-[11px] text-text-muted leading-relaxed">
-                Hide the Tunnel and Tailscale rows while neither is running. They come back the moment one is
-                enabled — this tidies the card, it does not remove the controls.
-              </p>
+              <p class="text-[11px] text-text-muted leading-relaxed">{t('Hide the Tunnel and Tailscale rows while neither is running. They come back the moment one is enabled — this tidies the card, it does not remove the controls.')}</p>
             </div>
             <div class="flex items-center justify-between gap-3">
               <p class="text-xs text-text-main">{t('Hide unused tunnel rows')}</p>
@@ -2351,9 +2249,7 @@
           <!-- Global has no primary action of its own: every switch on it saves
                the moment it is flipped, so a footer button would only close the
                modal. Close is already in the header, one row up. -->
-          <p class="text-[11px] text-text-muted text-center leading-relaxed">
-            Changes save as you make them.
-          </p>
+          <p class="text-[11px] text-text-muted text-center leading-relaxed">{t('Changes save as you make them.')}</p>
         {:else if tunnelSettingsTab === 'cloudflare'}
           {#if tunnelEnabled}
             <!-- Both actions on a running tunnel sit side by side. Restart is
@@ -2378,9 +2274,7 @@
                   showDisableTunnelModal = true
                 }}
                 class="flex-1 py-2 px-4 rounded-lg bg-danger hover:bg-danger/90 text-white font-semibold text-xs transition cursor-pointer"
-              >
-                Disable
-              </button>
+              >{t('Disable')}</button>
             </div>
           {:else}
             <button
@@ -2400,9 +2294,7 @@
               showDisableTailscaleModal = true
             }}
             class="w-full py-2 px-4 rounded-lg bg-danger hover:bg-danger/90 text-white font-semibold text-xs transition cursor-pointer"
-          >
-            Disable Tailscale
-          </button>
+          >{t('Disable Tailscale')}</button>
         {:else}
           <!-- Calls startTailscale directly rather than opening the old
                connect modal. That modal's Connect button was gated on
@@ -2443,24 +2335,18 @@
           <X class="w-4 h-4" />
         </button>
       </div>
-      <p class="text-sm text-text-muted leading-relaxed">
-        The Cloudflare tunnel will be disconnected. Remote access via the tunnel URL will stop working.
-      </p>
+      <p class="text-sm text-text-muted leading-relaxed">{t('The Cloudflare tunnel will be disconnected. Remote access via the tunnel URL will stop working.')}</p>
       <div class="flex gap-2 pt-2">
         <button
           type="button"
           onclick={stopTunnel}
           class="flex-1 py-2 px-4 rounded-lg bg-danger hover:bg-danger/90 text-white font-semibold text-xs transition cursor-pointer"
-        >
-          Disable Tunnel
-        </button>
+        >{t('Disable Tunnel')}</button>
         <button
           type="button"
           onclick={() => (showDisableTunnelModal = false)}
           class="flex-1 py-2 px-4 rounded-lg bg-surface-2 hover:bg-surface-3 text-text-main font-semibold text-xs transition cursor-pointer border border-border"
-        >
-          Cancel
-        </button>
+        >{t('Cancel')}</button>
       </div>
     </div>
   </div>
@@ -2485,24 +2371,18 @@
           <X class="w-4 h-4" />
         </button>
       </div>
-      <p class="text-sm text-text-muted leading-relaxed">
-        Tailscale Funnel will be stopped. Remote access via Tailscale URL will stop working.
-      </p>
+      <p class="text-sm text-text-muted leading-relaxed">{t('Tailscale Funnel will be stopped. Remote access via Tailscale URL will stop working.')}</p>
       <div class="flex gap-2 pt-2">
         <button
           type="button"
           onclick={stopTailscale}
           class="flex-1 py-2 px-4 rounded-lg bg-danger hover:bg-danger/90 text-white font-semibold text-xs transition cursor-pointer"
-        >
-          Disable Tailscale
-        </button>
+        >{t('Disable Tailscale')}</button>
         <button
           type="button"
           onclick={() => (showDisableTailscaleModal = false)}
           class="flex-1 py-2 px-4 rounded-lg bg-surface-2 hover:bg-surface-3 text-text-main font-semibold text-xs transition cursor-pointer border border-border"
-        >
-          Cancel
-        </button>
+        >{t('Cancel')}</button>
       </div>
     </div>
   </div>

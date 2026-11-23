@@ -221,9 +221,7 @@
 <div class="flex min-w-0 flex-col gap-3">
   {#if loading}
     <div class="flex items-center justify-center py-12 text-text-muted text-xs">
-      <span class="material-symbols-outlined animate-spin text-[20px] mr-2" aria-hidden="true">progress_activity</span>
-      Loading chart...
-    </div>
+      <span class="material-symbols-outlined animate-spin text-[20px] mr-2" aria-hidden="true">progress_activity</span>{t('Loading chart...')}</div>
   {:else if failed}
     <div class="py-10 text-center text-xs text-text-muted">{t('Usage chart could not be loaded.')}</div>
   {:else if !hasData}

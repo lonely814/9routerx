@@ -330,9 +330,7 @@
       <section class="space-y-3">
         <div>
           <h3 class="font-headline text-xs font-bold text-text-main">{t('Name')}</h3>
-          <p class="text-text-subtle mt-0.5">
-            Shown in this dashboard only. Clearing it falls back to the masked token.
-          </p>
+          <p class="text-text-subtle mt-0.5">{t('Shown in this dashboard only. Clearing it falls back to the masked token.')}</p>
         </div>
         <input
           id="key-name"
@@ -352,10 +350,7 @@
         <section class="space-y-3">
           <div>
             <h3 class="font-headline text-xs font-bold text-text-main">{t('Plan')}</h3>
-            <p class="text-text-subtle mt-0.5">
-              The key inherits this plan's limits as defaults. Any limit set below overrides the plan.
-              Choose <span class="font-code">{t('No plan')}</span> to detach the key.
-            </p>
+            <p class="text-text-subtle mt-0.5">{t('The key inherits this plan\'s limits as defaults. Any limit set below overrides the plan. Choose')}<span class="font-code">{t('No plan')}</span>{t('to detach the key.')}</p>
           </div>
           <select
             bind:value={planId}
@@ -370,9 +365,7 @@
           {#if isLoadingPlans}
             <p class="text-text-subtle text-[11px]">{t('Loading plans…')}</p>
           {:else if plans.length === 0}
-            <p class="text-text-subtle text-[11px]">
-              No plans defined yet. Create one on the Plans page.
-            </p>
+            <p class="text-text-subtle text-[11px]">{t('No plans defined yet. Create one on the Plans page.')}</p>
           {/if}
         </section>
       {/if}
@@ -381,17 +374,12 @@
       <section class="space-y-3">
         <div>
           <h3 class="font-headline text-xs font-bold text-text-main">{t('Rate limits')}</h3>
-          <p class="text-text-subtle mt-0.5">
-            Applied per key. <span class="font-code">0</span> means unlimited — a rejected request
-            returns 429 with <span class="font-code">{t('Retry-After')}</span> and never reaches the provider.
-          </p>
+          <p class="text-text-subtle mt-0.5">{t('Applied per key.')}<span class="font-code">0</span>{t('means unlimited — a rejected request returns 429 with')}<span class="font-code">{t('Retry-After')}</span>{t('and never reaches the provider.')}</p>
         </div>
 
         <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
           <div>
-            <label for="pol-rpm" class="block font-semibold text-text-muted mb-1">
-              Requests / minute
-            </label>
+            <label for="pol-rpm" class="block font-semibold text-text-muted mb-1">{t('Requests / minute')}</label>
             <input
               id="pol-rpm"
               type="number"
@@ -402,9 +390,7 @@
             />
           </div>
           <div>
-            <label for="pol-tpm" class="block font-semibold text-text-muted mb-1">
-              Tokens / minute
-            </label>
+            <label for="pol-tpm" class="block font-semibold text-text-muted mb-1">{t('Tokens / minute')}</label>
             <input
               id="pol-tpm"
               type="number"
@@ -415,9 +401,7 @@
             />
           </div>
           <div>
-            <label for="pol-conc" class="block font-semibold text-text-muted mb-1">
-              Concurrency
-            </label>
+            <label for="pol-conc" class="block font-semibold text-text-muted mb-1">{t('Concurrency')}</label>
             <input
               id="pol-conc"
               type="number"
@@ -431,9 +415,7 @@
 
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
           <div>
-            <label for="pol-quota" class="block font-semibold text-text-muted mb-1">
-              Lifetime token quota
-            </label>
+            <label for="pol-quota" class="block font-semibold text-text-muted mb-1">{t('Lifetime token quota')}</label>
             <input
               id="pol-quota"
               type="number"
@@ -442,15 +424,10 @@
               bind:value={tokenQuota}
               class="w-full bg-surface border border-border rounded-lg px-3 py-2 font-code text-xs text-text-main x9-field"
             />
-            <p class="text-text-subtle mt-1">
-              Total prompt + completion tokens for the key's lifetime. Once spent, requests are
-              refused with 403.
-            </p>
+            <p class="text-text-subtle mt-1">{t('Total prompt + completion tokens for the key\'s lifetime. Once spent, requests are refused with 403.')}</p>
           </div>
           <div>
-            <label for="pol-queue" class="block font-semibold text-text-muted mb-1">
-              Queue timeout (ms)
-            </label>
+            <label for="pol-queue" class="block font-semibold text-text-muted mb-1">{t('Queue timeout (ms)')}</label>
             <input
               id="pol-queue"
               type="number"
@@ -459,10 +436,7 @@
               bind:value={queueTimeoutMs}
               class="w-full bg-surface border border-border rounded-lg px-3 py-2 font-code text-xs text-text-main x9-field"
             />
-            <p class="text-text-subtle mt-1">
-              How long a request waits for a free concurrency slot before it is refused with 429.
-              Leave 0 for the server default.
-            </p>
+            <p class="text-text-subtle mt-1">{t('How long a request waits for a free concurrency slot before it is refused with 429. Leave 0 for the server default.')}</p>
           </div>
         </div>
       </section>
@@ -473,17 +447,11 @@
       <section class="space-y-3">
         <div>
           <h3 class="font-headline text-xs font-bold text-text-main">Daily cost &amp; request caps</h3>
-          <p class="text-text-subtle mt-0.5">
-            Cost is USD per UTC day (reset at midnight UTC); the request cap rolls every
-            <span class="font-code">{t('reset interval')}</span> minutes — set the interval to
-            <span class="font-code">0</span> to make the cap lifetime.
-          </p>
+          <p class="text-text-subtle mt-0.5">{t('Cost is USD per UTC day (reset at midnight UTC); the request cap rolls every')}<span class="font-code">{t('reset interval')}</span>{t('minutes — set the interval to')}<span class="font-code">0</span>{t('to make the cap lifetime.')}</p>
         </div>
         <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
           <div>
-            <label for="pol-cost" class="block font-semibold text-text-muted mb-1">
-              Daily cost limit ($)
-            </label>
+            <label for="pol-cost" class="block font-semibold text-text-muted mb-1">{t('Daily cost limit ($)')}</label>
             <input
               id="pol-cost"
               type="number"
@@ -502,9 +470,7 @@
             {/if}
           </div>
           <div>
-            <label for="pol-reqlimit" class="block font-semibold text-text-muted mb-1">
-              Request limit
-            </label>
+            <label for="pol-reqlimit" class="block font-semibold text-text-muted mb-1">{t('Request limit')}</label>
             <input
               id="pol-reqlimit"
               type="number"
@@ -518,9 +484,7 @@
             </p>
           </div>
           <div>
-            <label for="pol-reqinterval" class="block font-semibold text-text-muted mb-1">
-              Reset interval (min)
-            </label>
+            <label for="pol-reqinterval" class="block font-semibold text-text-muted mb-1">{t('Reset interval (min)')}</label>
             <input
               id="pol-reqinterval"
               type="number"
@@ -539,11 +503,7 @@
       <section class="space-y-3">
         <div>
           <h3 class="font-headline text-xs font-bold text-text-main">{t('IP whitelist')}</h3>
-          <p class="text-text-subtle mt-0.5">
-            Addresses or CIDR ranges that may use this key, e.g.
-            <span class="font-code">203.0.113.7</span> or
-            <span class="font-code">10.0.0.0/8</span>. An empty list allows every address.
-          </p>
+          <p class="text-text-subtle mt-0.5">{t('Addresses or CIDR ranges that may use this key, e.g.')}<span class="font-code">203.0.113.7</span>{t('or')}<span class="font-code">10.0.0.0/8</span>{t('. An empty list allows every address.')}</p>
         </div>
         <div class="flex gap-2">
           <input
@@ -557,9 +517,7 @@
             type="button"
             onclick={addIpEntry}
             class="px-3 py-2 rounded-lg bg-surface-3 border border-border text-[11px] text-text-main hover:border-brand-500/40 transition cursor-pointer"
-          >
-            Add
-          </button>
+          >{t('Add')}</button>
         </div>
         {#if ipEntries.length > 0}
           <div class="flex flex-wrap gap-1.5">
@@ -589,9 +547,7 @@
       <section class="space-y-3">
         <div>
           <h3 class="font-headline text-xs font-bold text-text-main">{t('System prompt')}</h3>
-          <p class="text-text-subtle mt-0.5">
-            Injected into every request this key sends, after the global prompt. Empty disables it.
-          </p>
+          <p class="text-text-subtle mt-0.5">{t('Injected into every request this key sends, after the global prompt. Empty disables it.')}</p>
         </div>
         <textarea
           bind:value={systemPrompt}
@@ -607,13 +563,10 @@
       <section class="space-y-3">
         <div>
           <h3 class="font-headline text-xs font-bold text-text-main">{t('Permissions')}</h3>
-          <p class="text-text-subtle mt-0.5">
-            JSON object naming the endpoint families the key may call:
-            <span class="font-code">chat</span>, <span class="font-code">models</span>,
+          <p class="text-text-subtle mt-0.5">{t('JSON object naming the endpoint families the key may call:')}<span class="font-code">chat</span>, <span class="font-code">models</span>,
             <span class="font-code">embeddings</span>, <span class="font-code">media</span>,
             <span class="font-code">web</span>, <span class="font-code">files</span>,
-            <span class="font-code">batches</span>. Empty allows every family.
-          </p>
+            <span class="font-code">batches</span>{t('. Empty allows every family.')}</p>
         </div>
         <textarea
           bind:value={permissions}
@@ -628,9 +581,7 @@
       <section class="space-y-3">
         <div>
           <h3 class="font-headline text-xs font-bold text-text-main">{t('Contract expiry')}</h3>
-          <p class="text-text-subtle mt-0.5">
-            After this instant the key is rejected with 401. Leave empty for a key that never expires.
-          </p>
+          <p class="text-text-subtle mt-0.5">{t('After this instant the key is rejected with 401. Leave empty for a key that never expires.')}</p>
         </div>
         <input
           type="datetime-local"
@@ -644,16 +595,9 @@
       <section class="space-y-3">
         <div>
           <h3 class="font-headline text-xs font-bold text-text-main">{t('Resale metadata')}</h3>
-          <p class="text-text-subtle mt-0.5">
-            JSON object kept with the key. Accepted keys:
-            <span class="font-code">{t('customerId')}</span>,
-            <span class="font-code">{t('priceCents')}</span> (whole cents),
-            <span class="font-code">{t('billingCycle')}</span> (one-off, monthly, quarterly, yearly),
-            <span class="font-code">contact</span>,
-            <span class="font-code">notes</span>
-            — up to 2 KB. Any other key is refused, so a typo cannot silently drop
-            the key out of the resale report.
-          </p>
+          <p class="text-text-subtle mt-0.5">{t('JSON object kept with the key. Accepted keys:')}<span class="font-code">{t('customerId')}</span>,
+            <span class="font-code">{t('priceCents')}</span>{t('(whole cents),')}<span class="font-code">{t('billingCycle')}</span>{t('(one-off, monthly, quarterly, yearly),')}<span class="font-code">contact</span>,
+            <span class="font-code">notes</span>{t('— up to 2 KB. Any other key is refused, so a typo cannot silently drop the key out of the resale report.')}</p>
         </div>
         <textarea
           bind:value={metadata}
@@ -669,10 +613,7 @@
         <div class="flex items-start justify-between gap-3">
           <div>
             <h3 class="font-headline text-xs font-bold text-text-main">{t('Model access')}</h3>
-            <p class="text-text-subtle mt-0.5">
-              Patterns may use <span class="font-code">*</span> per segment, e.g.
-              <span class="font-code">{t('e2e/allowed-*')}</span>. An empty list allows every model.
-            </p>
+            <p class="text-text-subtle mt-0.5">{t('Patterns may use')}<span class="font-code">*</span>{t('per segment, e.g.')}<span class="font-code">{t('e2e/allowed-*')}</span>{t('. An empty list allows every model.')}</p>
           </div>
           <button
             type="button"
@@ -700,9 +641,7 @@
             type="button"
             onclick={addModel}
             class="px-3 py-2 rounded-lg bg-surface-3 border border-border text-[11px] text-text-main hover:border-brand-500/40 transition cursor-pointer"
-          >
-            Add
-          </button>
+          >{t('Add')}</button>
         </div>
 
         {#if models.length > 0}
@@ -738,19 +677,13 @@
         <div class="flex items-start justify-between gap-3">
           <div>
             <h3 class="font-headline text-xs font-bold text-text-main">{t('Hidden models')}</h3>
-            <p class="text-text-subtle mt-0.5">
-              One pattern per line — exact, <span class="font-code">{t('prefix*')}</span> or
-              <span class="font-code">{t('*suffix')}</span>. Hidden models disappear from this key's
-              model list and return 404 when called. Empty hides nothing.
-            </p>
+            <p class="text-text-subtle mt-0.5">{t('One pattern per line — exact,')}<span class="font-code">{t('prefix*')}</span>{t('or')}<span class="font-code">{t('*suffix')}</span>{t('. Hidden models disappear from this key\'s model list and return 404 when called. Empty hides nothing.')}</p>
           </div>
           <button
             type="button"
             onclick={loadHiddenModels}
             class="shrink-0 px-2.5 py-1.5 rounded-lg border border-border text-[11px] text-text-muted hover:text-text-main hover:border-brand-500/40 transition cursor-pointer"
-          >
-            Reload
-          </button>
+          >{t('Reload')}</button>
         </div>
         <textarea
           bind:value={hiddenModelsText}
@@ -778,9 +711,7 @@
           type="button"
           onclick={onClose}
           class="px-4 py-2 rounded-lg text-text-muted hover:text-text-main cursor-pointer"
-        >
-          Cancel
-        </button>
+        >{t('Cancel')}</button>
         <button
           type="submit"
           disabled={isSaving}

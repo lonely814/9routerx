@@ -688,9 +688,7 @@
             unusedPill = 'off'
           }}
           class="shrink-0 rounded-lg px-2.5 py-1.5 text-xs text-text-muted hover:text-text-main hover:bg-surface-2 transition-colors cursor-pointer"
-        >
-          Clear
-        </button>
+        >{t('Clear')}</button>
       {/if}
       <button
         type="button"
@@ -725,34 +723,26 @@
             onclick={() => runBatchAction('enabled', (id) => api.setApiKeyActive(id, true))}
             class="flex items-center gap-1 rounded-lg border border-emerald-500/30 px-2 py-1 text-[11px] text-emerald-600 transition-colors hover:bg-emerald-500/10 disabled:opacity-50 dark:text-emerald-400"
           >
-            <span class="material-symbols-outlined text-[14px]">check_circle</span>
-            Enable
-          </button>
+            <span class="material-symbols-outlined text-[14px]">check_circle</span>{t('Enable')}</button>
           <button
             type="button"
             disabled={isBatchBusy(batchBusy, selectedIds)}
             onclick={() => runBatchAction('paused', (id) => api.setApiKeyActive(id, false))}
             class="flex items-center gap-1 rounded-lg border border-amber-500/30 px-2 py-1 text-[11px] text-amber-600 transition-colors hover:bg-amber-500/10 disabled:opacity-50 dark:text-amber-400"
           >
-            <span class="material-symbols-outlined text-[14px]">pause</span>
-            Pause
-          </button>
+            <span class="material-symbols-outlined text-[14px]">pause</span>{t('Pause')}</button>
           <button
             type="button"
             disabled={isBatchBusy(batchBusy, selectedIds)}
             onclick={batchDelete}
             class="flex items-center gap-1 rounded-lg border border-red-500/30 px-2 py-1 text-[11px] text-red-500 transition-colors hover:bg-red-500/10 disabled:opacity-50"
           >
-            <Trash2 class="w-3 h-3" />
-            Delete
-          </button>
+            <Trash2 class="w-3 h-3" />{t('Delete')}</button>
           <button
             type="button"
             onclick={() => (selectedIds = [])}
             class="rounded-lg px-2 py-1 text-[11px] text-text-muted transition-colors hover:bg-surface-3 hover:text-text-main"
-          >
-            Clear
-          </button>
+          >{t('Clear')}</button>
         </div>
       </div>
     {/if}
@@ -986,9 +976,7 @@
           }}
           class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-border bg-surface-2 hover:bg-surface-3 text-xs font-semibold text-text-main transition cursor-pointer"
         >
-          <RotateCcw class="w-3.5 h-3.5" />
-          Clear filters
-        </button>
+          <RotateCcw class="w-3.5 h-3.5" />{t('Clear filters')}</button>
       </div>
     {:else}
     <ul class="md:hidden grid grid-cols-1 gap-3">
@@ -1051,9 +1039,7 @@
                   onclick={() => handleRotate(k)}
                   class="text-[11px] text-text-muted hover:text-text-main px-2 py-1 rounded-lg hover:bg-surface-2 transition-colors inline-flex items-center gap-1.5 cursor-pointer"
                 >
-                  <RotateCw class="w-3.5 h-3.5" />
-                  Regenerate
-                </button>
+                  <RotateCw class="w-3.5 h-3.5" />{t('Regenerate')}</button>
                 {@render keyActions(k)}
               </div>
             </div>

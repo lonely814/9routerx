@@ -131,9 +131,7 @@
             type="button"
             onclick={onClose}
             class="inline-flex items-center gap-1.5 font-semibold transition-all duration-150 ease-out cursor-pointer active:scale-[0.97] bg-surface-2 hover:bg-surface-3 text-text-main border border-border h-8 px-4 text-xs rounded-[8px]"
-          >
-            Close
-          </button>
+          >{t('Close')}</button>
         </div>
       {/if}
     </div>

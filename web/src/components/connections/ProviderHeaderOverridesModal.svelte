@@ -135,10 +135,7 @@
       <div class="mb-4 flex items-start justify-between gap-4">
         <div>
           <h3 id="provider-overrides-title" class="text-sm font-semibold text-text-main">{t('Custom headers')}</h3>
-          <p class="mt-0.5 text-xs text-text-muted">
-            Added to every request this provider receives. An override replaces what the gateway
-            sends.
-          </p>
+          <p class="mt-0.5 text-xs text-text-muted">{t('Added to every request this provider receives. An override replaces what the gateway sends.')}</p>
         </div>
         <button
           type="button"
@@ -218,9 +215,7 @@
             disabled={rows.length >= MAX_HEADERS}
             class="inline-flex items-center gap-1 rounded-lg px-2 py-1 text-xs text-text-muted hover:bg-surface-2 hover:text-text-main disabled:opacity-50"
           >
-            <span class="material-symbols-outlined text-[16px]" aria-hidden="true">add</span>
-            Add header
-          </button>
+            <span class="material-symbols-outlined text-[16px]" aria-hidden="true">add</span>{t('Add header')}</button>
           <span class="text-[11px] text-text-muted">{Object.keys(payload).length} / {MAX_HEADERS}</span>
         </div>
 
@@ -240,9 +235,7 @@
           type="button"
           onclick={onClose}
           class="rounded-lg px-3 py-1.5 text-xs font-semibold text-text-muted hover:bg-surface-2"
-        >
-          Close
-        </button>
+        >{t('Close')}</button>
         <button
           type="button"
           onclick={save}

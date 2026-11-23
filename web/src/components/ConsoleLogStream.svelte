@@ -171,18 +171,12 @@
       class="h-7 cursor-pointer rounded-[8px] border border-border px-2.5 text-xs text-text-main transition-colors duration-150 hover:bg-surface-2 {wrap
         ? 'border-brand-500/40 bg-brand-500/10 text-brand-600 dark:text-brand-400'
         : ''}"
-    >
-      Wrap
-    </button>
+    >{t('Wrap')}</button>
 
     <Button size="sm" variant="outline" title={t('Copy visible lines')} disabled={visible.length === 0} onclick={copyVisible}>
-      <Copy class="h-3.5 w-3.5" />
-      Copy
-    </Button>
+      <Copy class="h-3.5 w-3.5" />{t('Copy')}</Button>
     <Button size="sm" variant="outline" title={t('Download visible lines')} disabled={visible.length === 0} onclick={downloadVisible}>
-      <Download class="h-3.5 w-3.5" />
-      Export
-    </Button>
+      <Download class="h-3.5 w-3.5" />{t('Export')}</Button>
   </div>
 
   <div
@@ -193,10 +187,7 @@
     {#if entries.length === 0}
       <div class="flex h-full flex-col items-center justify-center gap-1.5 px-6 text-center">
         <p class="text-sm text-text-main">{t('No console output yet')}</p>
-        <p class="max-w-md text-xs text-text-muted">
-          Nothing has been logged since the server started or the last clear. Send a request, or set the level to
-          <span class="font-mono">debug</span>, and rows appear here live.
-        </p>
+        <p class="max-w-md text-xs text-text-muted">{t('Nothing has been logged since the server started or the last clear. Send a request, or set the level to')}<span class="font-mono">debug</span>{t(', and rows appear here live.')}</p>
       </div>
     {:else if visible.length === 0}
       <div class="flex h-full flex-col items-center justify-center gap-1.5 px-6 text-center">
@@ -245,9 +236,7 @@
         }}
         class="absolute bottom-3 left-1/2 inline-flex -translate-x-1/2 items-center gap-1.5 rounded-full border border-border bg-surface px-3 py-1.5 text-xs font-medium text-text-main shadow-[var(--shadow-elev)] transition-colors duration-150 hover:bg-surface-2"
       >
-        <ArrowDown class="h-3.5 w-3.5" />
-        Jump to latest
-      </button>
+        <ArrowDown class="h-3.5 w-3.5" />{t('Jump to latest')}</button>
     {/if}
   </div>
 

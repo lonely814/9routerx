@@ -267,9 +267,7 @@
             type="button"
             onclick={() => (showUpdateModal = true)}
             class="px-2 py-0.5 rounded bg-green-600 hover:bg-green-700 dark:bg-amber-500 dark:hover:bg-amber-600 text-white text-[11px] font-semibold transition-colors cursor-pointer shrink-0"
-          >
-            Update now
-          </button>
+          >{t('Update now')}</button>
           <button
             type="button"
             onclick={copyInstallCmd}
@@ -292,9 +290,7 @@
     {#if favoritesEnabled && visiblePins.length > 0}
       <div class="{iconRail ? '' : 'pt-1'} space-y-0.5">
         {#if !iconRail}
-          <p class="glyph-rail-hide px-3 text-xs font-semibold text-text-muted/60 uppercase tracking-wider mb-2">
-            Pinned
-          </p>
+          <p class="glyph-rail-hide px-3 text-xs font-semibold text-text-muted/60 uppercase tracking-wider mb-2">{t('Pinned')}</p>
         {/if}
         {#each visiblePins as entry (entry.id)}
           {@const pinActive = isNavLinkActive(entry.id, activeTab)}
@@ -399,9 +395,7 @@
                 <span
                   class="glyph-rail-hide material-symbols-outlined text-[16px] transition-transform duration-200"
                   style:transform={isOpen ? 'rotate(180deg)' : 'rotate(0deg)'}
-                >
-                  expand_more
-                </span>
+                >expand_more</span>
               {/if}
             </button>
             {#if isOpen && !iconRail}
@@ -482,7 +476,7 @@
             ? 'bg-[var(--app-danger)]'
             : 'bg-[var(--app-success)]'}"
         ></span>
-        <span class="truncate">gateway · {$notifications.some((n) => n.type === 'error') ? 'degraded' : 'healthy'}</span>
+        <span class="truncate">{t('gateway')} · {$notifications.some((n) => n.type === 'error') ? t('degraded') : t('healthy')}</span>
       </span>
     </div>
     <div
@@ -491,7 +485,7 @@
       <div class="min-w-0">
         <p class="text-[11px] text-text-muted uppercase tracking-wide">{t('Providers')}</p>
         <p class="text-xs font-semibold text-text-main mt-0.5 truncate">
-          {activeConnections} <span class="text-text-muted font-normal">/ {totalConnections} active</span>
+          {activeConnections} <span class="text-text-muted font-normal">/ {totalConnections} {t('active')}</span>
         </p>
       </div>
       <span class="material-symbols-outlined text-primary text-[20px]">radio_button_checked</span>

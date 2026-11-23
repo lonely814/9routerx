@@ -245,9 +245,7 @@
             title={useTunnel ? 'Using tunnel' : 'Using local'}
             class="flex items-center gap-1 text-xs px-2 py-1.5 rounded-lg border shrink-0 transition-colors cursor-pointer {useTunnel ? 'border-primary/40 bg-primary/10 text-primary' : 'border-border text-text-muted hover:text-primary'}"
           >
-            <span class="material-symbols-outlined text-[14px]">wifi_tethering</span>
-            Tunnel
-          </button>
+            <span class="material-symbols-outlined text-[14px]">wifi_tethering</span>{t('Tunnel')}</button>
         {/if}
       </div>
     </div>
@@ -317,9 +315,7 @@
             onclick={openModal}
             class="flex w-full items-center justify-center gap-1 text-xs px-2.5 py-1.5 rounded-lg border border-border text-text-muted hover:text-primary hover:border-primary/40 transition-colors sm:w-auto sm:shrink-0 cursor-pointer"
           >
-            <span class="material-symbols-outlined text-[14px]">language</span>
-            Select language
-          </button>
+            <span class="material-symbols-outlined text-[14px]">language</span>{t('Select language')}</button>
         </div>
       </div>
     {/if}
@@ -437,9 +433,7 @@
             download="speech.mp3"
             class="inline-flex items-center gap-1 text-xs text-text-muted hover:text-primary transition-colors"
           >
-            <span class="material-symbols-outlined text-[14px]">download</span>
-            Download
-          </a>
+            <span class="material-symbols-outlined text-[14px]">download</span>{t('Download')}</a>
         </div>
         <audio controls src={audioUrl} class="w-full mt-1"></audio>
 

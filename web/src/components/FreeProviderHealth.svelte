@@ -113,23 +113,16 @@
     <div class="flex items-center gap-2">
       {#if confirmReset}
         <Button size="sm" variant="danger" disabled={resetting} onclick={doReset}>
-          <RotateCcw class="w-3.5 h-3.5" aria-hidden="true" />
-          Confirm clear
-        </Button>
+          <RotateCcw class="w-3.5 h-3.5" aria-hidden="true" />{t('Confirm clear')}</Button>
         <Button size="sm" variant="ghost" onclick={() => (confirmReset = false)}>{t('Cancel')}</Button>
       {:else}
         <Button size="sm" variant="ghost" disabled={coolingCount === 0} onclick={() => (confirmReset = true)}>
-          <RotateCcw class="w-3.5 h-3.5" aria-hidden="true" />
-          Reset cooldowns
-        </Button>
+          <RotateCcw class="w-3.5 h-3.5" aria-hidden="true" />{t('Reset cooldowns')}</Button>
       {/if}
     </div>
   </div>
 
-  <p class="text-xs text-text-muted mt-1">
-    What the free-tier fallback chain sees. Red = skipped while its quota wait
-    runs out; amber = flaky over the last 24h; green = healthy. Polls every 30s.
-  </p>
+  <p class="text-xs text-text-muted mt-1">{t('What the free-tier fallback chain sees. Red = skipped while its quota wait runs out; amber = flaky over the last 24h; green = healthy. Polls every 30s.')}</p>
 
   {#if loaded && visible.length > 0}
     <div class="overflow-x-auto mt-3">
@@ -194,9 +187,7 @@
   {:else if loaded}
     <p class="text-xs text-text-subtle mt-3">{t('No free provider traffic recorded yet.')}</p>
   {:else if failed}
-    <p class="text-[11px] text-text-muted mt-3 border border-border-subtle rounded-lg px-3 py-2">
-      Health data is stale — the last refresh failed. It retries every 30 seconds.
-    </p>
+    <p class="text-[11px] text-text-muted mt-3 border border-border-subtle rounded-lg px-3 py-2">{t('Health data is stale — the last refresh failed. It retries every 30 seconds.')}</p>
   {:else}
     <p class="text-xs text-text-subtle mt-3">{t('Loading…')}</p>
   {/if}

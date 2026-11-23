@@ -131,15 +131,10 @@
         disabled={!draft.trim()}
         class="flex items-center gap-1.5 rounded-lg bg-brand-500 px-3 py-2 text-xs font-bold text-white transition hover:bg-brand-600 disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer"
       >
-        <span class="material-symbols-outlined text-[16px]">search</span>
-        Search
-      </button>
+        <span class="material-symbols-outlined text-[16px]">search</span>{t('Search')}</button>
     </div>
 
-    <p class="text-[11px] text-text-subtle">
-      Press <kbd class="rounded border border-border bg-surface-2 px-1 font-code text-[10px]">{t('Enter')}</kbd>
-      or the Search button to run the query — typing alone does not, so a long model list never stalls the input.
-    </p>
+    <p class="text-[11px] text-text-subtle">{t('Press')}<kbd class="rounded border border-border bg-surface-2 px-1 font-code text-[10px]">{t('Enter')}</kbd>{t('or the Search button to run the query — typing alone does not, so a long model list never stalls the input.')}</p>
 
     {#if applied}
       <div class="flex items-center justify-between text-[11px] text-text-muted">

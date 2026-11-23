@@ -197,9 +197,7 @@
           {#if plan.duplicates.length > 0}· {plan.duplicates.length} repeated in the paste{/if}
           {#if plan.invalid.length > 0}· {plan.invalid.length} rejected{/if}
           — separated by spaces, commas or newlines, a
-          <code class="font-mono bg-sidebar px-1 rounded">{providerAlias}/</code> prefix is stripped, and the
-          capabilities and token limits below apply to every id.
-        </p>
+          <code class="font-mono bg-sidebar px-1 rounded">{providerAlias}/</code>{t('prefix is stripped, and the capabilities and token limits below apply to every id.')}</p>
         {#if plan.ids.length > 0}
           <div class="mt-2 flex flex-wrap gap-1">
             {#each plan.ids as id (id)}
@@ -215,9 +213,7 @@
           </ul>
         {/if}
       {:else}
-        <p class="text-xs text-text-muted mt-1">
-          Sent to provider as:
-          <code class="font-mono bg-sidebar px-1 rounded">{cleanId || 'model-id'}</code>
+        <p class="text-xs text-text-muted mt-1">{t('Sent to provider as:')}<code class="font-mono bg-sidebar px-1 rounded">{cleanId || 'model-id'}</code>
         </p>
       {/if}
     </div>
@@ -297,10 +293,7 @@
           />
         </div>
       </div>
-      <p class="text-xs text-text-muted mt-1">
-        Published to <code class="font-mono bg-sidebar px-1 rounded">{t('/v1/models')}</code> instead of a guessed
-        value. Leave blank to keep the default.
-      </p>
+      <p class="text-xs text-text-muted mt-1">{t('Published to')}<code class="font-mono bg-sidebar px-1 rounded">{t('/v1/models')}</code>{t('instead of a guessed value. Leave blank to keep the default.')}</p>
       {#if limitsError}
         <p id="add-custom-model-limits-error" class="text-xs text-red-600 dark:text-red-400 mt-1" role="alert">
           {limitsError}
@@ -310,9 +303,7 @@
 
     {#if testStatus === 'ok'}
       <div class="flex items-center gap-2 text-sm text-green-600">
-        <span class="material-symbols-outlined text-base">check_circle</span>
-        Model is reachable
-      </div>
+        <span class="material-symbols-outlined text-base">check_circle</span>{t('Model is reachable')}</div>
     {/if}
     {#if testStatus === 'error'}
       <div class="flex items-start gap-2 text-sm text-red-500">

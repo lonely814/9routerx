@@ -660,9 +660,7 @@
               rel="noopener noreferrer"
               class="text-xs text-primary hover:underline inline-flex items-center gap-1"
             >
-              <span class="material-symbols-outlined text-sm">open_in_new</span>
-              Get API Key
-            </a>
+              <span class="material-symbols-outlined text-sm">open_in_new</span>{t('Get API Key')}</a>
           {/if}
           <!-- Media tabs never mount the Providers view, so without a toggle
                here the masking applied elsewhere is unreachable from the
@@ -702,9 +700,7 @@
           target="_blank"
           rel="noopener noreferrer"
           class="inline-flex justify-center rounded bg-blue-500 px-2 py-1 text-xs font-medium text-white transition-colors hover:bg-blue-600 sm:py-0.5"
-        >
-          Get API Key →
-        </a>
+        >{t('Get API Key →')}</a>
       {/if}
     </div>
   {/if}
@@ -755,9 +751,7 @@
             onclick={() => (showAddConnModal = true)}
             class="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-primary text-white font-medium hover:bg-primary/90 transition-colors cursor-pointer"
           >
-            <span class="material-symbols-outlined text-sm">add</span>
-            Add Connection
-          </button>
+            <span class="material-symbols-outlined text-sm">add</span>{t('Add Connection')}</button>
         </div>
       {:else}
         <div class="flex flex-col gap-2">
@@ -801,17 +795,13 @@
                   onclick={() => handleOpenEditConn(conn)}
                   class="inline-flex items-center gap-1 px-2.5 py-1 text-xs rounded-lg border border-border hover:bg-surface-2 text-text-main transition-colors cursor-pointer"
                 >
-                  <span class="material-symbols-outlined text-sm">edit</span>
-                  Edit
-                </button>
+                  <span class="material-symbols-outlined text-sm">edit</span>{t('Edit')}</button>
                 <button
                   type="button"
                   onclick={() => handleDeleteConn(conn.id)}
                   class="inline-flex items-center gap-1 px-2.5 py-1 text-xs rounded-lg border border-red-500/20 text-red-500 hover:bg-red-500/10 transition-colors cursor-pointer"
                 >
-                  <span class="material-symbols-outlined text-sm">delete</span>
-                  Delete
-                </button>
+                  <span class="material-symbols-outlined text-sm">delete</span>{t('Delete')}</button>
               </div>
             </div>
           {/each}
@@ -821,9 +811,7 @@
               onclick={() => (showAddConnModal = true)}
               class="inline-flex items-center gap-1 px-3 py-1.5 text-xs font-semibold rounded-lg bg-primary text-white hover:bg-primary/90 transition-colors cursor-pointer"
             >
-              <span class="material-symbols-outlined text-sm">add</span>
-              Add
-            </button>
+              <span class="material-symbols-outlined text-sm">add</span>{t('Add')}</button>
           </div>
         </div>
       {/if}
@@ -904,9 +892,7 @@
             rel="noopener noreferrer"
             class="text-xs text-primary hover:underline inline-flex items-center gap-1"
           >
-            <span class="material-symbols-outlined text-sm">open_in_new</span>
-            Get API Key
-          </a>
+            <span class="material-symbols-outlined text-sm">open_in_new</span>{t('Get API Key')}</a>
         {/if}
       </div>
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-2">
@@ -1318,9 +1304,7 @@
           type="button"
           onclick={() => (showAddConnModal = false)}
           class="px-3 py-1.5 text-xs font-semibold rounded-lg bg-surface-2 hover:bg-surface-3 text-text-main border border-border cursor-pointer"
-        >
-          Cancel
-        </button>
+        >{t('Cancel')}</button>
         <button
           type="button"
           onclick={handleSaveNewConnection}
@@ -1370,16 +1354,12 @@
           type="button"
           onclick={() => (editingConn = null)}
           class="px-3 py-1.5 text-xs font-semibold rounded-lg bg-surface-2 hover:bg-surface-3 text-text-main border border-border cursor-pointer"
-        >
-          Cancel
-        </button>
+        >{t('Cancel')}</button>
         <button
           type="button"
           onclick={handleSaveEditedConn}
           class="px-3 py-1.5 text-xs font-semibold rounded-lg bg-primary text-white hover:bg-primary/90 transition-colors cursor-pointer"
-        >
-          Save
-        </button>
+        >{t('Save')}</button>
       </div>
     </div>
   </div>

@@ -88,9 +88,7 @@
             rel="noopener noreferrer"
             class="hidden sm:inline-flex items-center gap-1.5 px-3 py-1 rounded-lg text-xs font-medium text-text-muted hover:text-text-main hover:bg-surface-2 border border-border-subtle transition-colors"
           >
-            <span class="material-symbols-outlined text-[16px]">open_in_new</span>
-            GitHub Releases
-          </a>
+            <span class="material-symbols-outlined text-[16px]">open_in_new</span>{t('GitHub Releases')}</a>
           <button
             type="button"
             onclick={onClose}
@@ -106,9 +104,7 @@
       <div class="p-6 overflow-y-auto flex-1 custom-scrollbar">
         {#if loading}
           <div class="flex flex-col items-center justify-center py-16 text-text-muted gap-3">
-            <span class="material-symbols-outlined animate-spin text-[32px] text-primary">
-              progress_activity
-            </span>
+            <span class="material-symbols-outlined animate-spin text-[32px] text-primary">{t('progress_activity')}</span>
             <p class="text-sm font-medium">{t('Loading change log...')}</p>
           </div>
         {:else if error}
@@ -125,17 +121,13 @@
                 type="button"
                 onclick={fetchChangelog}
                 class="px-4 py-2 text-xs font-semibold rounded-lg bg-primary hover:bg-primary-hover text-white transition-colors cursor-pointer"
-              >
-                Retry
-              </button>
+              >{t('Retry')}</button>
               <a
                 href="https://github.com/yanstd888/9routerx/blob/main/CHANGELOG.md"
                 target="_blank"
                 rel="noopener noreferrer"
                 class="px-4 py-2 text-xs font-medium rounded-lg border border-border-subtle text-text-main hover:bg-surface-2 transition-colors"
-              >
-                View on GitHub
-              </a>
+              >{t('View on GitHub')}</a>
             </div>
           </div>
         {:else if html}
@@ -161,9 +153,7 @@
           type="button"
           onclick={onClose}
           class="px-4 py-1.5 text-xs font-medium rounded-lg bg-surface-2 hover:bg-surface-3 text-text-main transition-colors cursor-pointer border border-border-subtle"
-        >
-          Close
-        </button>
+        >{t('Close')}</button>
       </div>
     </div>
   </div>

@@ -262,9 +262,7 @@
             type="button"
             onclick={onBackToProviders}
             class="text-text-muted hover:text-primary transition-colors cursor-pointer text-sm font-normal"
-          >
-            Providers
-          </button>
+          >{t('Providers')}</button>
         </div>
         <div class="flex items-center gap-2 min-w-0">
           <span class="material-symbols-outlined text-text-muted text-base">chevron_right</span>
@@ -383,9 +381,7 @@
     >
       <div class="flex items-center justify-between pb-3 border-b border-border-subtle">
         <h2 class="text-lg font-semibold text-text-main flex items-center gap-2">
-          <span class="material-symbols-outlined text-pink-500">volunteer_activism</span>
-          Support 9RouterX
-        </h2>
+          <span class="material-symbols-outlined text-pink-500">volunteer_activism</span>{t('Support 9RouterX')}</h2>
         <button
           type="button"
           onclick={() => (isDonateOpen = false)}
@@ -396,9 +392,7 @@
         </button>
       </div>
 
-      <p class="text-sm text-text-muted leading-relaxed">
-        9RouterX is a fast, lightweight and open-source high-throughput AI gateway in Go. If 9RouterX saves you time and tokens, consider supporting the project!
-      </p>
+      <p class="text-sm text-text-muted leading-relaxed">{t('9RouterX is a fast, lightweight and open-source high-throughput AI gateway in Go. If 9RouterX saves you time and tokens, consider supporting the project!')}</p>
 
       <!-- Three destinations, stacked rather than tiled: a 2-column grid leaves
            the third card alone on its own row, and a full-width row per link
@@ -414,9 +408,7 @@
             <span class="material-symbols-outlined text-[22px]">star</span>
           </div>
           <div class="min-w-0">
-            <div class="text-sm font-semibold text-text-main group-hover:text-brand-500 transition-colors">
-              GitHub Repository
-            </div>
+            <div class="text-sm font-semibold text-text-main group-hover:text-brand-500 transition-colors">{t('GitHub Repository')}</div>
             <div class="text-xs text-text-muted">Star & contribute on GitHub</div>
           </div>
         </a>
@@ -448,9 +440,7 @@
             <span class="material-symbols-outlined text-[22px]">send</span>
           </div>
           <div class="min-w-0">
-            <div class="text-sm font-semibold text-text-main group-hover:text-sky-700 dark:group-hover:text-sky-400 transition-colors">
-              Telegram Group
-            </div>
+            <div class="text-sm font-semibold text-text-main group-hover:text-sky-700 dark:group-hover:text-sky-400 transition-colors">{t('Telegram Group')}</div>
             <div class="text-xs text-text-muted">{t('Release notes, questions, provider issues')}</div>
           </div>
         </a>
@@ -461,9 +451,7 @@
           type="button"
           onclick={() => (isDonateOpen = false)}
           class="px-4 py-2 text-sm rounded-lg bg-surface-2 hover:bg-surface-3 text-text-main font-medium transition-colors cursor-pointer"
-        >
-          Close
-        </button>
+        >{t('Close')}</button>
       </div>
     </div>
   </div>

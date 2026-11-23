@@ -62,30 +62,20 @@
     <span class="h-3.5 w-px bg-border" aria-hidden="true"></span>
 
     <button type="button" class={actionClass()} onclick={onTest} disabled={busy} title={t('Send a minimal request to each selected model')}>
-      <span class="material-symbols-outlined text-[14px]">science</span>
-      Test selected
-    </button>
+      <span class="material-symbols-outlined text-[14px]">science</span>{t('Test selected')}</button>
 
     {#if canDisable}
       <button type="button" class={actionClass()} onclick={onDisable} disabled={busy} title={t('Hide the selected models from this provider')}>
-        <span class="material-symbols-outlined text-[14px]">block</span>
-        Disable selected
-      </button>
+        <span class="material-symbols-outlined text-[14px]">block</span>{t('Disable selected')}</button>
       <button type="button" class={actionClass()} onclick={onEnable} disabled={busy} title={t('Show the selected models again')}>
-        <span class="material-symbols-outlined text-[14px]">visibility</span>
-        Enable selected
-      </button>
+        <span class="material-symbols-outlined text-[14px]">visibility</span>{t('Enable selected')}</button>
     {/if}
 
     {#if canDelete}
       <button type="button" class={actionClass(true)} onclick={onDelete} disabled={busy} title={t('Delete the selected custom models; registry models are disabled instead')}>
-        <span class="material-symbols-outlined text-[14px]">delete</span>
-        Delete selected
-      </button>
+        <span class="material-symbols-outlined text-[14px]">delete</span>{t('Delete selected')}</button>
     {/if}
 
-    <button type="button" class="ml-auto inline-flex items-center gap-1 rounded-md px-2 py-1 text-[11px] text-text-muted transition-colors hover:text-text-main cursor-pointer" onclick={onClear}>
-      Clear
-    </button>
+    <button type="button" class="ml-auto inline-flex items-center gap-1 rounded-md px-2 py-1 text-[11px] text-text-muted transition-colors hover:text-text-main cursor-pointer" onclick={onClear}>{t('Clear')}</button>
   {/if}
 </div>

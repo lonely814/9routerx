@@ -13,21 +13,14 @@
 <div class="flex flex-col gap-4">
   <div class="min-w-0">
     <h1 class="font-headline text-2xl sm:text-3xl font-bold text-text-main tracking-tight">{t('Model Combos')}</h1>
-    <p class="text-sm text-text-muted mt-1">
-      Group models under one name, then pick a strategy per combo:
-    </p>
+    <p class="text-sm text-text-muted mt-1">{t('Group models under one name, then pick a strategy per combo:')}</p>
     <ul class="text-sm text-text-muted mt-2 flex flex-col gap-1">
       <li>
-        <span class="font-medium text-text-main">{t('Fallback')}</span> — tries models in order (next on failure)
-      </li>
+        <span class="font-medium text-text-main">{t('Fallback')}</span>{t('— tries models in order (next on failure)')}</li>
       <li>
-        <span class="font-medium text-text-main">{t('Round Robin')}</span> — rotates models across requests to spread load
-      </li>
+        <span class="font-medium text-text-main">{t('Round Robin')}</span>{t('— rotates models across requests to spread load')}</li>
       <li>
-        <span class="font-medium text-text-main">{t('Fusion')}</span> — queries all models in parallel, then a judge
-        synthesizes one answer. Best quality, but costs the most: every request bills all panel models + the judge
-        (N+1 calls)
-      </li>
+        <span class="font-medium text-text-main">{t('Fusion')}</span>{t('— queries all models in parallel, then a judge synthesizes one answer. Best quality, but costs the most: every request bills all panel models + the judge (N+1 calls)')}</li>
     </ul>
   </div>
 
@@ -39,8 +32,6 @@
     role="group"
     aria-label={t('Combo actions')}
   >
-    <Button icon="add" size="sm" onclick={onCreateClick} class="whitespace-nowrap">
-      Create Combo
-    </Button>
+    <Button icon="add" size="sm" onclick={onCreateClick} class="whitespace-nowrap">{t('Create Combo')}</Button>
   </div>
 </div>

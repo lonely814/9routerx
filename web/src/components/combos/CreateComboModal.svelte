@@ -412,9 +412,7 @@
         placeholder={t('my-combo')}
         error={modalNameError}
       />
-      <p class="text-[10px] text-text-muted mt-0.5">
-        Only letters, numbers, -, _ and . allowed
-      </p>
+      <p class="text-[10px] text-text-muted mt-0.5">{t('Only letters, numbers, -, _ and . allowed')}</p>
     </div>
 
     <!-- Model response timeout: a failover control, so it sits right under the
@@ -500,10 +498,7 @@
           </select>
         </div>
       </div>
-      <p class="mt-1.5 text-xs text-text-muted">
-        Once the period's spend attributed to this combo crosses the ceiling, new requests stop — or downgrade to
-        this combo's cheapest member, per the budget breach mode. Leave empty for unbounded.
-      </p>
+      <p class="mt-1.5 text-xs text-text-muted">{t('Once the period\'s spend attributed to this combo crosses the ceiling, new requests stop — or downgrade to this combo\'s cheapest member, per the budget breach mode. Leave empty for unbounded.')}</p>
       {#if budgetError}
         <p class="mt-1 text-xs text-red-500" role="alert">{budgetError}</p>
       {/if}
@@ -524,16 +519,11 @@
           <span>{t('Add rule')}</span>
         </button>
       </div>
-      <p class="text-[10px] text-text-muted mb-2">
-        A model that matches a rule joins this combo by itself, and leaves it when it disappears.
-        Models you pick below are yours to keep.
-      </p>
+      <p class="text-[10px] text-text-muted mb-2">{t('A model that matches a rule joins this combo by itself, and leaves it when it disappears. Models you pick below are yours to keep.')}</p>
       {#if rules.length === 0}
         <div
           class="text-center py-3 border border-dashed border-black/10 dark:border-white/10 rounded-lg bg-black/[0.01] dark:bg-white/[0.01] text-[11px] text-text-muted italic"
-        >
-          No rules — this combo holds only the models you picked.
-        </div>
+        >{t('No rules — this combo holds only the models you picked.')}</div>
       {:else}
         <div class="flex flex-col gap-2">
           {#each rules as rule, idx (rule.id)}
@@ -658,9 +648,7 @@
               onclick={loadMatchingModels}
               disabled={isLoadingModels}
               class="text-[10px] font-medium text-brand-500 hover:underline cursor-pointer disabled:opacity-50"
-            >
-              Load all
-            </button>
+            >{t('Load all')}</button>
           </div>
           <div class="flex flex-wrap gap-1">
             {#each previewMembers as member}
@@ -847,9 +835,7 @@
 
     <!-- Actions -->
     <div class="flex flex-col gap-2 pt-1 sm:flex-row">
-      <Button onclick={onClose} variant="ghost" fullWidth size="sm">
-        Cancel
-      </Button>
+      <Button onclick={onClose} variant="ghost" fullWidth size="sm">{t('Cancel')}</Button>
       <Button
         onclick={handleSave}
         fullWidth

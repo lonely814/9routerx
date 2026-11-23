@@ -168,11 +168,7 @@
           <p class="font-semibold text-text-main text-sm">{t('Claude Web (Unofficial)')}</p>
           <Badge tone={claudeWebOn ? 'success' : 'neutral'} size="sm">{claudeWebOn ? 'enabled' : 'off'}</Badge>
         </div>
-        <p class="text-[11px] text-text-subtle mt-1">
-          Opt-in claude.ai lane via the sessionKey browser cookie. Unofficial — violates Claude's terms of service, may break
-          or be rate limited anytime, and the account risks a ban. Off by default; CLAUDE_WEB_ENABLED=true is the operator
-          kill-switch and always wins over this toggle.
-        </p>
+        <p class="text-[11px] text-text-subtle mt-1">{t('Opt-in claude.ai lane via the sessionKey browser cookie. Unofficial — violates Claude\'s terms of service, may break or be rate limited anytime, and the account risks a ban. Off by default; CLAUDE_WEB_ENABLED=true is the operator kill-switch and always wins over this toggle.')}</p>
       </div>
       <Toggle
         checked={claudeWebOn}

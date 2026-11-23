@@ -188,9 +188,7 @@
               type="button"
               onclick={applyCustom}
               class="shrink-0 rounded-lg bg-brand-500 px-2.5 py-1.5 text-xs font-semibold text-white transition-colors hover:bg-primary-hover focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500/50"
-            >
-              Set
-            </button>
+            >{t('Set')}</button>
           </div>
           {#if customError}
             <p id="period-custom-error" class="mt-1.5 text-[11px] text-red-600 dark:text-red-400" role="alert">

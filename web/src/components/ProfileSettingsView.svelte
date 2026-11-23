@@ -835,9 +835,7 @@
           <h1 class="font-headline text-2xl sm:text-3xl font-bold text-text-main tracking-tight flex items-center gap-2">
             Settings & Profile
           </h1>
-          <p class="font-body text-xs sm:text-sm text-text-muted">
-            System configuration, authentication credentials, and local data storage
-          </p>
+          <p class="font-body text-xs sm:text-sm text-text-muted">{t('System configuration, authentication credentials, and local data storage')}</p>
         </div>
       </div>
     </div>
@@ -877,28 +875,16 @@
           <Laptop class="w-4 h-4 text-brand-500" />
           <h2 class="text-sm font-bold text-text-main">{t('Runtime Storage')}</h2>
         </div>
-        <span class="text-[10px] font-mono font-bold px-2 py-0.5 rounded bg-success/10 text-success border border-success/20">
-          Server managed
-        </span>
+        <span class="text-[10px] font-mono font-bold px-2 py-0.5 rounded bg-success/10 text-success border border-success/20">{t('Server managed')}</span>
       </div>
 
       <div class="space-y-2 text-xs">
         <div class="p-3 rounded-xl bg-bg border border-border space-y-1">
-          <div class="text-[10px] text-text-subtle uppercase font-mono tracking-wider font-semibold">
-            Default Database Location
-          </div>
-          <div class="font-mono text-xs text-text-main font-semibold">
-            ~/.9router/db/data.sqlite
-          </div>
-          <div class="text-[11px] text-text-muted pt-1">
-            The Go server opens the configured SQLite database in WAL mode. DB_PATH or DATA_DIR may select a different location.
-          </div>
-          <div class="text-[11px] text-text-subtle pt-1">
-            The native server does not run upstream's versioned schema migration. A new empty database must be initialized with a compatible upstream schema before use.
-          </div>
-          <div class="text-[11px] text-text-subtle pt-1">
-            Backups are dashboard-data payloads, not a byte-for-byte copy of the live SQLite file.
-          </div>
+          <div class="text-[10px] text-text-subtle uppercase font-mono tracking-wider font-semibold">{t('Default Database Location')}</div>
+          <div class="font-mono text-xs text-text-main font-semibold">{t('~/.9router/db/data.sqlite')}</div>
+          <div class="text-[11px] text-text-muted pt-1">{t('The Go server opens the configured SQLite database in WAL mode. DB_PATH or DATA_DIR may select a different location.')}</div>
+          <div class="text-[11px] text-text-subtle pt-1">{t('The native server does not run upstream\'s versioned schema migration. A new empty database must be initialized with a compatible upstream schema before use.')}</div>
+          <div class="text-[11px] text-text-subtle pt-1">{t('Backups are dashboard-data payloads, not a byte-for-byte copy of the live SQLite file.')}</div>
         </div>
 
         <div class="flex items-center gap-2 pt-1">
@@ -943,12 +929,7 @@
         <KeySquare class="w-4 h-4 text-brand-500" />
         <h2 class="text-sm font-bold text-text-main">{t('Access Tokens')}</h2>
       </div>
-      <p class="text-xs text-text-muted">
-        Scoped tokens for scripts and CI. <code class="text-[11px]">admin</code> grants everything;
-        <code class="text-[11px]">write</code> covers the management API but not shutdown, backups or key exports;
-        <code class="text-[11px]">read</code> is GET-only. Send as the
-        <code class="text-[11px]">{t('x-9r-access-token')}</code> header.
-      </p>
+      <p class="text-xs text-text-muted">{t('Scoped tokens for scripts and CI.')}<code class="text-[11px]">admin</code>{t('grants everything;')}<code class="text-[11px]">write</code>{t('covers the management API but not shutdown, backups or key exports;')}<code class="text-[11px]">read</code>{t('is GET-only. Send as the')}<code class="text-[11px]">{t('x-9r-access-token')}</code>{t('header.')}</p>
       <div class="flex flex-wrap items-center gap-2">
         <input
           type="text"
@@ -980,9 +961,7 @@
       </div>
       {#if mintedToken}
         <div class="rounded-lg border border-amber-500/40 bg-amber-500/5 p-3">
-          <p class="text-xs font-medium text-amber-600 dark:text-amber-400 mb-1.5">
-            Copy this token now — it is never shown again.
-          </p>
+          <p class="text-xs font-medium text-amber-600 dark:text-amber-400 mb-1.5">{t('Copy this token now — it is never shown again.')}</p>
           <div class="flex items-center gap-2">
             <code class="flex-1 overflow-x-auto rounded bg-surface px-2.5 py-1.5 text-xs text-text-main select-all">{mintedToken}</code>
             <button
@@ -992,16 +971,12 @@
                 notifications.success('Token copied to clipboard.')
               }}
               class="rounded-lg border border-border px-2.5 py-1.5 text-xs text-text-main hover:bg-surface-2 transition-colors"
-            >
-              Copy
-            </button>
+            >{t('Copy')}</button>
             <button
               type="button"
               onclick={() => (mintedToken = '')}
               class="rounded-lg px-2.5 py-1.5 text-xs text-text-muted hover:text-text-main transition-colors"
-            >
-              Dismiss
-            </button>
+            >{t('Dismiss')}</button>
           </div>
         </div>
       {/if}
@@ -1012,18 +987,16 @@
         <p class="text-xs text-text-muted">{t('No live tokens.')}</p>
       {:else}
         <div class="space-y-1.5">
-          {#each dashboardTokens as t (t.id)}
+          {#each dashboardTokens as token (token.id)}
             <div class="flex items-center gap-2 rounded-lg border border-border px-3 py-2">
-              <span class="text-sm text-text-main">{t.name}</span>
-              <span class="rounded bg-surface-2 px-1.5 py-0.5 text-[11px] font-medium text-text-muted">{t.scope}</span>
-              <span class="text-[11px] text-text-muted">minted {t.createdAt?.slice(0, 10)}</span>
+              <span class="text-sm text-text-main">{token.name}</span>
+              <span class="rounded bg-surface-2 px-1.5 py-0.5 text-[11px] font-medium text-text-muted">{token.scope}</span>
+              <span class="text-[11px] text-text-muted">minted {token.createdAt?.slice(0, 10)}</span>
               <button
                 type="button"
-                onclick={() => handleRevokeToken(t.id, t.name)}
+                onclick={() => handleRevokeToken(token.id, token.name)}
                 class="ml-auto rounded px-2 py-1 text-xs text-red-500 hover:bg-red-500/10 transition-colors"
-              >
-                Revoke
-              </button>
+              >{t('Revoke')}</button>
             </div>
           {/each}
         </div>
@@ -1273,9 +1246,7 @@
               max="100"
               class="w-full px-3 py-2 rounded-lg bg-bg border border-border text-xs font-mono text-text-main focus:outline-none focus:border-brand-500"
             />
-            <p class="text-[11px] text-text-subtle">
-              Number of consecutive requests routed to the same credential before rotating.
-            </p>
+            <p class="text-[11px] text-text-subtle">{t('Number of consecutive requests routed to the same credential before rotating.')}</p>
           </div>
         {/if}
 
@@ -1297,10 +1268,7 @@
           label={t('Force Fallback (all accounts cooling down)')}
           onChange={(v: boolean) => (forceFallback = v)}
         />
-        <p class="text-[11px] text-text-subtle">
-          When every account is in cooldown, send the request through the account that
-          frees up first instead of failing. Requests can still be rejected upstream.
-        </p>
+        <p class="text-[11px] text-text-subtle">{t('When every account is in cooldown, send the request through the account that frees up first instead of failing. Requests can still be rejected upstream.')}</p>
 
       </div>
     </Card>
@@ -1321,9 +1289,7 @@
       </div>
 
       <div class="space-y-4 text-xs">
-        <p class="text-text-muted leading-relaxed">
-          Manage real-time request logging, retention limits, and storage compaction for diagnostic tables.
-        </p>
+        <p class="text-text-muted leading-relaxed">{t('Manage real-time request logging, retention limits, and storage compaction for diagnostic tables.')}</p>
 
         <!-- Observability Mode & Retention Controls -->
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
@@ -1429,9 +1395,7 @@
                 type="button"
                 onclick={loadDbStats}
                 class="rounded-md border border-amber-500/40 px-2 py-0.5 font-semibold transition-colors hover:bg-amber-500/20 cursor-pointer"
-              >
-                Retry
-              </button>
+              >{t('Retry')}</button>
             </div>
           {/if}
 
@@ -1481,12 +1445,7 @@
       </div>
 
       <div class="space-y-4 text-xs">
-        <p class="text-text-muted leading-relaxed">
-          The prefix is placed at the very start of every request's system prompt and the suffix at its
-          very end, for OpenAI Chat, Claude Messages and Responses bodies alike. Put identity rules in
-          the prefix and non-negotiable constraints in the suffix: the suffix is the model's last word
-          before the user's content.
-        </p>
+        <p class="text-text-muted leading-relaxed">{t('The prefix is placed at the very start of every request\'s system prompt and the suffix at its very end, for OpenAI Chat, Claude Messages and Responses bodies alike. Put identity rules in the prefix and non-negotiable constraints in the suffix: the suffix is the model\'s last word before the user\'s content.')}</p>
 
         <div class="flex justify-end">
           <button
@@ -1540,10 +1499,7 @@
       <div class="flex items-center justify-between gap-3">
         <div>
           <p class="font-semibold text-text-main text-xs">{t('Background animation')}</p>
-          <p class="text-[11px] text-text-subtle">
-            Static freezes the routing map into one painted frame — saves CPU and battery on
-            phones. Auto keeps the live animation.
-          </p>
+          <p class="text-[11px] text-text-subtle">{t('Static freezes the routing map into one painted frame — saves CPU and battery on phones. Auto keeps the live animation.')}</p>
         </div>
         <Toggle
           checked={backgroundAnimation === 'static'}
@@ -1576,10 +1532,7 @@
       <div class="flex items-center justify-between gap-3">
         <div class="min-w-0">
           <p class="text-xs font-semibold text-text-main">{t('Advanced settings')}</p>
-          <p class="text-[11px] text-text-subtle">
-            Unfolds the currency rates, the Sidebar card and the per-panel Usage list below. Folding
-            them back changes nothing about what they do.
-          </p>
+          <p class="text-[11px] text-text-subtle">{t('Unfolds the currency rates, the Sidebar card and the per-panel Usage list below. Folding them back changes nothing about what they do.')}</p>
         </div>
         <Toggle
           checked={advancedSettings}
@@ -1594,10 +1547,7 @@
       <div class="flex items-center justify-between gap-3">
         <div class="min-w-0">
           <p class="text-xs font-semibold text-text-main">{t('Provider card toggle')}</p>
-          <p class="text-[11px] text-text-subtle">
-            Show the on/off switch on each provider card permanently on desktop
-            instead of revealing it on hover.
-          </p>
+          <p class="text-[11px] text-text-subtle">{t('Show the on/off switch on each provider card permanently on desktop instead of revealing it on hover.')}</p>
         </div>
         <Toggle
           checked={providerTogglePersistent}
@@ -1612,10 +1562,7 @@
       <div class="flex items-center justify-between gap-3">
         <div class="min-w-0">
           <p class="text-xs font-semibold text-text-main">{t('Pinned entries')}</p>
-          <p class="text-[11px] text-text-subtle">
-            A Pinned section at the top of the sidebar for the 2–3 entries you use most. Pin one from
-            the search palette, or from the star beside a search result.
-          </p>
+          <p class="text-[11px] text-text-subtle">{t('A Pinned section at the top of the sidebar for the 2–3 entries you use most. Pin one from the search palette, or from the star beside a search result.')}</p>
         </div>
         <Toggle
           checked={favoritesEnabled}
@@ -1630,10 +1577,7 @@
       <div class="flex items-center justify-between gap-3">
         <div class="min-w-0">
           <p class="text-xs font-semibold text-text-main">{t('Collapse to icons')}</p>
-          <p class="text-[11px] text-text-subtle">
-            Shrink the sidebar to a 56px icon rail. Every label is replaced by its icon with a
-            tooltip, which frees the width for the page beside it.
-          </p>
+          <p class="text-[11px] text-text-subtle">{t('Shrink the sidebar to a 56px icon rail. Every label is replaced by its icon with a tooltip, which frees the width for the page beside it.')}</p>
         </div>
         <Toggle
           checked={iconRail}
@@ -1648,10 +1592,7 @@
       <div class="flex items-center justify-between gap-3 border-t border-border pt-3">
         <div class="min-w-0">
           <p class="text-xs font-semibold text-text-main">{t('Animation level')}</p>
-          <p class="text-[11px] text-text-subtle">
-            How much the dashboard animates. Minimal drops blur and transitions but
-            keeps loading spinners; Off stops those too.
-          </p>
+          <p class="text-[11px] text-text-subtle">{t('How much the dashboard animates. Minimal drops blur and transitions but keeps loading spinners; Off stops those too.')}</p>
         </div>
         <select
           bind:value={animationLevel}
@@ -1666,9 +1607,7 @@
       <div class="flex items-center justify-between gap-3 border-t border-border pt-3">
         <div class="min-w-0">
           <p class="text-xs font-semibold text-text-main">{t('Language / Bahasa')}</p>
-          <p class="text-[11px] text-text-subtle">
-            Interface language for the dashboard (en / id / zh)
-          </p>
+          <p class="text-[11px] text-text-subtle">{t('Interface language for the dashboard (en / id / zh)')}</p>
         </div>
         <select
           value={activeLocale}
@@ -1688,10 +1627,7 @@
       <div class="space-y-3 border-t border-border pt-3">
         <p class="text-xs font-semibold text-text-main">{t('Currency')}</p>
 
-        <p class="text-[11px] text-text-subtle leading-relaxed">
-          Every cost is measured in USD and shown here in the currency you pick. The rates are yours
-          to keep: edit them, or refresh them from a public provider.
-        </p>
+        <p class="text-[11px] text-text-subtle leading-relaxed">{t('Every cost is measured in USD and shown here in the currency you pick. The rates are yours to keep: edit them, or refresh them from a public provider.')}</p>
 
         <div class="space-y-3">
           <div class="space-y-1">
@@ -1773,9 +1709,7 @@
           type="button"
           onclick={() => markLayoutEdit(() => (navOrder = []))}
           class="text-[10px] font-medium text-text-muted transition-colors hover:text-text-main cursor-pointer"
-        >
-          Reset order
-        </button>
+        >{t('Reset order')}</button>
       </div>
 
       <div class="space-y-2">
@@ -1913,9 +1847,7 @@
       <div class="flex items-center justify-between gap-3">
         <div class="min-w-0">
           <p class="text-xs font-semibold text-text-main">{t('Expand usage details')}</p>
-          <p class="text-[11px] text-text-subtle">
-            Activity Heatmap and Node Health open instead of starting collapsed
-          </p>
+          <p class="text-[11px] text-text-subtle">{t('Activity Heatmap and Node Health open instead of starting collapsed')}</p>
         </div>
         <Toggle
           checked={detailsExpanded}
@@ -1963,9 +1895,7 @@
                   type="button"
                   onclick={() => markLayoutEdit(() => resetPanelOrder(group.id))}
                   class="text-[10px] font-medium text-text-muted transition-colors hover:text-text-main cursor-pointer"
-                >
-                  Reset order
-                </button>
+                >{t('Reset order')}</button>
               {:else}
                 <span class="text-[10px] text-text-subtle">{t('Order fixed by the layout')}</span>
               {/if}
@@ -2080,9 +2010,7 @@
         />
       </div>
       {#snippet footer()}
-        <Button variant="ghost" onclick={closeDbAuth} disabled={isImportingBackup || isDownloadingBackup}>
-          Cancel
-        </Button>
+        <Button variant="ghost" onclick={closeDbAuth} disabled={isImportingBackup || isDownloadingBackup}>{t('Cancel')}</Button>
         <Button
           variant="primary"
           onclick={() => (pendingImportFile ? runImportBackup() : runDownloadBackup())}

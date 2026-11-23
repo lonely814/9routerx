@@ -1,5 +1,6 @@
 <!-- 9RouterX — this file is part of a port maintained by https://github.com/yanstd888/ — https://t.me/aiclub_id -->
 <script lang="ts">
+  import { t } from '../../lib/i18n.svelte'
   // Receiver side of a provider share link. Nothing is written until the
   // operator presses Add — a link is untrusted input, not an instruction.
   //
@@ -358,7 +359,7 @@
   }
 </script>
 
-<Modal {isOpen} {onClose} title="Add Provider from Link" icon="download" size="lg">
+<Modal {isOpen} {onClose} title={t('Add Provider from Link')} icon="download" size="lg">
   {#snippet children()}
     <div class="flex flex-col gap-4">
       <p class="text-sm text-text-muted">
@@ -398,7 +399,7 @@
                 <span class="shrink-0 text-[11px] text-text-muted">{link.name}</span>
               {/if}
               {#if existing}
-                <span class="shrink-0 rounded bg-surface-3 px-2 py-0.5 text-[10px] text-text-muted">already here</span>
+                <span class="shrink-0 rounded bg-surface-3 px-2 py-0.5 text-[10px] text-text-muted">{t('already here')}</span>
               {/if}
             </button>
           </div>
@@ -440,22 +441,22 @@
           {#if form}
             <div class="grid grid-cols-1 gap-2 sm:grid-cols-2">
               <label class="flex flex-col gap-1">
-                <span class="text-xs text-text-muted">Base URL</span>
+                <span class="text-xs text-text-muted">{t('Base URL')}</span>
                 <input
                   bind:value={form.baseURL}
-                  placeholder="https://api.example.com/v1"
+                  placeholder={t('https://api.example.com/v1')}
                   class="rounded-[8px] border border-transparent bg-surface-2 px-2 py-1.5 font-mono text-xs text-text-main placeholder:text-text-muted focus:border-brand-500/40 focus:outline-none"
                 />
               </label>
               <label class="flex flex-col gap-1">
-                <span class="text-xs text-text-muted">Prefix</span>
+                <span class="text-xs text-text-muted">{t('Prefix')}</span>
                 <input
                   bind:value={form.prefix}
                   class="rounded-[8px] border border-transparent bg-surface-2 px-2 py-1.5 font-mono text-xs text-text-main focus:border-brand-500/40 focus:outline-none"
                 />
               </label>
               <label class="flex flex-col gap-1 sm:col-span-2">
-                <span class="text-xs text-text-muted">API key</span>
+                <span class="text-xs text-text-muted">{t('API key')}</span>
                 <div class="flex items-center gap-2">
                   <input
                     type={form.revealed ? 'text' : 'password'}
@@ -473,7 +474,7 @@
                 </div>
               </label>
               <label class="flex flex-col gap-1 sm:col-span-2">
-                <span class="text-xs text-text-muted">Connection name</span>
+                <span class="text-xs text-text-muted">{t('Connection name')}</span>
                 <input
                   bind:value={form.name}
                   class="rounded-[8px] border border-transparent bg-surface-2 px-2 py-1.5 text-xs text-text-main focus:border-brand-500/40 focus:outline-none"
@@ -483,7 +484,7 @@
 
             <!-- Models -->
             <div class="mt-2 flex flex-col gap-1.5">
-              <span class="text-xs text-text-muted">Models</span>
+              <span class="text-xs text-text-muted">{t('Models')}</span>
               <div class="flex flex-wrap gap-2">
                 {#each [{ v: 'auto', l: 'Auto-fetch' }, { v: 'specified', l: 'Specified' }, { v: 'none', l: 'None' }] as opt (opt.v)}
                   <button
@@ -533,7 +534,7 @@
                 {validateState[link.prov] === 'checking' ? 'Checking…' : 'Validate'}
               </Button>
               {#if validateState[link.prov] === 'valid'}
-                <span class="text-xs text-success">Endpoint and key accepted</span>
+                <span class="text-xs text-success">{t('Endpoint and key accepted')}</span>
               {:else if validateState[link.prov] === 'invalid'}
                 <span class="text-xs text-error">{validateError[link.prov] || 'Rejected'}</span>
               {/if}
@@ -552,7 +553,7 @@
 
   {#snippet footer()}
     <div class="flex items-center justify-end gap-2">
-      <Button variant="secondary" onclick={onClose}>Cancel</Button>
+      <Button variant="secondary" onclick={onClose}>{t('Cancel')}</Button>
       <Button variant="primary" disabled={busy || checkedCount === 0} onclick={addAll}>
         {#if busy}
           Adding…

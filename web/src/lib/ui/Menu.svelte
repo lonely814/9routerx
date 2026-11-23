@@ -24,6 +24,7 @@
   header is tightest.
 -->
 <script lang="ts">
+  import { t } from '../../lib/i18n.svelte'
   import type { Snippet } from 'svelte'
   import { portal } from './portal'
   import { maxPanelWidth, placePanel, placementStyle } from './menuPosition'
@@ -172,7 +173,7 @@
       <!-- Below `sm` a table row has no room for the label, so it collapses to
            the glyph. A full-width trigger is a card's whole row: the space is
            there, and an unlabelled glyph there would be a bare tap target. -->
-      <span class={fullWidth ? '' : 'hidden sm:inline'}>Menu</span>
+      <span class={fullWidth ? '' : 'hidden sm:inline'}>{t('Menu')}</span>
       {#if !fullWidth}
         <span class="material-symbols-outlined text-[16px] text-text-muted" aria-hidden="true">
           expand_more

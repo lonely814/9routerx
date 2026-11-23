@@ -1,5 +1,6 @@
 <!-- 9RouterX — ported & modified by https://github.com/yanstd888/ — https://t.me/aiclub_id -->
 <script lang="ts">
+  import { t } from '../../lib/i18n.svelte'
   import { onMount } from 'svelte'
   import type { ActiveRequestItem } from './types'
   import ProviderArtwork from '../providers/ProviderArtwork.svelte'
@@ -228,7 +229,7 @@
 <div
   bind:this={containerEl}
   role="region"
-  aria-label="Provider topology map"
+  aria-label={t('Provider topology map')}
   class="h-[320px] w-full min-w-0 rounded-lg border border-border bg-bg-subtle/30 sm:h-[480px] relative overflow-hidden select-none cursor-grab active:cursor-grabbing"
   onpointerdown={handlePointerDown}
   onpointermove={handlePointerMove}
@@ -466,8 +467,8 @@
       type="button"
       onclick={() => (zoom = Math.min(2.5, zoom * 1.2))}
       class="p-1.5 text-text-muted hover:text-text-main hover:bg-surface-2 transition-colors border-b border-border cursor-pointer flex items-center justify-center"
-      title="Zoom In"
-      aria-label="Zoom In"
+      title={t('Zoom In')}
+      aria-label={t('Zoom In')}
     >
       <span class="material-symbols-outlined text-[16px]">add</span>
     </button>
@@ -475,8 +476,8 @@
       type="button"
       onclick={() => (zoom = Math.max(0.2, zoom / 1.2))}
       class="p-1.5 text-text-muted hover:text-text-main hover:bg-surface-2 transition-colors border-b border-border cursor-pointer flex items-center justify-center"
-      title="Zoom Out"
-      aria-label="Zoom Out"
+      title={t('Zoom Out')}
+      aria-label={t('Zoom Out')}
     >
       <span class="material-symbols-outlined text-[16px]">remove</span>
     </button>
@@ -484,8 +485,8 @@
       type="button"
       onclick={fitView}
       class="p-1.5 text-text-muted hover:text-text-main hover:bg-surface-2 transition-colors cursor-pointer flex items-center justify-center"
-      title="Fit View"
-      aria-label="Fit View"
+      title={t('Fit View')}
+      aria-label={t('Fit View')}
     >
       <span class="material-symbols-outlined text-[16px]">crop_free</span>
     </button>

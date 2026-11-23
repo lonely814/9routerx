@@ -310,7 +310,7 @@
   <!-- Summary -->
   <div class="grid grid-cols-2 gap-4 lg:grid-cols-4">
     <div class="rounded-2xl border border-border bg-surface p-4 shadow-sm">
-      <div class="font-code text-[10px] uppercase tracking-wider text-text-subtle">Vault</div>
+      <div class="font-code text-[10px] uppercase tracking-wider text-text-subtle">{t('Vault')}</div>
       <div class="mt-2">
         {#if vault}
           <Badge tone={vault.enabled ? 'success' : 'neutral'} dot>
@@ -320,25 +320,25 @@
           <span class="text-sm text-text-subtle">—</span>
         {/if}
       </div>
-      <p class="mt-2 text-xs text-text-muted">Credentials at rest</p>
+      <p class="mt-2 text-xs text-text-muted">{t('Credentials at rest')}</p>
     </div>
 
     <div class="rounded-2xl border border-border bg-surface p-4 shadow-sm">
-      <div class="font-code text-[10px] uppercase tracking-wider text-text-subtle">Sealed</div>
+      <div class="font-code text-[10px] uppercase tracking-wider text-text-subtle">{t('Sealed')}</div>
       <div class="mt-1 text-2xl font-semibold text-success">{vault?.sealedCount ?? '—'}</div>
-      <p class="mt-1 text-xs text-text-muted">Credential slots encrypted</p>
+      <p class="mt-1 text-xs text-text-muted">{t('Credential slots encrypted')}</p>
     </div>
 
     <div class="rounded-2xl border border-border bg-surface p-4 shadow-sm">
-      <div class="font-code text-[10px] uppercase tracking-wider text-text-subtle">Plaintext</div>
+      <div class="font-code text-[10px] uppercase tracking-wider text-text-subtle">{t('Plaintext')}</div>
       <div class="mt-1 text-2xl font-semibold {vault && vault.plaintextCount > 0 ? 'text-warning' : 'text-text-main'}">
         {vault?.plaintextCount ?? '—'}
       </div>
-      <p class="mt-1 text-xs text-text-muted">Rows awaiting sealing</p>
+      <p class="mt-1 text-xs text-text-muted">{t('Rows awaiting sealing')}</p>
     </div>
 
     <div class="rounded-2xl border border-border bg-surface p-4 shadow-sm">
-      <div class="font-code text-[10px] uppercase tracking-wider text-text-subtle">Guardrails</div>
+      <div class="font-code text-[10px] uppercase tracking-wider text-text-subtle">{t('Guardrails')}</div>
       <div class="mt-1 text-2xl font-semibold text-text-main">{policies.length}</div>
       <p class="mt-1 text-xs text-text-muted">
         {guardrailsEnabled ? 'Policies enforcing' : 'Policies paused'}
@@ -348,7 +348,7 @@
 
   <div class="grid grid-cols-1 gap-4 lg:grid-cols-2">
     <!-- Credential vault -->
-    <Card title="Credential Vault" subtitle="Envelope encryption for provider secrets" padding="md" elev>
+    <Card title={t('Credential Vault')} subtitle="Envelope encryption for provider secrets" padding="md" elev>
       {#snippet icon()}
         <Lock size={16} />
       {/snippet}
@@ -366,7 +366,7 @@
             <AlertTriangle class="mt-0.5 h-4 w-4 shrink-0 text-warning" />
             <p class="text-xs leading-relaxed text-text-muted">
               Credentials are stored in plaintext. Set
-              <span class="font-code text-text-main">ROUTER_MASTER_KEY</span>
+              <span class="font-code text-text-main">{t('ROUTER_MASTER_KEY')}</span>
               to a base64 32-byte value and restart the gateway to encrypt them. This is opt-in —
               nothing changes until you set it.
             </p>
@@ -375,9 +375,9 @@
           <div class="space-y-2 border-t border-border-subtle pt-4">
             <Input
               id="rotate-key"
-              label="Rotate master key"
+              label={t('Rotate master key')}
               type="password"
-              placeholder="base64 32-byte key"
+              placeholder={t('base64 32-byte key')}
               bind:value={rotateKey}
               hint="Re-wraps every data key without re-encrypting a secret. Keep ROUTER_MASTER_KEY_PREVIOUS on the old key so this can be undone."
             />
@@ -391,13 +391,13 @@
             </Button>
           </div>
         {:else}
-          <p class="text-sm text-text-muted">Vault status unavailable.</p>
+          <p class="text-sm text-text-muted">{t('Vault status unavailable.')}</p>
         {/if}
       </div>
     </Card>
 
     <!-- Guardrail enforcement -->
-    <Card title="Guardrails" subtitle="Offline detection, no external service" padding="md" elev>
+    <Card title={t('Guardrails')} subtitle="Offline detection, no external service" padding="md" elev>
       {#snippet icon()}
         <ShieldCheck size={16} />
       {/snippet}
@@ -405,7 +405,7 @@
         <Toggle
           checked={guardrailsEnabled}
           disabled={isToggling}
-          label="Enforce guardrails"
+          label={t('Enforce guardrails')}
           onchange={toggleGuardrails}
         />
       {/snippet}
@@ -429,7 +429,7 @@
   <div class="space-y-3">
     <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
       <div>
-        <h2 class="text-base font-semibold text-text-main">Guardrail policies</h2>
+        <h2 class="text-base font-semibold text-text-main">{t('Guardrail policies')}</h2>
         <p class="mt-0.5 text-sm text-text-muted">
           One policy per scope — the resolver takes the most specific match.
         </p>
@@ -437,10 +437,10 @@
       <div class="flex items-center gap-2">
         <select
           bind:value={scopeFilter}
-          aria-label="Filter policies by scope"
+          aria-label={t('Filter policies by scope')}
           class="rounded-[10px] border border-border bg-surface px-3 py-2 text-sm text-text-main focus:outline-none focus:ring-2 focus:ring-brand-500/40 cursor-pointer"
         >
-          <option value="all">All scopes</option>
+          <option value="all">{t('All scopes')}</option>
           {#each SCOPES as option (option.id)}
             <option value={option.id}>{option.label}</option>
           {/each}
@@ -450,7 +450,7 @@
           size="md"
           loading={isLoading}
           onclick={load}
-          title="Reload vault status, policies and audit log"
+          title={t('Reload vault status, policies and audit log')}
         >
           <RefreshCw size={15} />
           Refresh
@@ -479,11 +479,11 @@
         <table class="w-full text-sm">
           <thead class="bg-surface-2 text-text-muted">
             <tr>
-              <th class="px-4 py-2.5 text-left font-medium">Name</th>
-              <th class="px-4 py-2.5 text-left font-medium">Scope</th>
-              <th class="px-4 py-2.5 text-left font-medium">Detectors</th>
-              <th class="px-4 py-2.5 text-left font-medium">Action</th>
-              <th class="hidden px-4 py-2.5 text-left font-medium md:table-cell">Created</th>
+              <th class="px-4 py-2.5 text-left font-medium">{t('Name')}</th>
+              <th class="px-4 py-2.5 text-left font-medium">{t('Scope')}</th>
+              <th class="px-4 py-2.5 text-left font-medium">{t('Detectors')}</th>
+              <th class="px-4 py-2.5 text-left font-medium">{t('Action')}</th>
+              <th class="hidden px-4 py-2.5 text-left font-medium md:table-cell">{t('Created')}</th>
               <th class="px-4 py-2.5"></th>
             </tr>
           </thead>
@@ -518,7 +518,7 @@
                     <button
                       type="button"
                       onclick={() => (pendingDelete = policy)}
-                      title="Delete policy"
+                      title={t('Delete policy')}
                       aria-label={`Delete ${policy.name}`}
                       class="rounded-lg p-1.5 text-text-muted transition-colors cursor-pointer hover:bg-error/10 hover:text-error"
                     >
@@ -539,7 +539,7 @@
     <div class="flex flex-col gap-1 sm:flex-row sm:items-center sm:justify-between">
       <div class="flex items-center gap-2">
         <Activity size={16} class="text-text-muted" />
-        <h2 class="text-base font-semibold text-text-main">Audit log</h2>
+        <h2 class="text-base font-semibold text-text-main">{t('Audit log')}</h2>
       </div>
       <span class="font-code text-xs text-text-subtle">Last {logs.length} decisions</span>
     </div>
@@ -556,11 +556,11 @@
         <table class="w-full text-sm">
           <thead class="bg-surface-2 text-text-muted">
             <tr>
-              <th class="px-4 py-2.5 text-left font-medium">When</th>
-              <th class="px-4 py-2.5 text-left font-medium">Detector</th>
-              <th class="px-4 py-2.5 text-left font-medium">Direction</th>
-              <th class="px-4 py-2.5 text-left font-medium">Action</th>
-              <th class="px-4 py-2.5 text-left font-medium">Severity</th>
+              <th class="px-4 py-2.5 text-left font-medium">{t('When')}</th>
+              <th class="px-4 py-2.5 text-left font-medium">{t('Detector')}</th>
+              <th class="px-4 py-2.5 text-left font-medium">{t('Direction')}</th>
+              <th class="px-4 py-2.5 text-left font-medium">{t('Action')}</th>
+              <th class="px-4 py-2.5 text-left font-medium">{t('Severity')}</th>
             </tr>
           </thead>
           <tbody>
@@ -587,7 +587,7 @@
 <!-- Create policy -->
 <Modal
   isOpen={isEditorOpen}
-  title="New guardrail policy"
+  title={t('New guardrail policy')}
   size="md"
   onClose={() => (isEditorOpen = false)}
 >
@@ -601,8 +601,8 @@
   >
     <Input
       id="policy-name"
-      label="Name"
-      placeholder="e.g. Block PII in prompts"
+      label={t('Name')}
+      placeholder={t('e.g. Block PII in prompts')}
       bind:value={formName}
       required
     />
@@ -619,7 +619,7 @@
     {/if}
 
     <div class="flex flex-col gap-1.5">
-      <label for="policy-scope" class="text-sm font-medium text-text-main">Scope</label>
+      <label for="policy-scope" class="text-sm font-medium text-text-main">{t('Scope')}</label>
       <select
         id="policy-scope"
         bind:value={formScope}
@@ -649,7 +649,7 @@
     {/if}
 
     <div>
-      <span class="mb-1.5 block text-sm font-medium text-text-main">Detectors</span>
+      <span class="mb-1.5 block text-sm font-medium text-text-main">{t('Detectors')}</span>
       <div class="flex flex-wrap gap-2">
         {#each DETECTORS as detector (detector.id)}
           <button
@@ -671,24 +671,24 @@
 
     {#if formDetectors.includes('custom')}
       <div class="space-y-3 border-t border-border-subtle pt-4">
-        <h4 class="text-sm font-medium text-text-main">Custom patterns</h4>
+        <h4 class="text-sm font-medium text-text-main">{t('Custom patterns')}</h4>
         <div class="grid grid-cols-1 gap-3 sm:grid-cols-3">
           <Input
             id="custom-name"
-            label="Name"
-            placeholder="e.g. API key"
+            label={t('Name')}
+            placeholder={t('e.g. API key')}
             bind:value={customName}
           />
           <Input
             id="custom-regex"
-            label="Regex pattern"
+            label={t('Regex pattern')}
             placeholder="e.g. sk-[a-zA-Z0-9]{32}"
             bind:value={customRegex}
           />
           <Input
             id="custom-replacement"
-            label="Replacement (optional)"
-            placeholder="e.g. [REDACTED]"
+            label={t('Replacement (optional)')}
+            placeholder={t('e.g. [REDACTED]')}
             bind:value={customReplacement}
           />
         </div>
@@ -710,7 +710,7 @@
                 <button
                   type="button"
                   onclick={() => removeCustomPattern(index)}
-                  title="Remove pattern"
+                  title={t('Remove pattern')}
                   class="rounded-lg p-1 text-text-muted hover:text-error hover:bg-error/10 transition-colors"
                 >
                   <Trash2 size={14} />
@@ -723,7 +723,7 @@
     {/if}
 
     <div class="flex flex-col gap-1.5">
-      <label for="policy-action" class="text-sm font-medium text-text-main">Action</label>
+      <label for="policy-action" class="text-sm font-medium text-text-main">{t('Action')}</label>
       <select
         id="policy-action"
         bind:value={formAction}
@@ -754,7 +754,7 @@
 
 <ConfirmModal
   isOpen={!!pendingDelete}
-  title="Delete policy"
+  title={t('Delete policy')}
   message={pendingDelete
     ? `Delete "${pendingDelete.name}"? Its audit history stays, but the rule stops applying immediately.`
     : ''}
@@ -765,7 +765,7 @@
 
 <ConfirmModal
   isOpen={isRotateConfirmOpen}
-  title="Rotate master key"
+  title={t('Rotate master key')}
   message="Credentials are re-wrapped under the new key. Keep ROUTER_MASTER_KEY_PREVIOUS on the old key, otherwise sealed credentials become unreadable."
   confirmText="Rotate"
   variant="primary"

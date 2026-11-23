@@ -1,5 +1,6 @@
 <!-- 9RouterX — derived from the work of https://github.com/yanstd888/ — port and modifications by the maintainers — https://t.me/aiclub_id -->
 <script lang="ts">
+  import { t } from '../lib/i18n.svelte'
   import { api } from '../api/client'
   import ProviderIcon from './connections/ProviderIcon.svelte'
   import ChangelogModal from './ChangelogModal.svelte'
@@ -248,7 +249,7 @@
         type="button"
         onclick={onMenuClick}
         class="md:hidden p-1.5 rounded-lg text-text-muted hover:text-text-main hover:bg-surface-2 transition-colors cursor-pointer"
-        aria-label="Toggle menu"
+        aria-label={t('Toggle menu')}
       >
         <span class="material-symbols-outlined text-[18px]">menu</span>
       </button>
@@ -324,25 +325,25 @@
     <button
       type="button"
       onclick={() => onOpenSearch?.()}
-      title="Search models, providers, pages and settings (Ctrl+K)"
-      aria-label="Open search"
+      title={t('Search models, providers, pages and settings (Ctrl+K)')}
+      aria-label={t('Open search')}
       class="hidden md:flex items-center gap-2 rounded-lg border border-border bg-surface-2 px-2.5 py-1.5 text-xs text-text-muted transition-colors hover:border-brand-500/40 hover:text-text-main cursor-pointer"
     >
       <span class="material-symbols-outlined text-[18px]">search</span>
-      <span class="hidden sm:inline">Search</span>
+      <span class="hidden sm:inline">{t('Search')}</span>
       <kbd
         class="hidden lg:inline rounded border border-border bg-bg px-1 font-code text-[10px] text-text-subtle"
-        >Ctrl K</kbd
+        >{t('Ctrl K')}</kbd
       >
     </button>
     <div class="hidden md:block">
       <NotificationBell />
     </div>
-    <Menu label="Account and display options" triggerIcon="account_circle" minWidth="15rem">
-      <MenuItem label="Donate" icon="volunteer_activism" onSelect={() => (isDonateOpen = true)} />
+    <Menu label={t('Account and display options')} triggerIcon="account_circle" minWidth="15rem">
+      <MenuItem label={t('Donate')} icon="volunteer_activism" onSelect={() => (isDonateOpen = true)} />
 
       {#if canInstall}
-        <MenuItem label="Install App" icon="install_desktop" onSelect={promptInstall} />
+        <MenuItem label={t('Install App')} icon="install_desktop" onSelect={promptInstall} />
       {/if}
 
       <div class="my-1 border-t border-border-subtle" role="separator"></div>
@@ -352,11 +353,11 @@
         icon={isDark ? 'light_mode' : 'dark_mode'}
         onSelect={toggleTheme}
       />
-      <MenuItem label="Change Log" icon="history" onSelect={() => (isChangelogOpen = true)} />
+      <MenuItem label={t('Change Log')} icon="history" onSelect={() => (isChangelogOpen = true)} />
 
       <div class="my-1 border-t border-border-subtle" role="separator"></div>
 
-      <MenuItem label="Logout" icon="logout" danger onSelect={handleLogout} />
+      <MenuItem label={t('Logout')} icon="logout" danger onSelect={handleLogout} />
     </Menu>
   </div>
 </header>
@@ -374,7 +375,7 @@
       onclick={() => (isDonateOpen = false)}
       role="button"
       tabindex="-1"
-      aria-label="Close background"
+      aria-label={t('Close background')}
     ></div>
 
     <div
@@ -389,7 +390,7 @@
           type="button"
           onclick={() => (isDonateOpen = false)}
           class="p-1 rounded-lg text-text-muted hover:text-text-main hover:bg-surface-2 transition-colors cursor-pointer"
-          aria-label="Close"
+          aria-label={t('Close')}
         >
           <span class="material-symbols-outlined text-[20px]">close</span>
         </button>
@@ -450,7 +451,7 @@
             <div class="text-sm font-semibold text-text-main group-hover:text-sky-700 dark:group-hover:text-sky-400 transition-colors">
               Telegram Group
             </div>
-            <div class="text-xs text-text-muted">Release notes, questions, provider issues</div>
+            <div class="text-xs text-text-muted">{t('Release notes, questions, provider issues')}</div>
           </div>
         </a>
       </div>

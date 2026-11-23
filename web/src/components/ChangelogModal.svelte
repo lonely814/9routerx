@@ -1,5 +1,6 @@
 <!-- 9RouterX — ported & modified by https://github.com/yanstd888/ — https://t.me/aiclub_id -->
 <script lang="ts">
+  import { t } from '../lib/i18n.svelte'
   import { api } from '../api/client'
   import { marked } from 'marked'
   import { sanitizeHtml } from '../lib/sanitizeHtml'
@@ -67,7 +68,7 @@
       onkeydown={(e) => e.key === 'Escape' && onClose()}
       role="button"
       tabindex="-1"
-      aria-label="Close background"
+      aria-label={t('Close background')}
     ></div>
 
     <!-- Modal Card -->
@@ -78,7 +79,7 @@
       <div class="flex items-center justify-between px-6 py-4 border-b border-border-subtle shrink-0">
         <div class="flex items-center gap-2.5">
           <span class="material-symbols-outlined text-primary text-[22px]">history</span>
-          <h2 class="text-lg font-semibold text-text-main tracking-tight">Change Log</h2>
+          <h2 class="text-lg font-semibold text-text-main tracking-tight">{t('Change Log')}</h2>
         </div>
         <div class="flex items-center gap-2">
           <a
@@ -94,7 +95,7 @@
             type="button"
             onclick={onClose}
             class="p-1.5 rounded-lg text-text-muted hover:text-text-main hover:bg-surface-2 transition-colors cursor-pointer"
-            aria-label="Close"
+            aria-label={t('Close')}
           >
             <span class="material-symbols-outlined text-[20px]">close</span>
           </button>
@@ -108,7 +109,7 @@
             <span class="material-symbols-outlined animate-spin text-[32px] text-primary">
               progress_activity
             </span>
-            <p class="text-sm font-medium">Loading change log...</p>
+            <p class="text-sm font-medium">{t('Loading change log...')}</p>
           </div>
         {:else if error}
           <div class="flex flex-col items-center justify-center py-12 text-center gap-4">
@@ -116,7 +117,7 @@
               <span class="material-symbols-outlined text-[24px]">error</span>
             </div>
             <div class="max-w-md">
-              <p class="text-sm font-semibold text-text-main">Failed to load change log</p>
+              <p class="text-sm font-semibold text-text-main">{t('Failed to load change log')}</p>
               <p class="text-xs text-text-muted mt-1">{error}</p>
             </div>
             <div class="flex items-center gap-3">
@@ -153,7 +154,7 @@
           rel="noopener noreferrer"
           class="text-xs text-text-muted hover:text-primary transition-colors flex items-center gap-1"
         >
-          <span>View on GitHub</span>
+          <span>{t('View on GitHub')}</span>
           <span class="material-symbols-outlined text-[14px]">arrow_outward</span>
         </a>
         <button

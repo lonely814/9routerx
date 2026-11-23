@@ -1,5 +1,6 @@
 <!-- 9RouterX — this file is part of a port maintained by https://github.com/yanstd888/ — https://t.me/aiclub_id -->
 <script lang="ts">
+  import { t } from '../../lib/i18n.svelte'
   import { copyToClipboard } from '../../lib/clipboard'
   import { api } from '../../api/client'
 
@@ -67,7 +68,7 @@
       class="fixed inset-0 bg-black/40 backdrop-blur-sm"
       role="button"
       tabindex="-1"
-      aria-label="Close modal"
+      aria-label={t('Close modal')}
       onclick={onClose}
       onkeydown={(e) => {
         if (e.key === 'Escape') onClose()
@@ -89,9 +90,9 @@
 
       <div class="flex-1 overflow-y-auto py-4 flex flex-col gap-3 min-h-0">
         {#if loading}
-          <p class="text-sm text-text-muted">Loading…</p>
+          <p class="text-sm text-text-muted">{t('Loading…')}</p>
         {:else if withKeys.length === 0}
-          <p class="text-sm text-text-muted">No keys stored for this provider.</p>
+          <p class="text-sm text-text-muted">{t('No keys stored for this provider.')}</p>
         {:else}
           {#each withKeys as item (item.id)}
             <div class="flex items-center justify-between gap-3 rounded-lg border border-border-subtle bg-surface-2 px-3 py-2">
@@ -102,7 +103,7 @@
               <button
                 type="button"
                 onclick={() => copy(item)}
-                title="Copy key"
+                title={t('Copy key')}
                 class="shrink-0 rounded p-1.5 hover:bg-black/5 dark:hover:bg-white/5 {copiedId === item.id ? 'text-green-500' : 'text-text-muted hover:text-brand-500'}"
               >
                 <span class="material-symbols-outlined text-[18px]">

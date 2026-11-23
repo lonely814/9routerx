@@ -1,5 +1,6 @@
 <!-- 9RouterX — derived from the work of https://github.com/yanstd888/ — port and modifications by the maintainers — https://t.me/aiclub_id -->
 <script lang="ts">
+  import { t } from '../../lib/i18n.svelte'
   // Port of Next.js ProviderLimits/QuotaTable.js for the Go dashboard.
   import {
     formatResetTime,
@@ -245,7 +246,7 @@
               type="button"
               onclick={() => onHideQuota?.(quota)}
               class="inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-md text-text-muted transition-colors hover:bg-surface-3 hover:text-text-main"
-              title="Hide this quota row"
+              title={t('Hide this quota row')}
               aria-label="Hide quota {quota.name}"
             >
               <span class="material-symbols-outlined text-[15px]">visibility_off</span>

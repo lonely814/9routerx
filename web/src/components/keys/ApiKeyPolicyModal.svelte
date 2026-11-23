@@ -1,5 +1,6 @@
 <!-- 9RouterX — derived from the work of https://github.com/yanstd888/ — port and modifications by the maintainers — https://t.me/aiclub_id -->
 <script lang="ts">
+  import { t } from '../../lib/i18n.svelte'
   import { api, type APIKey, type APIKeyPolicy, type Plan } from '../../api/client'
   import { Loader2, Save, X } from 'lucide-svelte'
   import { isNavEntryHidden } from '../../lib/navVisibility.svelte'
@@ -315,7 +316,7 @@
       <button
         type="button"
         onclick={onClose}
-        aria-label="Close policy dialog"
+        aria-label={t('Close policy dialog')}
         class="p-1.5 rounded-lg text-text-subtle hover:text-text-main hover:bg-surface-3 transition cursor-pointer"
       >
         <X class="w-4 h-4" />
@@ -328,7 +329,7 @@
            the row falls back to the masked token. -->
       <section class="space-y-3">
         <div>
-          <h3 class="font-headline text-xs font-bold text-text-main">Name</h3>
+          <h3 class="font-headline text-xs font-bold text-text-main">{t('Name')}</h3>
           <p class="text-text-subtle mt-0.5">
             Shown in this dashboard only. Clearing it falls back to the masked token.
           </p>
@@ -338,8 +339,8 @@
           type="text"
           bind:value={name}
           maxlength="200"
-          placeholder="Client Token"
-          aria-label="Key name"
+          placeholder={t('Client Token')}
+          aria-label={t('Key name')}
           class="w-full bg-surface border border-border rounded-lg px-3 py-2 text-xs text-text-main x9-field"
         />
       </section>
@@ -350,24 +351,24 @@
       {#if !plansHidden}
         <section class="space-y-3">
           <div>
-            <h3 class="font-headline text-xs font-bold text-text-main">Plan</h3>
+            <h3 class="font-headline text-xs font-bold text-text-main">{t('Plan')}</h3>
             <p class="text-text-subtle mt-0.5">
               The key inherits this plan's limits as defaults. Any limit set below overrides the plan.
-              Choose <span class="font-code">No plan</span> to detach the key.
+              Choose <span class="font-code">{t('No plan')}</span> to detach the key.
             </p>
           </div>
           <select
             bind:value={planId}
-            aria-label="Plan"
+            aria-label={t('Plan')}
             class="w-full bg-surface border border-border rounded-lg px-3 py-2 text-xs text-text-main x9-field"
           >
-            <option value="">No plan — this key's own columns only</option>
+            <option value="">{t('No plan — this key\'s own columns only')}</option>
             {#each plans as plan (plan.id)}
               <option value={plan.id}>{plan.name}</option>
             {/each}
           </select>
           {#if isLoadingPlans}
-            <p class="text-text-subtle text-[11px]">Loading plans…</p>
+            <p class="text-text-subtle text-[11px]">{t('Loading plans…')}</p>
           {:else if plans.length === 0}
             <p class="text-text-subtle text-[11px]">
               No plans defined yet. Create one on the Plans page.
@@ -379,10 +380,10 @@
       <!-- Rate limits -->
       <section class="space-y-3">
         <div>
-          <h3 class="font-headline text-xs font-bold text-text-main">Rate limits</h3>
+          <h3 class="font-headline text-xs font-bold text-text-main">{t('Rate limits')}</h3>
           <p class="text-text-subtle mt-0.5">
             Applied per key. <span class="font-code">0</span> means unlimited — a rejected request
-            returns 429 with <span class="font-code">Retry-After</span> and never reaches the provider.
+            returns 429 with <span class="font-code">{t('Retry-After')}</span> and never reaches the provider.
           </p>
         </div>
 
@@ -474,7 +475,7 @@
           <h3 class="font-headline text-xs font-bold text-text-main">Daily cost &amp; request caps</h3>
           <p class="text-text-subtle mt-0.5">
             Cost is USD per UTC day (reset at midnight UTC); the request cap rolls every
-            <span class="font-code">reset interval</span> minutes — set the interval to
+            <span class="font-code">{t('reset interval')}</span> minutes — set the interval to
             <span class="font-code">0</span> to make the cap lifetime.
           </p>
         </div>
@@ -528,7 +529,7 @@
               bind:value={requestResetInterval}
               class="w-full bg-surface border border-border rounded-lg px-3 py-2 font-code text-xs text-text-main x9-field"
             />
-            <p class="text-text-subtle mt-1">0 = lifetime cap that never rolls.</p>
+            <p class="text-text-subtle mt-1">{t('0 = lifetime cap that never rolls.')}</p>
           </div>
         </div>
       </section>
@@ -537,7 +538,7 @@
            single addresses or CIDR ranges. -->
       <section class="space-y-3">
         <div>
-          <h3 class="font-headline text-xs font-bold text-text-main">IP whitelist</h3>
+          <h3 class="font-headline text-xs font-bold text-text-main">{t('IP whitelist')}</h3>
           <p class="text-text-subtle mt-0.5">
             Addresses or CIDR ranges that may use this key, e.g.
             <span class="font-code">203.0.113.7</span> or
@@ -579,7 +580,7 @@
             {/each}
           </div>
         {:else}
-          <p class="text-text-subtle font-code text-[11px]">No whitelist — every address is allowed.</p>
+          <p class="text-text-subtle font-code text-[11px]">{t('No whitelist — every address is allowed.')}</p>
         {/if}
       </section>
 
@@ -587,7 +588,7 @@
            request the key sends. -->
       <section class="space-y-3">
         <div>
-          <h3 class="font-headline text-xs font-bold text-text-main">System prompt</h3>
+          <h3 class="font-headline text-xs font-bold text-text-main">{t('System prompt')}</h3>
           <p class="text-text-subtle mt-0.5">
             Injected into every request this key sends, after the global prompt. Empty disables it.
           </p>
@@ -596,7 +597,7 @@
           bind:value={systemPrompt}
           rows="4"
           spellcheck="false"
-          placeholder="You are terse. Answer in one sentence."
+          placeholder={t('You are terse. Answer in one sentence.')}
           class="w-full bg-surface border border-border rounded-lg px-3 py-2 font-code text-[11px] text-text-main x9-field resize-y"
         ></textarea>
       </section>
@@ -605,7 +606,7 @@
            An empty value allows every family. -->
       <section class="space-y-3">
         <div>
-          <h3 class="font-headline text-xs font-bold text-text-main">Permissions</h3>
+          <h3 class="font-headline text-xs font-bold text-text-main">{t('Permissions')}</h3>
           <p class="text-text-subtle mt-0.5">
             JSON object naming the endpoint families the key may call:
             <span class="font-code">chat</span>, <span class="font-code">models</span>,
@@ -626,7 +627,7 @@
       <!-- Expiry -->
       <section class="space-y-3">
         <div>
-          <h3 class="font-headline text-xs font-bold text-text-main">Contract expiry</h3>
+          <h3 class="font-headline text-xs font-bold text-text-main">{t('Contract expiry')}</h3>
           <p class="text-text-subtle mt-0.5">
             After this instant the key is rejected with 401. Leave empty for a key that never expires.
           </p>
@@ -634,7 +635,7 @@
         <input
           type="datetime-local"
           bind:value={expiresLocal}
-          aria-label="Expiry date and time"
+          aria-label={t('Expiry date and time')}
           class="w-full sm:w-64 bg-surface border border-border rounded-lg px-3 py-2 font-code text-xs text-text-main x9-field"
         />
       </section>
@@ -642,12 +643,12 @@
       <!-- Metadata -->
       <section class="space-y-3">
         <div>
-          <h3 class="font-headline text-xs font-bold text-text-main">Resale metadata</h3>
+          <h3 class="font-headline text-xs font-bold text-text-main">{t('Resale metadata')}</h3>
           <p class="text-text-subtle mt-0.5">
             JSON object kept with the key. Accepted keys:
-            <span class="font-code">customerId</span>,
-            <span class="font-code">priceCents</span> (whole cents),
-            <span class="font-code">billingCycle</span> (one-off, monthly, quarterly, yearly),
+            <span class="font-code">{t('customerId')}</span>,
+            <span class="font-code">{t('priceCents')}</span> (whole cents),
+            <span class="font-code">{t('billingCycle')}</span> (one-off, monthly, quarterly, yearly),
             <span class="font-code">contact</span>,
             <span class="font-code">notes</span>
             — up to 2 KB. Any other key is refused, so a typo cannot silently drop
@@ -667,10 +668,10 @@
       <section class="space-y-3">
         <div class="flex items-start justify-between gap-3">
           <div>
-            <h3 class="font-headline text-xs font-bold text-text-main">Model access</h3>
+            <h3 class="font-headline text-xs font-bold text-text-main">{t('Model access')}</h3>
             <p class="text-text-subtle mt-0.5">
               Patterns may use <span class="font-code">*</span> per segment, e.g.
-              <span class="font-code">e2e/allowed-*</span>. An empty list allows every model.
+              <span class="font-code">{t('e2e/allowed-*')}</span>. An empty list allows every model.
             </p>
           </div>
           <button
@@ -692,7 +693,7 @@
             type="text"
             bind:value={modelDraft}
             onkeydown={(e) => e.key === 'Enter' && (e.preventDefault(), addModel())}
-            placeholder="e2e/allowed-*"
+            placeholder={t('e2e/allowed-*')}
             class="flex-1 bg-surface border border-border rounded-lg px-3 py-2 font-code text-[11px] text-text-main x9-field"
           />
           <button
@@ -736,10 +737,10 @@
       <section class="space-y-3">
         <div class="flex items-start justify-between gap-3">
           <div>
-            <h3 class="font-headline text-xs font-bold text-text-main">Hidden models</h3>
+            <h3 class="font-headline text-xs font-bold text-text-main">{t('Hidden models')}</h3>
             <p class="text-text-subtle mt-0.5">
-              One pattern per line — exact, <span class="font-code">prefix*</span> or
-              <span class="font-code">*suffix</span>. Hidden models disappear from this key's
+              One pattern per line — exact, <span class="font-code">{t('prefix*')}</span> or
+              <span class="font-code">{t('*suffix')}</span>. Hidden models disappear from this key's
               model list and return 404 when called. Empty hides nothing.
             </p>
           </div>
@@ -756,7 +757,7 @@
           rows="4"
           spellcheck="false"
           placeholder={"oc/*-free\nopenrouter/*:free\n*haiku*"}
-          aria-label="Hidden model patterns, one per line"
+          aria-label={t('Hidden model patterns, one per line')}
           class="w-full bg-surface border border-border rounded-lg px-3 py-2 font-code text-[11px] text-text-main x9-field resize-y"
         ></textarea>
         {#if parseHiddenPatternsText(hiddenModelsText).length > 0}
@@ -790,7 +791,7 @@
           {:else}
             <Save class="w-3.5 h-3.5" />
           {/if}
-          <span>Save Policy</span>
+          <span>{t('Save Policy')}</span>
         </button>
       </div>
     </form>

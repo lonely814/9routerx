@@ -84,7 +84,7 @@
     type DisplayCurrency
   } from '../lib/currency'
   import { setDisplayCurrency } from '../lib/currency.svelte'
-  import { getLocale, setLocale, SUPPORTED_LOCALES, type Locale } from '../lib/i18n.svelte'
+  import { getLocale, setLocale, SUPPORTED_LOCALES, type Locale, t } from '../lib/i18n.svelte'
 
   interface Props {
     settings?: Settings
@@ -850,13 +850,13 @@
     >
       {#if isSavingSettings}
         <Loader2 class="w-3.5 h-3.5 animate-spin" />
-        <span>Saving...</span>
+        <span>{t('Saving...')}</span>
       {:else if saveSuccess}
         <Check class="w-3.5 h-3.5" />
-        <span>Settings Saved!</span>
+        <span>{t('Settings Saved!')}</span>
       {:else}
         <Save class="w-3.5 h-3.5" />
-        <span>Save Changes</span>
+        <span>{t('Save Changes')}</span>
       {/if}
     </button>
   </div>
@@ -875,7 +875,7 @@
       <div class="flex items-center justify-between pb-2 border-b border-border">
         <div class="flex items-center gap-2">
           <Laptop class="w-4 h-4 text-brand-500" />
-          <h2 class="text-sm font-bold text-text-main">Runtime Storage</h2>
+          <h2 class="text-sm font-bold text-text-main">{t('Runtime Storage')}</h2>
         </div>
         <span class="text-[10px] font-mono font-bold px-2 py-0.5 rounded bg-success/10 text-success border border-success/20">
           Server managed
@@ -909,7 +909,7 @@
             class="flex-1 py-2 px-3 rounded-lg bg-surface-2 hover:bg-surface-3 border border-border text-xs font-semibold text-text-main transition cursor-pointer flex items-center justify-center gap-1.5"
           >
             <Download class="w-3.5 h-3.5 text-brand-500" />
-            <span>Download Backup</span>
+            <span>{t('Download Backup')}</span>
           </button>
 
           <input
@@ -928,7 +928,7 @@
             class="flex-1 py-2 px-3 rounded-lg bg-surface-2 hover:bg-surface-3 border border-border text-xs font-semibold text-text-main transition cursor-pointer flex items-center justify-center gap-1.5"
           >
             <Upload class="w-3.5 h-3.5 text-text-muted" />
-            <span>Import Backup</span>
+            <span>{t('Import Backup')}</span>
           </button>
         </div>
       </div>
@@ -941,18 +941,18 @@
     <Card padding="md" class="space-y-4">
       <div class="flex items-center gap-2 pb-2 border-b border-border">
         <KeySquare class="w-4 h-4 text-brand-500" />
-        <h2 class="text-sm font-bold text-text-main">Access Tokens</h2>
+        <h2 class="text-sm font-bold text-text-main">{t('Access Tokens')}</h2>
       </div>
       <p class="text-xs text-text-muted">
         Scoped tokens for scripts and CI. <code class="text-[11px]">admin</code> grants everything;
         <code class="text-[11px]">write</code> covers the management API but not shutdown, backups or key exports;
         <code class="text-[11px]">read</code> is GET-only. Send as the
-        <code class="text-[11px]">x-9r-access-token</code> header.
+        <code class="text-[11px]">{t('x-9r-access-token')}</code> header.
       </p>
       <div class="flex flex-wrap items-center gap-2">
         <input
           type="text"
-          placeholder="Token name (e.g. ci-deploy)"
+          placeholder={t('Token name (e.g. ci-deploy)')}
           bind:value={mintTokenName}
           class="min-w-48 flex-1 rounded-lg border border-border bg-surface px-3 py-1.5 text-sm text-text-main focus:outline-none focus:border-brand-500"
         />
@@ -1009,7 +1009,7 @@
         <p class="text-xs text-red-500" role="alert">{tokenError}</p>
       {/if}
       {#if dashboardTokens.length === 0}
-        <p class="text-xs text-text-muted">No live tokens.</p>
+        <p class="text-xs text-text-muted">{t('No live tokens.')}</p>
       {:else}
         <div class="space-y-1.5">
           {#each dashboardTokens as t (t.id)}
@@ -1040,7 +1040,7 @@
         <Toggle
           checked={requireLogin}
           size="sm"
-          label="Require login"
+          label={t('Require login')}
           onChange={(val) => {
             requireLogin = val
             requireLoginKnown = true
@@ -1053,23 +1053,23 @@
       <div class="space-y-3 text-xs">
         <div class="flex items-center justify-between">
           <div>
-            <p class="font-semibold text-text-main">Require Password on Localhost</p>
-            <p class="text-[11px] text-text-subtle">Default password is <code class="font-mono text-brand-500">123456</code></p>
+            <p class="font-semibold text-text-main">{t('Require Password on Localhost')}</p>
+            <p class="text-[11px] text-text-subtle">{t('Default password is')} <code class="font-mono text-brand-500">123456</code></p>
           </div>
         </div>
 
         <div class="space-y-1 pt-1">
-          <label for="session-timeout" class="block font-semibold text-text-main">Session Timeout</label>
+          <label for="session-timeout" class="block font-semibold text-text-main">{t('Session Timeout')}</label>
           <select
             id="session-timeout"
             bind:value={sessionTimeout}
             class="w-full px-3 py-2 rounded-lg bg-bg border border-border text-xs text-text-main focus:outline-none focus:border-brand-500"
           >
-            <option value="15m">15 Minutes</option>
-            <option value="1h">1 Hour</option>
-            <option value="24h">24 Hours</option>
-            <option value="7d">7 Days</option>
-            <option value="never">Never (Stay signed in)</option>
+            <option value="15m">{t('15 Minutes')}</option>
+            <option value="1h">{t('1 Hour')}</option>
+            <option value="24h">{t('24 Hours')}</option>
+            <option value="7d">{t('7 Days')}</option>
+            <option value="never">{t('Never (Stay signed in)')}</option>
           </select>
         </div>
 
@@ -1097,7 +1097,7 @@
               {/if}
 
               <div class="space-y-1">
-                <label for="curr-pwd" class="block text-[11px] font-semibold text-text-muted">Current Password</label>
+                <label for="curr-pwd" class="block text-[11px] font-semibold text-text-muted">{t('Current Password')}</label>
                 <input
                   id="curr-pwd"
                   type="password"
@@ -1110,26 +1110,26 @@
               </div>
 
               <div class="space-y-1">
-                <label for="new-pwd" class="block text-[11px] font-semibold text-text-muted">New Password</label>
+                <label for="new-pwd" class="block text-[11px] font-semibold text-text-muted">{t('New Password')}</label>
                 <input
                   id="new-pwd"
                   type="password"
                   autocomplete="new-password"
                   bind:value={newPassword}
-                  placeholder="At least 6 characters"
+                  placeholder={t('At least 6 characters')}
                   class="w-full px-3 py-1.5 rounded-lg bg-bg border border-border text-xs font-mono text-text-main focus:outline-none focus:border-brand-500"
                   required
                 />
               </div>
 
               <div class="space-y-1">
-                <label for="confirm-pwd" class="block text-[11px] font-semibold text-text-muted">Confirm New Password</label>
+                <label for="confirm-pwd" class="block text-[11px] font-semibold text-text-muted">{t('Confirm New Password')}</label>
                 <input
                   id="confirm-pwd"
                   type="password"
                   autocomplete="new-password"
                   bind:value={confirmNewPassword}
-                  placeholder="Re-enter new password"
+                  placeholder={t('Re-enter new password')}
                   class="w-full px-3 py-1.5 rounded-lg bg-bg border border-border text-xs font-mono text-text-main focus:outline-none focus:border-brand-500"
                   required
                 />
@@ -1153,53 +1153,53 @@
       <div class="flex items-center justify-between pb-2 border-b border-border">
         <div class="flex items-center gap-2">
           <Key class="w-4 h-4 text-brand-500" />
-          <h2 class="text-sm font-bold text-text-main">Single Sign-On (SSO)</h2>
+          <h2 class="text-sm font-bold text-text-main">{t('Single Sign-On (SSO)')}</h2>
         </div>
       </div>
 
       <div class="space-y-3 text-xs">
         <div class="space-y-1">
-          <label for="auth-mode-select" class="block font-semibold text-text-main">Authentication Mode</label>
+          <label for="auth-mode-select" class="block font-semibold text-text-main">{t('Authentication Mode')}</label>
           <select
             id="auth-mode-select"
             bind:value={authMode}
             class="w-full px-3 py-2 rounded-lg bg-bg border border-border text-xs text-text-main focus:outline-none focus:border-brand-500"
           >
-            <option value="password">Password Only</option>
-            <option value="oidc">OpenID Connect (OIDC)</option>
-            <option value="saml">SAML 2.0 SSO</option>
+            <option value="password">{t('Password Only')}</option>
+            <option value="oidc">{t('OpenID Connect (OIDC)')}</option>
+            <option value="saml">{t('SAML 2.0 SSO')}</option>
           </select>
         </div>
 
         {#if authMode === 'oidc'}
           <div class="space-y-2 pt-2 border-t border-border/60">
             <div class="space-y-1">
-              <label for="oidc-issuer" class="block font-semibold text-text-muted">Issuer URL</label>
+              <label for="oidc-issuer" class="block font-semibold text-text-muted">{t('Issuer URL')}</label>
               <input
                 id="oidc-issuer"
                 type="text"
                 bind:value={oidcIssuerUrl}
-                placeholder="https://accounts.google.com or Okta URL"
+                placeholder={t('https://accounts.google.com or Okta URL')}
                 class="w-full px-3 py-1.5 rounded-lg bg-bg border border-border text-xs font-mono text-text-main"
               />
             </div>
             <div class="space-y-1">
-              <label for="oidc-client-id" class="block font-semibold text-text-muted">Client ID</label>
+              <label for="oidc-client-id" class="block font-semibold text-text-muted">{t('Client ID')}</label>
               <input
                 id="oidc-client-id"
                 type="text"
                 bind:value={oidcClientId}
-                placeholder="client-id"
+                placeholder={t('client-id')}
                 class="w-full px-3 py-1.5 rounded-lg bg-bg border border-border text-xs font-mono text-text-main"
               />
             </div>
             <div class="space-y-1">
-              <label for="oidc-scopes" class="block font-semibold text-text-muted">Scopes</label>
+              <label for="oidc-scopes" class="block font-semibold text-text-muted">{t('Scopes')}</label>
               <input
                 id="oidc-scopes"
                 type="text"
                 bind:value={oidcScopes}
-                placeholder="openid profile email"
+                placeholder={t('openid profile email')}
                 class="w-full px-3 py-1.5 rounded-lg bg-bg border border-border text-xs font-mono text-text-main"
               />
             </div>
@@ -1207,27 +1207,27 @@
         {:else if authMode === 'saml'}
           <div class="space-y-2 pt-2 border-t border-border/60">
             <div class="space-y-1">
-              <label for="saml-entrypoint" class="block font-semibold text-text-muted">SAML EntryPoint (SSO URL)</label>
+              <label for="saml-entrypoint" class="block font-semibold text-text-muted">{t('SAML EntryPoint (SSO URL)')}</label>
               <input
                 id="saml-entrypoint"
                 type="text"
                 bind:value={samlEntryPoint}
-                placeholder="https://idp.example.com/sso"
+                placeholder={t('https://idp.example.com/sso')}
                 class="w-full px-3 py-1.5 rounded-lg bg-bg border border-border text-xs font-mono text-text-main"
               />
             </div>
             <div class="space-y-1">
-              <label for="saml-issuer" class="block font-semibold text-text-muted">SP Entity ID / Issuer</label>
+              <label for="saml-issuer" class="block font-semibold text-text-muted">{t('SP Entity ID / Issuer')}</label>
               <input
                 id="saml-issuer"
                 type="text"
                 bind:value={samlIssuer}
-                placeholder="https://9routerx.local"
+                placeholder={t('https://9routerx.local')}
                 class="w-full px-3 py-1.5 rounded-lg bg-bg border border-border text-xs font-mono text-text-main"
               />
             </div>
             <div class="space-y-1">
-              <label for="saml-cert" class="block font-semibold text-text-muted">X.509 Certificate (PEM)</label>
+              <label for="saml-cert" class="block font-semibold text-text-muted">{t('X.509 Certificate (PEM)')}</label>
               <textarea
                 id="saml-cert"
                 bind:value={samlCert}
@@ -1245,26 +1245,26 @@
     <Card padding="md" class="space-y-4">
       <div class="flex items-center gap-2 pb-2 border-b border-border">
         <Sliders class="w-4 h-4 text-brand-500" />
-        <h2 class="text-sm font-bold text-text-main">Default Routing Strategy</h2>
+        <h2 class="text-sm font-bold text-text-main">{t('Default Routing Strategy')}</h2>
       </div>
 
       <div class="space-y-3 text-xs">
         <div class="space-y-1">
-          <label for="fallback-strat" class="block font-semibold text-text-main">Connection Fallback Strategy</label>
+          <label for="fallback-strat" class="block font-semibold text-text-main">{t('Connection Fallback Strategy')}</label>
           <select
             id="fallback-strat"
             bind:value={fallbackStrategy}
             class="w-full px-3 py-2 rounded-lg bg-bg border border-border text-xs text-text-main focus:outline-none focus:border-brand-500"
           >
-            <option value="failover">Failover (Try next on error/rate-limit)</option>
-            <option value="round-robin">Round Robin (Distribute requests across all connections)</option>
-            <option value="sticky-round-robin">Sticky Round-Robin (Keep active connection up to limit)</option>
+            <option value="failover">{t('Failover (Try next on error/rate-limit)')}</option>
+            <option value="round-robin">{t('Round Robin (Distribute requests across all connections)')}</option>
+            <option value="sticky-round-robin">{t('Sticky Round-Robin (Keep active connection up to limit)')}</option>
           </select>
         </div>
 
         {#if fallbackStrategy === 'sticky-round-robin'}
           <div class="space-y-1">
-            <label for="sticky-limit" class="block font-semibold text-text-main">Sticky Request Limit</label>
+            <label for="sticky-limit" class="block font-semibold text-text-main">{t('Sticky Request Limit')}</label>
             <input
               id="sticky-limit"
               type="number"
@@ -1280,21 +1280,21 @@
         {/if}
 
         <div class="space-y-1">
-          <label for="combo-strat" class="block font-semibold text-text-main">Combo Routing Mode</label>
+          <label for="combo-strat" class="block font-semibold text-text-main">{t('Combo Routing Mode')}</label>
           <select
             id="combo-strat"
             bind:value={comboStrategy}
             class="w-full px-3 py-2 rounded-lg bg-bg border border-border text-xs text-text-main focus:outline-none focus:border-brand-500"
           >
-            <option value="first-model">First Model (Always try primary model first)</option>
-            <option value="round-robin">Round Robin (Rotate starting model)</option>
+            <option value="first-model">{t('First Model (Always try primary model first)')}</option>
+            <option value="round-robin">{t('Round Robin (Rotate starting model)')}</option>
           </select>
         </div>
 
         <Toggle
           checked={forceFallback}
           size="sm"
-          label="Force Fallback (all accounts cooling down)"
+          label={t('Force Fallback (all accounts cooling down)')}
           onChange={(v: boolean) => (forceFallback = v)}
         />
         <p class="text-[11px] text-text-subtle">
@@ -1315,7 +1315,7 @@
         <Toggle
           checked={enableObservability}
           size="sm"
-          label="Enable Observability"
+          label={t('Enable Observability')}
           onChange={(val) => (enableObservability = val)}
         />
       </div>
@@ -1328,34 +1328,34 @@
         <!-- Observability Mode & Retention Controls -->
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
           <div class="space-y-1">
-            <label class="text-[11px] font-medium text-text-muted">Observability Mode</label>
+            <label class="text-[11px] font-medium text-text-muted">{t('Observability Mode')}</label>
             <select
               bind:value={observabilityMode}
               class="w-full rounded-lg border border-border bg-surface-2 px-2.5 py-1.5 text-xs text-text-main focus:border-brand-500 focus:outline-none"
             >
-              <option value="full">Full (Record all requests)</option>
-              <option value="errors_only">Errors Only (Diagnostics only)</option>
-              <option value="off">Off (Zero-Trace / Headless)</option>
+              <option value="full">{t('Full (Record all requests)')}</option>
+              <option value="errors_only">{t('Errors Only (Diagnostics only)')}</option>
+              <option value="off">{t('Off (Zero-Trace / Headless)')}</option>
             </select>
           </div>
 
           <div class="space-y-1">
-            <label class="text-[11px] font-medium text-text-muted">Diagnostics Retention</label>
+            <label class="text-[11px] font-medium text-text-muted">{t('Diagnostics Retention')}</label>
             <select
               bind:value={retentionDays}
               class="w-full rounded-lg border border-border bg-surface-2 px-2.5 py-1.5 text-xs text-text-main focus:border-brand-500 focus:outline-none"
             >
-              <option value={1}>1 Day (STB / Low-Memory)</option>
-              <option value={3}>3 Days</option>
-              <option value={7}>7 Days (Recommended)</option>
-              <option value={14}>14 Days</option>
-              <option value={30}>30 Days</option>
-              <option value={0}>Unlimited</option>
+              <option value={1}>{t('1 Day (STB / Low-Memory)')}</option>
+              <option value={3}>{t('3 Days')}</option>
+              <option value={7}>{t('7 Days (Recommended)')}</option>
+              <option value={14}>{t('14 Days')}</option>
+              <option value={30}>{t('30 Days')}</option>
+              <option value={0}>{t('Unlimited')}</option>
             </select>
           </div>
 
           <div class="space-y-1">
-            <label class="text-[11px] font-medium text-text-muted">Max Request Records</label>
+            <label class="text-[11px] font-medium text-text-muted">{t('Max Request Records')}</label>
             <input
               type="number"
               bind:value={maxRequestRecords}
@@ -1366,16 +1366,16 @@
           </div>
 
           <div class="space-y-1">
-            <label class="text-[11px] font-medium text-text-muted">Usage Ledger Retention</label>
+            <label class="text-[11px] font-medium text-text-muted">{t('Usage Ledger Retention')}</label>
             <select
               bind:value={usageHistoryRetentionDays}
               class="w-full rounded-lg border border-border bg-surface-2 px-2.5 py-1.5 text-xs text-text-main focus:border-brand-500 focus:outline-none"
             >
-              <option value={0}>Off (Keep Forever, Recommended)</option>
-              <option value={30}>30 Days</option>
-              <option value={90}>90 Days</option>
-              <option value={180}>180 Days</option>
-              <option value={365}>365 Days (1 Year)</option>
+              <option value={0}>{t('Off (Keep Forever, Recommended)')}</option>
+              <option value={30}>{t('30 Days')}</option>
+              <option value={90}>{t('90 Days')}</option>
+              <option value={180}>{t('180 Days')}</option>
+              <option value={365}>{t('365 Days (1 Year)')}</option>
             </select>
           </div>
         </div>
@@ -1388,19 +1388,19 @@
         <div class="p-3 rounded-xl bg-bg border border-border space-y-3">
           <div class="flex flex-wrap items-center justify-between gap-2 text-[11px]">
             <div>
-              <span class="text-text-muted">Database File Size: </span>
+              <span class="text-text-muted">{t('Database File Size:')} </span>
               <span class="font-mono font-semibold text-text-main"
                 >{dbStats ? formatBytes(dbStats.databaseSizeBytes) : '—'}</span
               >
             </div>
             <div>
-              <span class="text-text-muted">Request Details: </span>
+              <span class="text-text-muted">{t('Request Details:')} </span>
               <span class="font-mono font-semibold text-text-main"
                 >{dbStats ? `${(dbStats.requestDetailsCount ?? 0).toLocaleString()} rows` : '—'}</span
               >
             </div>
             <div>
-              <span class="text-text-muted">Usage Ledger: </span>
+              <span class="text-text-muted">{t('Usage Ledger:')} </span>
               <span class="font-mono font-semibold text-text-main"
                 >{dbStats ? `${(dbStats.usageHistoryCount ?? 0).toLocaleString()} rows` : '—'}</span
               >
@@ -1412,7 +1412,7 @@
             </div>
             {#if !dbStats || (dbStats.reclaimableBytes ?? 0) > 0}
               <div>
-                <span class="text-text-muted">Reclaimable: </span>
+                <span class="text-text-muted">{t('Reclaimable:')} </span>
                 <span class="font-mono font-semibold text-amber-500"
                   >{dbStats ? formatBytes(dbStats.reclaimableBytes ?? 0) : '—'}</span
                 >
@@ -1475,7 +1475,7 @@
         <Toggle
           checked={enableSystemPrompt}
           size="sm"
-          label="Enable Global System Prompt"
+          label={t('Enable Global System Prompt')}
           onChange={(val: boolean) => (enableSystemPrompt = val)}
         />
       </div>
@@ -1494,30 +1494,30 @@
             onclick={loadAntiPoisoningPreset}
             class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-brand-500/10 hover:bg-brand-500/20 border border-brand-500/30 text-xs text-brand-500 font-semibold transition cursor-pointer"
           >
-            <span>Load Anti-Poisoning Preset</span>
+            <span>{t('Load Anti-Poisoning Preset')}</span>
           </button>
         </div>
 
         <div class="space-y-1">
-          <label for="sys-prompt-prefix" class="block font-semibold text-text-main">Prefix</label>
+          <label for="sys-prompt-prefix" class="block font-semibold text-text-main">{t('Prefix')}</label>
           <textarea
             id="sys-prompt-prefix"
             bind:value={systemPromptPrefix}
             rows="4"
             spellcheck="false"
-            placeholder="Identity and invariants read before anything else."
+            placeholder={t('Identity and invariants read before anything else.')}
             class="w-full px-3 py-2 rounded-lg bg-bg border border-border text-xs font-mono text-text-main focus:outline-none focus:border-brand-500"
           ></textarea>
         </div>
 
         <div class="space-y-1">
-          <label for="sys-prompt-suffix" class="block font-semibold text-text-main">Suffix</label>
+          <label for="sys-prompt-suffix" class="block font-semibold text-text-main">{t('Suffix')}</label>
           <textarea
             id="sys-prompt-suffix"
             bind:value={systemPromptSuffix}
             rows="4"
             spellcheck="false"
-            placeholder="Constraints the model must hold after reading user content."
+            placeholder={t('Constraints the model must hold after reading user content.')}
             class="w-full px-3 py-2 rounded-lg bg-bg border border-border text-xs font-mono text-text-main focus:outline-none focus:border-brand-500"
           ></textarea>
         </div>
@@ -1533,13 +1533,13 @@
       <div class="flex items-center justify-between pb-2 border-b border-border">
         <div class="flex items-center gap-2">
           <Sliders class="w-4 h-4 text-brand-500" />
-          <h2 class="text-sm font-bold text-text-main">Display</h2>
+          <h2 class="text-sm font-bold text-text-main">{t('Display')}</h2>
         </div>
       </div>
 
       <div class="flex items-center justify-between gap-3">
         <div>
-          <p class="font-semibold text-text-main text-xs">Background animation</p>
+          <p class="font-semibold text-text-main text-xs">{t('Background animation')}</p>
           <p class="text-[11px] text-text-subtle">
             Static freezes the routing map into one painted frame — saves CPU and battery on
             phones. Auto keeps the live animation.
@@ -1548,7 +1548,7 @@
         <Toggle
           checked={backgroundAnimation === 'static'}
           size="sm"
-          label="Freeze background animation"
+          label={t('Freeze background animation')}
           onChange={(val) => {
             backgroundAnimation = val ? 'static' : 'auto'
             backgroundAnimationKnown = true
@@ -1559,13 +1559,13 @@
 
       <div class="flex items-center justify-between gap-3">
         <div class="min-w-0">
-          <p class="text-xs font-semibold text-text-main">Unit abbreviation</p>
-          <p class="text-[11px] text-text-subtle">Large numbers as 亿/万 (zh) or M/B (en); off → full numbers</p>
+          <p class="text-xs font-semibold text-text-main">{t('Unit abbreviation')}</p>
+          <p class="text-[11px] text-text-subtle">{t('Large numbers as 亿/万 (zh) or M/B (en); off → full numbers')}</p>
         </div>
         <Toggle
           checked={compactUnits}
           size="sm"
-          label="Unit abbreviation"
+          label={t('Unit abbreviation')}
           onChange={(val: boolean) => {
             setCompactUnits(val)
             compactUnits = isCompactUnitsEnabled()
@@ -1575,7 +1575,7 @@
 
       <div class="flex items-center justify-between gap-3">
         <div class="min-w-0">
-          <p class="text-xs font-semibold text-text-main">Advanced settings</p>
+          <p class="text-xs font-semibold text-text-main">{t('Advanced settings')}</p>
           <p class="text-[11px] text-text-subtle">
             Unfolds the currency rates, the Sidebar card and the per-panel Usage list below. Folding
             them back changes nothing about what they do.
@@ -1584,7 +1584,7 @@
         <Toggle
           checked={advancedSettings}
           size="sm"
-          label="Advanced settings"
+          label={t('Advanced settings')}
           onChange={(val: boolean) => {
             setAdvancedSettingsVisible(val)
             advancedSettings = isAdvancedSettingsVisible()
@@ -1593,7 +1593,7 @@
       </div>
       <div class="flex items-center justify-between gap-3">
         <div class="min-w-0">
-          <p class="text-xs font-semibold text-text-main">Provider card toggle</p>
+          <p class="text-xs font-semibold text-text-main">{t('Provider card toggle')}</p>
           <p class="text-[11px] text-text-subtle">
             Show the on/off switch on each provider card permanently on desktop
             instead of revealing it on hover.
@@ -1602,7 +1602,7 @@
         <Toggle
           checked={providerTogglePersistent}
           size="sm"
-          label="Provider card toggle persistence"
+          label={t('Provider card toggle persistence')}
           onChange={(val) => {
             setProviderTogglePersistent(val)
             providerTogglePersistent = val
@@ -1611,7 +1611,7 @@
       </div>
       <div class="flex items-center justify-between gap-3">
         <div class="min-w-0">
-          <p class="text-xs font-semibold text-text-main">Pinned entries</p>
+          <p class="text-xs font-semibold text-text-main">{t('Pinned entries')}</p>
           <p class="text-[11px] text-text-subtle">
             A Pinned section at the top of the sidebar for the 2–3 entries you use most. Pin one from
             the search palette, or from the star beside a search result.
@@ -1620,7 +1620,7 @@
         <Toggle
           checked={favoritesEnabled}
           size="sm"
-          label="Pinned entries"
+          label={t('Pinned entries')}
           onChange={(val) => {
             setFavoritesEnabled(val)
             favoritesEnabled = val
@@ -1629,7 +1629,7 @@
       </div>
       <div class="flex items-center justify-between gap-3">
         <div class="min-w-0">
-          <p class="text-xs font-semibold text-text-main">Collapse to icons</p>
+          <p class="text-xs font-semibold text-text-main">{t('Collapse to icons')}</p>
           <p class="text-[11px] text-text-subtle">
             Shrink the sidebar to a 56px icon rail. Every label is replaced by its icon with a
             tooltip, which frees the width for the page beside it.
@@ -1638,7 +1638,7 @@
         <Toggle
           checked={iconRail}
           size="sm"
-          label="Collapse to icons"
+          label={t('Collapse to icons')}
           onChange={(val) => {
             setIconRailEnabled(val)
             iconRail = val
@@ -1647,7 +1647,7 @@
       </div>
       <div class="flex items-center justify-between gap-3 border-t border-border pt-3">
         <div class="min-w-0">
-          <p class="text-xs font-semibold text-text-main">Animation level</p>
+          <p class="text-xs font-semibold text-text-main">{t('Animation level')}</p>
           <p class="text-[11px] text-text-subtle">
             How much the dashboard animates. Minimal drops blur and transitions but
             keeps loading spinners; Off stops those too.
@@ -1665,7 +1665,7 @@
       </div>
       <div class="flex items-center justify-between gap-3 border-t border-border pt-3">
         <div class="min-w-0">
-          <p class="text-xs font-semibold text-text-main">Language / Bahasa</p>
+          <p class="text-xs font-semibold text-text-main">{t('Language / Bahasa')}</p>
           <p class="text-[11px] text-text-subtle">
             Interface language for the dashboard (en / id / zh)
           </p>
@@ -1686,7 +1686,7 @@
       </div>
 
       <div class="space-y-3 border-t border-border pt-3">
-        <p class="text-xs font-semibold text-text-main">Currency</p>
+        <p class="text-xs font-semibold text-text-main">{t('Currency')}</p>
 
         <p class="text-[11px] text-text-subtle leading-relaxed">
           Every cost is measured in USD and shown here in the currency you pick. The rates are yours
@@ -1695,7 +1695,7 @@
 
         <div class="space-y-3">
           <div class="space-y-1">
-            <label for="currency-code" class="text-xs font-semibold text-text-main">Display currency</label>
+            <label for="currency-code" class="text-xs font-semibold text-text-main">{t('Display currency')}</label>
             <select
               id="currency-code"
               bind:value={currencyCode}
@@ -1707,11 +1707,11 @@
             </select>
           </div>
           <div class="flex items-center justify-between gap-3">
-            <span class="text-xs text-text-main">Show USD next to the converted amount</span>
+            <span class="text-xs text-text-main">{t('Show USD next to the converted amount')}</span>
             <Toggle
               checked={currencyShowBoth}
               size="sm"
-              label="Show USD next to the converted amount"
+              label={t('Show USD next to the converted amount')}
               onChange={(val) => (currencyShowBoth = val)}
             />
           </div>
@@ -1719,7 +1719,7 @@
 
         {#if advancedSettings}
         <div class="space-y-1">
-          <p class="text-xs text-text-main">Rates — one USD in each currency</p>
+          <p class="text-xs text-text-main">{t('Rates — one USD in each currency')}</p>
           <div class="grid grid-cols-2 sm:grid-cols-3 gap-2">
             {#each CURRENCY_CATALOG as option (option.code)}
               <label class="flex items-center gap-2 rounded-[10px] border border-border-subtle px-2 py-1.5">
@@ -1747,7 +1747,7 @@
           </p>
           <Button variant="secondary" size="sm" onclick={refreshRates} loading={isRefreshingRates}>
             <RefreshCw class="w-3.5 h-3.5 text-text-muted" />
-            <span>Update currency</span>
+            <span>{t('Update currency')}</span>
           </Button>
         </div>
 
@@ -1767,7 +1767,7 @@
       <div class="flex items-center justify-between gap-2 pb-2 border-b border-border">
         <div class="flex items-center gap-2">
           <PanelLeft class="w-4 h-4 text-brand-500" />
-          <h2 class="text-sm font-bold text-text-main">Sidebar</h2>
+          <h2 class="text-sm font-bold text-text-main">{t('Sidebar')}</h2>
         </div>
         <button
           type="button"
@@ -1780,7 +1780,7 @@
 
       <div class="space-y-2">
         <div class="space-y-1">
-          <label class="text-[11px] font-medium text-text-muted" for="sidebar-preset">Preset</label>
+          <label class="text-[11px] font-medium text-text-muted" for="sidebar-preset">{t('Preset')}</label>
           <select
             id="sidebar-preset"
             value={navPreset}
@@ -1795,7 +1795,7 @@
           >
             <!-- Shown only while the switches match no preset: a selection of
                  one's own is a state to read, not one to pick. -->
-            <option value="custom" disabled>Custom</option>
+            <option value="custom" disabled>{t('Custom')}</option>
             {#each NAV_PRESETS as preset (preset.id)}
               <option value={preset.id} title={preset.hint}>{preset.label}</option>
             {/each}
@@ -1824,7 +1824,7 @@
             <div class="flex min-w-0 items-center gap-1.5">
               <span
                 class="material-symbols-outlined cursor-grab text-[14px] text-text-subtle active:cursor-grabbing"
-                title="Drag to reorder"
+                title={t('Drag to reorder')}
                 aria-hidden="true"
                 draggable="true"
                 ondragstart={(event) => startRowDrag(event, 'nav', entry.id)}
@@ -1836,7 +1836,7 @@
               <div class="flex items-center gap-0.5">
                 <button
                   type="button"
-                  title="Move up"
+                  title={t('Move up')}
                   aria-label="Move {entry.label} up"
                   disabled={index === 0}
                   onclick={() =>
@@ -1847,7 +1847,7 @@
                 </button>
                 <button
                   type="button"
-                  title="Move down"
+                  title={t('Move down')}
                   aria-label="Move {entry.label} down"
                   disabled={index === siblings.length - 1}
                   onclick={() =>
@@ -1907,12 +1907,12 @@
       <div class="flex items-center justify-between gap-2 pb-2 border-b border-border">
         <div class="flex items-center gap-2">
           <Sliders class="w-4 h-4 text-brand-500" />
-          <h2 class="text-sm font-bold text-text-main">Usage dashboard</h2>
+          <h2 class="text-sm font-bold text-text-main">{t('Usage dashboard')}</h2>
         </div>
       </div>
       <div class="flex items-center justify-between gap-3">
         <div class="min-w-0">
-          <p class="text-xs font-semibold text-text-main">Expand usage details</p>
+          <p class="text-xs font-semibold text-text-main">{t('Expand usage details')}</p>
           <p class="text-[11px] text-text-subtle">
             Activity Heatmap and Node Health open instead of starting collapsed
           </p>
@@ -1920,7 +1920,7 @@
         <Toggle
           checked={detailsExpanded}
           size="sm"
-          label="Expand usage details"
+          label={t('Expand usage details')}
           onChange={(val: boolean) => {
             setDetailsExpandedByDefault(val)
             detailsExpanded = isDetailsExpandedByDefault()
@@ -1930,7 +1930,7 @@
       <div class="space-y-4">
         <div class="space-y-2">
         <div class="space-y-1">
-          <label class="text-[11px] font-medium text-text-muted" for="usage-panel-preset">Preset</label>
+          <label class="text-[11px] font-medium text-text-muted" for="usage-panel-preset">{t('Preset')}</label>
           <select
             id="usage-panel-preset"
             value={panelPreset}
@@ -1943,7 +1943,7 @@
           >
             <!-- Shown only while the toggles match no preset: an arrangement of
                  one's own is a state to read, not one to pick. -->
-            <option value="custom" disabled>Custom</option>
+            <option value="custom" disabled>{t('Custom')}</option>
             {#each USAGE_PANEL_PRESETS as preset (preset.id)}
               <option value={preset.id} title={preset.hint}>{preset.label}</option>
             {/each}
@@ -1967,7 +1967,7 @@
                   Reset order
                 </button>
               {:else}
-                <span class="text-[10px] text-text-subtle">Order fixed by the layout</span>
+                <span class="text-[10px] text-text-subtle">{t('Order fixed by the layout')}</span>
               {/if}
             </div>
             {#each panelOrder(group.id) as itemId, index (itemId)}
@@ -1995,7 +1995,7 @@
                   {#if grabbable}
                     <span
                       class="material-symbols-outlined cursor-grab text-[14px] text-text-subtle active:cursor-grabbing"
-                      title="Drag to reorder"
+                      title={t('Drag to reorder')}
                       aria-hidden="true"
                       draggable="true"
                       ondragstart={(event) => startRowDrag(event, 'panel', itemId, group.id)}
@@ -2052,10 +2052,10 @@
         role="status"
         class="fixed bottom-5 right-5 z-40 flex items-center gap-3 rounded-[10px] border border-border bg-surface-2 px-4 py-3 shadow-[var(--shadow-elev)]"
       >
-        <span class="text-xs text-text-muted">Unsaved changes</span>
+        <span class="text-xs text-text-muted">{t('Unsaved changes')}</span>
         <Button variant="primary" onclick={handleSaveAll} loading={isSavingSettings}>
           <Save class="w-3.5 h-3.5" />
-          <span>Save</span>
+          <span>{t('Save')}</span>
         </Button>
       </div>
     {/if}
@@ -2074,8 +2074,8 @@
         </p>
         <Input
           type="password"
-          label="Dashboard password"
-          placeholder="Enter password to authorize"
+          label={t('Dashboard password')}
+          placeholder={t('Enter password to authorize')}
           bind:value={dbPassword}
         />
       </div>

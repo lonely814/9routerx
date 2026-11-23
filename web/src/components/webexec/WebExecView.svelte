@@ -165,7 +165,7 @@
       <div>
         <div class="flex items-center gap-2">
           <span class="material-symbols-outlined text-[18px] text-brand-500">cloud</span>
-          <p class="font-semibold text-text-main text-sm">Claude Web (Unofficial)</p>
+          <p class="font-semibold text-text-main text-sm">{t('Claude Web (Unofficial)')}</p>
           <Badge tone={claudeWebOn ? 'success' : 'neutral'} size="sm">{claudeWebOn ? 'enabled' : 'off'}</Badge>
         </div>
         <p class="text-[11px] text-text-subtle mt-1">
@@ -178,7 +178,7 @@
         checked={claudeWebOn}
         size="sm"
         disabled={!claudeWebLoaded || claudeWebSaving}
-        label="Enable claude-web"
+        label={t('Enable claude-web')}
         onChange={(v) => toggleClaudeWeb(v)}
       />
     </div>
@@ -252,7 +252,7 @@
             </Button>
             {#if result}
               {#if result.ok}
-                <Badge tone="success">{t('OK')} · {result.accounts} {t('accounts')}</Badge>
+                <Badge tone="success">{t('OK')} · {result.accounts} accounts</Badge>
               {:else}
                 <Badge tone="danger">{t('Failed')}</Badge>
               {/if}

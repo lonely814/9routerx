@@ -1,5 +1,6 @@
 <!-- 9RouterX — ported & modified by https://github.com/yanstd888/ — https://t.me/aiclub_id -->
 <script lang="ts">
+  import { t } from '../../lib/i18n.svelte'
   // Port of upstream AddCustomModelModal.js (dashboard/providers/[id]).
   import Button from '../../lib/ui/Button.svelte'
   import Modal from '../../lib/ui/Modal.svelte'
@@ -157,10 +158,10 @@
   }
 </script>
 
-<Modal {isOpen} {onClose} title="Add Custom Model">
+<Modal {isOpen} {onClose} title={t('Add Custom Model')}>
   <div class="flex flex-col gap-4">
     <div>
-      <label class="text-sm font-medium mb-1.5 block" for="add-custom-model-id">Model ID</label>
+      <label class="text-sm font-medium mb-1.5 block" for="add-custom-model-id">{t('Model ID')}</label>
       <div class="flex gap-2">
         <input
           id="add-custom-model-id"
@@ -173,7 +174,7 @@
             testError = ''
           }}
           onkeydown={handleKeyDown}
-          placeholder="e.g. claude-opus-4-5 — paste a list to add several"
+          placeholder={t('e.g. claude-opus-4-5 — paste a list to add several')}
           class="flex-1 px-3 py-2 text-sm border border-border rounded-lg bg-background focus:outline-none focus:border-primary"
         />
         {#if !isPaste}
@@ -209,7 +210,7 @@
         {#if plan.invalid.length > 0}
           <ul class="text-xs text-red-500 mt-1 space-y-0.5">
             {#each plan.invalid as id (id)}
-              <li><code class="font-mono">{id}</code> — not a usable id (pipe, quotes or angle brackets)</li>
+              <li><code class="font-mono">{id}</code> {t('— not a usable id (pipe, quotes or angle brackets)')}</li>
             {/each}
           </ul>
         {/if}
@@ -241,7 +242,7 @@
     {/if}
 
     <div>
-      <label class="text-sm font-medium mb-1.5 block">Capabilities</label>
+      <label class="text-sm font-medium mb-1.5 block">{t('Capabilities')}</label>
       <div class="flex flex-wrap gap-4">
         {#each Object.entries(CAPACITY_META) as [key, meta]}
           <div class="flex items-center gap-2">
@@ -263,10 +264,10 @@
     </div>
 
     <div>
-      <label class="text-sm font-medium mb-1.5 block">Token limits (optional)</label>
+      <label class="text-sm font-medium mb-1.5 block">{t('Token limits (optional)')}</label>
       <div class="grid gap-3 sm:grid-cols-2">
         <div>
-          <label class="text-xs text-text-muted mb-1 block" for="add-custom-model-ctx">Context window</label>
+          <label class="text-xs text-text-muted mb-1 block" for="add-custom-model-ctx">{t('Context window')}</label>
           <input
             id="add-custom-model-ctx"
             type="text"
@@ -280,7 +281,7 @@
           />
         </div>
         <div>
-          <label class="text-xs text-text-muted mb-1 block" for="add-custom-model-out">Max output</label>
+          <label class="text-xs text-text-muted mb-1 block" for="add-custom-model-out">{t('Max output')}</label>
           <input
             id="add-custom-model-out"
             type="text"
@@ -297,7 +298,7 @@
         </div>
       </div>
       <p class="text-xs text-text-muted mt-1">
-        Published to <code class="font-mono bg-sidebar px-1 rounded">/v1/models</code> instead of a guessed
+        Published to <code class="font-mono bg-sidebar px-1 rounded">{t('/v1/models')}</code> instead of a guessed
         value. Leave blank to keep the default.
       </p>
       {#if limitsError}
@@ -321,7 +322,7 @@
     {/if}
 
     <div class="flex gap-2 pt-1">
-      <Button onclick={onClose} variant="ghost" fullWidth size="sm">Cancel</Button>
+      <Button onclick={onClose} variant="ghost" fullWidth size="sm">{t('Cancel')}</Button>
       <Button
         onclick={handleSubmit}
         fullWidth

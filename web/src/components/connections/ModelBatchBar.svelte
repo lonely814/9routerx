@@ -1,5 +1,6 @@
 <!-- 9RouterX — this file is part of a port maintained by https://github.com/yanstd888/ — https://t.me/aiclub_id -->
 <script lang="ts">
+  import { t } from '../../lib/i18n.svelte'
   import type { SelectionState } from './modelListFilter'
 
   interface Props {
@@ -48,7 +49,7 @@
       onchange={onToggleAll}
       disabled={selection.total === 0}
       class="size-3.5 accent-brand-500 cursor-pointer disabled:cursor-not-allowed"
-      aria-label="Select all visible models"
+      aria-label={t('Select all visible models')}
     />
     {#if active}
       <span>{selection.selected} of {selection.total} selected</span>
@@ -60,24 +61,24 @@
   {#if active}
     <span class="h-3.5 w-px bg-border" aria-hidden="true"></span>
 
-    <button type="button" class={actionClass()} onclick={onTest} disabled={busy} title="Send a minimal request to each selected model">
+    <button type="button" class={actionClass()} onclick={onTest} disabled={busy} title={t('Send a minimal request to each selected model')}>
       <span class="material-symbols-outlined text-[14px]">science</span>
       Test selected
     </button>
 
     {#if canDisable}
-      <button type="button" class={actionClass()} onclick={onDisable} disabled={busy} title="Hide the selected models from this provider">
+      <button type="button" class={actionClass()} onclick={onDisable} disabled={busy} title={t('Hide the selected models from this provider')}>
         <span class="material-symbols-outlined text-[14px]">block</span>
         Disable selected
       </button>
-      <button type="button" class={actionClass()} onclick={onEnable} disabled={busy} title="Show the selected models again">
+      <button type="button" class={actionClass()} onclick={onEnable} disabled={busy} title={t('Show the selected models again')}>
         <span class="material-symbols-outlined text-[14px]">visibility</span>
         Enable selected
       </button>
     {/if}
 
     {#if canDelete}
-      <button type="button" class={actionClass(true)} onclick={onDelete} disabled={busy} title="Delete the selected custom models; registry models are disabled instead">
+      <button type="button" class={actionClass(true)} onclick={onDelete} disabled={busy} title={t('Delete the selected custom models; registry models are disabled instead')}>
         <span class="material-symbols-outlined text-[14px]">delete</span>
         Delete selected
       </button>

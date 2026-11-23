@@ -1,5 +1,6 @@
 <!-- 9RouterX — all source code port and modification by https://github.com/yanstd888/ — https://t.me/aiclub_id -->
 <script lang="ts">
+  import { t } from '../../lib/i18n.svelte'
   import { api, getAuthHeaders, normalizeLastError, type ProviderConnection, type ProviderNode } from '../../api/client'
   import { PROVIDER_CATALOG } from '../../lib/providers'
   import {
@@ -640,7 +641,7 @@
       <div class="flex min-w-0 items-start gap-2">
         <span class="material-symbols-outlined mt-px text-[18px] text-red-600 dark:text-red-400" aria-hidden="true">error</span>
         <div class="min-w-0">
-          <p class="text-sm font-medium text-text-main">Usage could not be loaded. The figures below are from the last successful read.</p>
+          <p class="text-sm font-medium text-text-main">{t('Usage could not be loaded. The figures below are from the last successful read.')}</p>
           <p class="mt-0.5 break-words text-[11px] text-text-muted">{statsError}</p>
         </div>
       </div>
@@ -674,8 +675,8 @@
                 >stacked_line_chart</span
               >
               <div class="min-w-0">
-                <h2 class="font-headline text-sm font-bold text-text-main">Tokens over time</h2>
-                <p class="font-body text-xs text-text-muted">Stacked by model family — hover for the bucket breakdown</p>
+                <h2 class="font-headline text-sm font-bold text-text-main">{t('Tokens over time')}</h2>
+                <p class="font-body text-xs text-text-muted">{t('Stacked by model family — hover for the bucket breakdown')}</p>
               </div>
             </div>
           </div>
@@ -701,8 +702,8 @@
                 >account_tree</span
               >
               <div class="min-w-0">
-                <h2 class="font-headline text-sm font-bold text-text-main">Combo flow</h2>
-                <p class="font-body text-xs text-text-muted">Router → combo → members, live</p>
+                <h2 class="font-headline text-sm font-bold text-text-main">{t('Combo flow')}</h2>
+                <p class="font-body text-xs text-text-muted">{t('Router → combo → members, live')}</p>
               </div>
             </div>
             {@render panelToggle(comboFlowOpen, 'Combo flow', () => (comboFlowOpen = !comboFlowOpen))}
@@ -743,7 +744,7 @@
                 >monitoring</span
               >
               <div class="min-w-0">
-                <h2 class="font-headline text-sm font-bold text-text-main">Usage trend</h2>
+                <h2 class="font-headline text-sm font-bold text-text-main">{t('Usage trend')}</h2>
                 <p class="font-body text-xs text-text-muted">{trendLabel}</p>
               </div>
             </div>
@@ -751,7 +752,7 @@
               <div
                 class="inline-flex rounded-xl bg-surface border border-border p-1 shadow-sm"
                 role="group"
-                aria-label="Chart metric"
+                aria-label={t('Chart metric')}
               >
                 <button
                   type="button"
@@ -835,7 +836,7 @@
     style="height: 480px"
   >
     <div class="px-1 py-2 border-b border-border shrink-0">
-      <span class="text-xs font-semibold text-text-muted uppercase tracking-wide">Recent Requests</span>
+      <span class="text-xs font-semibold text-text-muted uppercase tracking-wide">{t('Recent Requests')}</span>
     </div>
 
     {#if !stats.recentRequests || stats.recentRequests.length === 0}
@@ -854,9 +855,9 @@
           <thead class="sticky top-0 bg-bg z-10">
             <tr class="border-b border-border">
               <th class="py-1.5 pl-3 text-left font-semibold text-text-muted"></th>
-              <th class="py-1.5 text-left font-semibold text-text-muted">Model</th>
-              <th class="py-1.5 text-right font-semibold text-text-muted whitespace-nowrap">In / Out</th>
-              <th class="py-1.5 pr-3 text-right font-semibold text-text-muted whitespace-nowrap">When</th>
+              <th class="py-1.5 text-left font-semibold text-text-muted">{t('Model')}</th>
+              <th class="py-1.5 text-right font-semibold text-text-muted whitespace-nowrap">{t('In / Out')}</th>
+              <th class="py-1.5 pr-3 text-right font-semibold text-text-muted whitespace-nowrap">{t('When')}</th>
             </tr>
           </thead>
           <tbody class="divide-y divide-border/50 font-mono text-[11px]">

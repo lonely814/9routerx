@@ -1,5 +1,6 @@
 <!-- 9RouterX — this file is part of a port maintained by https://github.com/yanstd888/ — https://t.me/aiclub_id -->
 <script lang="ts">
+  import { t } from '../lib/i18n.svelte'
   import { onMount, onDestroy, type Snippet } from 'svelte'
   import {
     api,
@@ -307,9 +308,9 @@
       </div>
 
       <div class="flex items-center gap-2">
-        <Menu label="Cache analytics actions" minWidth="14rem">
+        <Menu label={t('Cache analytics actions')} minWidth="14rem">
           <MenuItem
-            label="Auto-refresh"
+            label={t('Auto-refresh')}
             icon="sync"
             checkbox
             note="15s"
@@ -317,14 +318,14 @@
             onSelect={() => (autoRefresh = !autoRefresh)}
           />
           <MenuItem
-            label="Refresh now"
+            label={t('Refresh now')}
             icon="refresh"
             disabled={loading}
             onSelect={refreshAll}
           />
           <div class="my-1 border-t border-border-subtle" role="separator"></div>
-          <MenuItem label="Export CSV" icon="download" onSelect={exportCSV} />
-          <MenuItem label="Export JSON" icon="data_object" onSelect={exportJSON} />
+          <MenuItem label={t('Export CSV')} icon="download" onSelect={exportCSV} />
+          <MenuItem label={t('Export JSON')} icon="data_object" onSelect={exportJSON} />
         </Menu>
       </div>
     </div>
@@ -340,7 +341,7 @@
       <!-- Cache Rate -->
       <div class="rounded-2xl border border-border bg-surface p-4 shadow-sm flex flex-col justify-between">
         <div class="flex items-center justify-between text-text-muted">
-          <span class="text-xs font-medium uppercase tracking-wider">Cache Rate</span>
+          <span class="text-xs font-medium uppercase tracking-wider">{t('Cache Rate')}</span>
           <span class="material-symbols-outlined text-[20px] text-emerald-500">speed</span>
         </div>
         <div class="mt-3">
@@ -354,54 +355,54 @@
       <!-- Reuse Ratio -->
       <div class="rounded-2xl border border-border bg-surface p-4 shadow-sm flex flex-col justify-between">
         <div class="flex items-center justify-between text-text-muted">
-          <span class="text-xs font-medium uppercase tracking-wider">Reuse Ratio</span>
+          <span class="text-xs font-medium uppercase tracking-wider">{t('Reuse Ratio')}</span>
           <span class="material-symbols-outlined text-[20px] text-blue-400">savings</span>
         </div>
         <div class="mt-3">
           <div class="text-2xl font-bold text-text-main">{reuseRatio.toFixed(1)}%</div>
-          <p class="text-xs text-text-subtle mt-1 truncate">Cached vs input tokens</p>
+          <p class="text-xs text-text-subtle mt-1 truncate">{t('Cached vs input tokens')}</p>
         </div>
       </div>
 
       <!-- Cached Tokens Read -->
       <div class="rounded-2xl border border-border bg-surface p-4 shadow-sm flex flex-col justify-between">
         <div class="flex items-center justify-between text-text-muted">
-          <span class="text-xs font-medium uppercase tracking-wider">Cached Tokens</span>
+          <span class="text-xs font-medium uppercase tracking-wider">{t('Cached Tokens')}</span>
           <span class="material-symbols-outlined text-[20px] text-cyan-400">token</span>
         </div>
         <div class="mt-3">
           <div class="text-2xl font-bold text-text-main">
             {(pc?.totalCachedTokens ?? 0).toLocaleString()}
           </div>
-          <p class="text-xs text-text-subtle mt-1 truncate">Read from prompt cache</p>
+          <p class="text-xs text-text-subtle mt-1 truncate">{t('Read from prompt cache')}</p>
         </div>
       </div>
 
       <!-- Cache Creation Tokens -->
       <div class="rounded-2xl border border-border bg-surface p-4 shadow-sm flex flex-col justify-between">
         <div class="flex items-center justify-between text-text-muted">
-          <span class="text-xs font-medium uppercase tracking-wider">Creation Tokens</span>
+          <span class="text-xs font-medium uppercase tracking-wider">{t('Creation Tokens')}</span>
           <span class="material-symbols-outlined text-[20px] text-purple-400">upload</span>
         </div>
         <div class="mt-3">
           <div class="text-2xl font-bold text-text-main">
             {(pc?.totalCacheCreationTokens ?? 0).toLocaleString()}
           </div>
-          <p class="text-xs text-text-subtle mt-1 truncate">Written to prompt cache</p>
+          <p class="text-xs text-text-subtle mt-1 truncate">{t('Written to prompt cache')}</p>
         </div>
       </div>
 
       <!-- Est Cost Saved -->
       <div class="rounded-2xl border border-border bg-surface p-4 shadow-sm flex flex-col justify-between col-span-2 sm:col-span-1">
         <div class="flex items-center justify-between text-text-muted">
-          <span class="text-xs font-medium uppercase tracking-wider">Cost Saved</span>
+          <span class="text-xs font-medium uppercase tracking-wider">{t('Cost Saved')}</span>
           <span class="material-symbols-outlined text-[20px] text-emerald-400">attach_money</span>
         </div>
         <div class="mt-3">
           <div class="text-2xl font-bold text-emerald-500">
             {costIn(pc?.estimatedCostSaved ?? 0)}
           </div>
-          <p class="text-xs text-text-subtle mt-1 truncate">Estimated savings</p>
+          <p class="text-xs text-text-subtle mt-1 truncate">{t('Estimated savings')}</p>
         </div>
       </div>
     </div>
@@ -417,7 +418,7 @@
             <span class="material-symbols-outlined text-[18px] text-brand-500">monitoring</span>
             Hourly Cache Trend
           </h3>
-          <p class="text-xs text-text-subtle">Requests and cached tokens over time.</p>
+          <p class="text-xs text-text-subtle">{t('Requests and cached tokens over time.')}</p>
         </div>
 
         {#if hoveredTrendPoint}
@@ -427,11 +428,11 @@
               {hoveredTrendPoint.timestamp.replace('T', ' ').replace(':00:00Z', ':00')}
             </span>
             <span class="text-border">|</span>
-            <span class="text-text-muted">Total: <strong class="text-text-main font-mono">{hoveredTrendPoint.requests}</strong></span>
+            <span class="text-text-muted">{t('Total:')} <strong class="text-text-main font-mono">{hoveredTrendPoint.requests}</strong></span>
             <span class="text-border">|</span>
-            <span class="text-emerald-500">Cached: <strong class="font-mono">{hoveredTrendPoint.cachedRequests}</strong> ({hoveredTrendPoint.requests > 0 ? ((hoveredTrendPoint.cachedRequests / hoveredTrendPoint.requests) * 100).toFixed(0) : 0}%)</span>
+            <span class="text-emerald-500">{t('Cached:')} <strong class="font-mono">{hoveredTrendPoint.cachedRequests}</strong> ({hoveredTrendPoint.requests > 0 ? ((hoveredTrendPoint.cachedRequests / hoveredTrendPoint.requests) * 100).toFixed(0) : 0}%)</span>
             <span class="text-border">|</span>
-            <span class="text-cyan-400">Tokens: <strong class="font-mono">{hoveredTrendPoint.cachedTokens.toLocaleString()}</strong></span>
+            <span class="text-cyan-400">{t('Tokens:')} <strong class="font-mono">{hoveredTrendPoint.cachedTokens.toLocaleString()}</strong></span>
           </div>
         {:else}
           <div class="text-[11px] text-text-subtle hidden sm:block">
@@ -506,11 +507,11 @@
           <table class="glyph-table w-full text-left text-xs min-w-[540px]">
             <thead>
               <tr class="border-b border-border text-text-muted">
-                <th class="py-2.5 px-3 font-semibold">Provider</th>
-                <th class="py-2.5 px-3 font-semibold text-right">Cached / Total Req</th>
-                <th class="py-2.5 px-3 font-semibold text-right">Cached Tokens</th>
-                <th class="py-2.5 px-3 font-semibold text-right hidden md:table-cell">Creation Tokens</th>
-                <th class="py-2.5 px-3 font-semibold text-right">Hit Rate</th>
+                <th class="py-2.5 px-3 font-semibold">{t('Provider')}</th>
+                <th class="py-2.5 px-3 font-semibold text-right">{t('Cached / Total Req')}</th>
+                <th class="py-2.5 px-3 font-semibold text-right">{t('Cached Tokens')}</th>
+                <th class="py-2.5 px-3 font-semibold text-right hidden md:table-cell">{t('Creation Tokens')}</th>
+                <th class="py-2.5 px-3 font-semibold text-right">{t('Hit Rate')}</th>
               </tr>
             </thead>
             <tbody class="divide-y divide-border-subtle">
@@ -520,16 +521,16 @@
                     <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
                     {row.name}
                   </td>
-                  <td data-label="Cached / Total" class="py-2.5 px-3 text-right text-text-muted">
+                  <td data-label={t('Cached / Total')} class="py-2.5 px-3 text-right text-text-muted">
                     <span class="text-text-main font-medium">{row.cachedRequests}</span> / {row.totalRequests}
                   </td>
-                  <td data-label="Cached Tokens" class="py-2.5 px-3 text-right text-cyan-400 font-mono font-medium">
+                  <td data-label={t('Cached Tokens')} class="py-2.5 px-3 text-right text-cyan-400 font-mono font-medium">
                     {row.cachedTokens.toLocaleString()}
                   </td>
-                  <td data-label="Creation Tokens" class="py-2.5 px-3 text-right text-purple-400 font-mono font-medium hidden md:table-cell">
+                  <td data-label={t('Creation Tokens')} class="py-2.5 px-3 text-right text-purple-400 font-mono font-medium hidden md:table-cell">
                     {row.cacheCreationTokens.toLocaleString()}
                   </td>
-                  <td data-label="Hit Rate" class="py-2.5 px-3 text-right font-medium text-emerald-500">
+                  <td data-label={t('Hit Rate')} class="py-2.5 px-3 text-right font-medium text-emerald-500">
                     {row.rate.toFixed(1)}%
                   </td>
                 </tr>
@@ -564,11 +565,11 @@
           <table class="w-full text-left text-xs min-w-[540px]">
             <thead>
               <tr class="border-b border-border text-text-muted">
-                <th class="py-2.5 px-3 font-semibold">Model</th>
-                <th class="py-2.5 px-3 font-semibold text-right">Cached / Total Req</th>
-                <th class="py-2.5 px-3 font-semibold text-right">Cached Tokens</th>
-                <th class="py-2.5 px-3 font-semibold text-right hidden md:table-cell">Creation Tokens</th>
-                <th class="py-2.5 px-3 font-semibold text-right">Hit Rate</th>
+                <th class="py-2.5 px-3 font-semibold">{t('Model')}</th>
+                <th class="py-2.5 px-3 font-semibold text-right">{t('Cached / Total Req')}</th>
+                <th class="py-2.5 px-3 font-semibold text-right">{t('Cached Tokens')}</th>
+                <th class="py-2.5 px-3 font-semibold text-right hidden md:table-cell">{t('Creation Tokens')}</th>
+                <th class="py-2.5 px-3 font-semibold text-right">{t('Hit Rate')}</th>
               </tr>
             </thead>
             <tbody class="divide-y divide-border-subtle">
@@ -610,19 +611,19 @@
       <!-- Memory Entries -->
       <div class="rounded-2xl border border-border bg-surface p-4 shadow-sm">
         <div class="flex items-center justify-between text-text-muted">
-          <span class="text-xs font-medium uppercase tracking-wider">Memory Entries</span>
+          <span class="text-xs font-medium uppercase tracking-wider">{t('Memory Entries')}</span>
           <span class="material-symbols-outlined text-[20px] text-blue-400">memory</span>
         </div>
         <div class="mt-3">
           <div class="text-2xl font-bold text-text-main">{sc?.memoryEntries ?? 0}</div>
-          <p class="text-xs text-text-subtle mt-1">In-memory LRU store</p>
+          <p class="text-xs text-text-subtle mt-1">{t('In-memory LRU store')}</p>
         </div>
       </div>
 
       <!-- Hit Rate -->
       <div class="rounded-2xl border border-border bg-surface p-4 shadow-sm">
         <div class="flex items-center justify-between text-text-muted">
-          <span class="text-xs font-medium uppercase tracking-wider">Hit Rate</span>
+          <span class="text-xs font-medium uppercase tracking-wider">{t('Hit Rate')}</span>
           <span class="material-symbols-outlined text-[20px] text-emerald-500">percent</span>
         </div>
         <div class="mt-3">
@@ -634,7 +635,7 @@
       <!-- Cache Hits -->
       <div class="rounded-2xl border border-border bg-surface p-4 shadow-sm">
         <div class="flex items-center justify-between text-text-muted">
-          <span class="text-xs font-medium uppercase tracking-wider">Hits / Misses</span>
+          <span class="text-xs font-medium uppercase tracking-wider">{t('Hits / Misses')}</span>
           <span class="material-symbols-outlined text-[20px] text-purple-400">sync_alt</span>
         </div>
         <div class="mt-3">
@@ -646,12 +647,12 @@
       <!-- Tokens Saved -->
       <div class="rounded-2xl border border-border bg-surface p-4 shadow-sm">
         <div class="flex items-center justify-between text-text-muted">
-          <span class="text-xs font-medium uppercase tracking-wider">Tokens Saved</span>
+          <span class="text-xs font-medium uppercase tracking-wider">{t('Tokens Saved')}</span>
           <span class="material-symbols-outlined text-[20px] text-emerald-400">savings</span>
         </div>
         <div class="mt-3">
           <div class="text-2xl font-bold text-emerald-400">{(sc?.tokensSaved ?? 0).toLocaleString()}</div>
-          <p class="text-xs text-text-subtle mt-1">From cached responses</p>
+          <p class="text-xs text-text-subtle mt-1">{t('From cached responses')}</p>
         </div>
       </div>
     </div>
@@ -665,7 +666,7 @@
             <span class="material-symbols-outlined text-[18px] text-brand-500">tune</span>
             Cache Invalidation & Cleanup
           </h3>
-          <p class="text-xs text-text-subtle">Invalidate cached responses by model or clear the entire store.</p>
+          <p class="text-xs text-text-subtle">{t('Invalidate cached responses by model or clear the entire store.')}</p>
         </div>
 
         <div class="flex items-center gap-2">
@@ -684,7 +685,7 @@
       <div class="flex flex-wrap items-center gap-2 pt-2 border-t border-border-subtle">
         <input
           type="text"
-          placeholder="Invalidate by model (e.g. gpt-4o, claude-3-5)"
+          placeholder={t('Invalidate by model (e.g. gpt-4o, claude-3-5)')}
           bind:value={invalidateModelInput}
           class="flex-1 min-w-[240px] rounded-xl border border-border bg-surface-2 px-3 py-1.5 text-xs text-text-main focus:outline-none focus:border-brand-500"
         />
@@ -721,7 +722,7 @@
             </span>
             <input
               type="text"
-              placeholder="Search signature/key..."
+              placeholder={t('Search signature/key...')}
               value={search}
               oninput={handleSearchInput}
               class="w-48 sm:w-64 rounded-xl border border-border bg-surface-2 pl-8 pr-3 py-1.5 text-xs text-text-main focus:outline-none focus:border-brand-500"
@@ -744,12 +745,12 @@
           <table class="w-full text-left text-xs">
             <thead>
               <tr class="border-b border-border text-text-muted">
-                <th class="py-2.5 px-3 font-semibold">Signature / Key</th>
-                <th class="py-2.5 px-3 font-semibold">Model</th>
-                <th class="py-2.5 px-3 font-semibold text-right">Hits</th>
-                <th class="py-2.5 px-3 font-semibold text-right">Tokens Saved</th>
-                <th class="py-2.5 px-3 font-semibold">Created</th>
-                <th class="py-2.5 px-3 font-semibold text-right">Action</th>
+                <th class="py-2.5 px-3 font-semibold">{t('Signature / Key')}</th>
+                <th class="py-2.5 px-3 font-semibold">{t('Model')}</th>
+                <th class="py-2.5 px-3 font-semibold text-right">{t('Hits')}</th>
+                <th class="py-2.5 px-3 font-semibold text-right">{t('Tokens Saved')}</th>
+                <th class="py-2.5 px-3 font-semibold">{t('Created')}</th>
+                <th class="py-2.5 px-3 font-semibold text-right">{t('Action')}</th>
               </tr>
             </thead>
             <tbody class="divide-y divide-border-subtle">
@@ -762,7 +763,7 @@
                         type="button"
                         onclick={() => copyToClipboard(entry.signature)}
                         class="text-text-subtle hover:text-text-main shrink-0"
-                        title="Copy signature"
+                        title={t('Copy signature')}
                       >
                         <span class="material-symbols-outlined text-[14px]">content_copy</span>
                       </button>
@@ -787,7 +788,7 @@
                       type="button"
                       onclick={() => handleDeleteEntry(entry.id)}
                       class="text-text-subtle hover:text-red-500 transition-colors"
-                      title="Delete entry"
+                      title={t('Delete entry')}
                     >
                       <span class="material-symbols-outlined text-[16px]">delete</span>
                     </button>

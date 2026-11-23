@@ -1,5 +1,6 @@
 <!-- 9RouterX — all source code port and modification by https://github.com/yanstd888/ — https://t.me/aiclub_id -->
 <script lang="ts">
+  import { t } from '../../lib/i18n.svelte'
   import { ArrowDown, ArrowUp, Brain, Eye, Headphones, X } from 'lucide-svelte'
   import Button from '../../lib/ui/Button.svelte'
   import Card from '../../lib/ui/Card.svelte'
@@ -58,7 +59,7 @@
 <div class="flex flex-col gap-3">
   <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
     <div class="min-w-0">
-      <p class="text-sm font-medium text-text-main">Vision Adapter</p>
+      <p class="text-sm font-medium text-text-main">{t('Vision Adapter')}</p>
       <p class="text-xs text-text-muted mt-0.5">
         Your model can't read image/audio? Auto-switches to a model in the pool below.
       </p>
@@ -80,12 +81,12 @@
 
           <div class="min-w-0 flex-1">
             <div class="flex items-center gap-1.5">
-              <code class="font-mono text-sm font-medium text-text-main">Vision</code>
-              <span class="text-[10px] text-text-muted">— images (png, jpg, webp, …)</span>
+              <code class="font-mono text-sm font-medium text-text-main">{t('Vision')}</code>
+              <span class="text-[10px] text-text-muted">{t('— images (png, jpg, webp, …)')}</span>
             </div>
             <div class="mt-1 flex min-w-0 flex-wrap items-center gap-1">
               {#if capacityAdapter.vision.models.length === 0}
-                <span class="text-xs text-text-muted italic">No models</span>
+                <span class="text-xs text-text-muted italic">{t('No models')}</span>
               {:else}
                 {#each capacityAdapter.vision.models.slice(0, 3) as model, idx}
                   {@const vcaps = getModelCaps(model)}
@@ -94,10 +95,10 @@
                   >
                     <span class="min-w-0 max-w-[28rem] truncate" title={model}>{model}</span>
                     {#if vcaps.vision}
-                      <Eye class="w-3 h-3 text-blue-500 shrink-0" title="Vision — Supports image input" />
+                      <Eye class="w-3 h-3 text-blue-500 shrink-0" title={t('Vision — Supports image input')} />
                     {/if}
                     {#if vcaps.reasoning}
-                      <Brain class="w-3 h-3 text-amber-500 shrink-0" title="Reasoning — Supports reasoning / thinking" />
+                      <Brain class="w-3 h-3 text-amber-500 shrink-0" title={t('Reasoning — Supports reasoning / thinking')} />
                     {/if}
                     <button
                       type="button"
@@ -106,7 +107,7 @@
                       class="leading-none opacity-0 group-hover/chip:opacity-100 {idx === 0
                         ? 'text-text-muted/20 cursor-not-allowed'
                         : 'text-text-muted hover:text-brand-500'} cursor-pointer"
-                      title="Move up"
+                      title={t('Move up')}
                     >
                       <ArrowUp class="w-3 h-3" />
                     </button>
@@ -118,7 +119,7 @@
                       capacityAdapter.vision.models.length - 1
                         ? 'text-text-muted/20 cursor-not-allowed'
                         : 'text-text-muted hover:text-brand-500'} cursor-pointer"
-                      title="Move down"
+                      title={t('Move down')}
                     >
                       <ArrowDown class="w-3 h-3" />
                     </button>
@@ -126,7 +127,7 @@
                       type="button"
                       onclick={() => removeAdapterModel('vision', idx)}
                       class="leading-none opacity-0 group-hover/chip:opacity-100 text-text-muted hover:text-red-500 cursor-pointer"
-                      title="Remove model"
+                      title={t('Remove model')}
                     >
                       <X class="w-3 h-3" />
                     </button>
@@ -147,7 +148,7 @@
               disabled={!capacityAdapter.vision.enabled}
               onChange={(v) => toggleAdapterRoundRobin('vision', v)}
             />
-            <span>Round</span>
+            <span>{t('Round')}</span>
           </label>
           <Button
             icon="add"
@@ -155,7 +156,7 @@
             size="sm"
             onclick={() => onOpenModelPicker('vision')}
             disabled={!capacityAdapter.vision.enabled}
-            title="Add Vision model"
+            title={t('Add Vision model')}
           >
             Add Model
           </Button>
@@ -178,12 +179,12 @@
 
           <div class="min-w-0 flex-1">
             <div class="flex items-center gap-1.5">
-              <code class="font-mono text-sm font-medium text-text-main">Audio</code>
-              <span class="text-[10px] text-text-muted">— audio input</span>
+              <code class="font-mono text-sm font-medium text-text-main">{t('Audio')}</code>
+              <span class="text-[10px] text-text-muted">{t('— audio input')}</span>
             </div>
             <div class="mt-1 flex min-w-0 flex-wrap items-center gap-1">
               {#if capacityAdapter.audioInput.models.length === 0}
-                <span class="text-xs text-text-muted italic">No models</span>
+                <span class="text-xs text-text-muted italic">{t('No models')}</span>
               {:else}
                 {#each capacityAdapter.audioInput.models.slice(0, 3) as model, idx}
                   <code
@@ -197,7 +198,7 @@
                       class="leading-none opacity-0 group-hover/chip:opacity-100 {idx === 0
                         ? 'text-text-muted/20 cursor-not-allowed'
                         : 'text-text-muted hover:text-brand-500'} cursor-pointer"
-                      title="Move up"
+                      title={t('Move up')}
                     >
                       <ArrowUp class="w-3 h-3" />
                     </button>
@@ -209,7 +210,7 @@
                       capacityAdapter.audioInput.models.length - 1
                         ? 'text-text-muted/20 cursor-not-allowed'
                         : 'text-text-muted hover:text-brand-500'} cursor-pointer"
-                      title="Move down"
+                      title={t('Move down')}
                     >
                       <ArrowDown class="w-3 h-3" />
                     </button>
@@ -217,7 +218,7 @@
                       type="button"
                       onclick={() => removeAdapterModel('audioInput', idx)}
                       class="leading-none opacity-0 group-hover/chip:opacity-100 text-text-muted hover:text-red-500 cursor-pointer"
-                      title="Remove model"
+                      title={t('Remove model')}
                     >
                       <X class="w-3 h-3" />
                     </button>
@@ -238,7 +239,7 @@
               disabled={!capacityAdapter.audioInput.enabled}
               onChange={(v) => toggleAdapterRoundRobin('audioInput', v)}
             />
-            <span>Round</span>
+            <span>{t('Round')}</span>
           </label>
           <Button
             icon="add"
@@ -246,7 +247,7 @@
             size="sm"
             onclick={() => onOpenModelPicker('audio')}
             disabled={!capacityAdapter.audioInput.enabled}
-            title="Add Audio model"
+            title={t('Add Audio model')}
           >
             Add Model
           </Button>

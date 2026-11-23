@@ -1,5 +1,6 @@
 <!-- 9RouterX — source port and modifications by https://github.com/yanstd888/ — https://t.me/aiclub_id -->
 <script lang="ts">
+  import { t } from '../../lib/i18n.svelte'
   import { RefreshCw, X } from 'lucide-svelte'
   import Badge from '../../lib/ui/Badge.svelte'
   import Button from '../../lib/ui/Button.svelte'
@@ -143,7 +144,7 @@
 <Card padding="none" class="overflow-hidden border border-border">
   <div class="px-5 py-3 border-b border-border flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between bg-surface-2">
     <div>
-      <h2 class="font-headline text-sm font-bold text-text-main">Recent Request Details</h2>
+      <h2 class="font-headline text-sm font-bold text-text-main">{t('Recent Request Details')}</h2>
       <p class="font-body text-xs text-text-muted">Total recorded: {detailsTotal.toLocaleString()} requests</p>
     </div>
 
@@ -155,7 +156,7 @@
         </span>
         <input
           type="text"
-          placeholder="Filter model, account, provider..."
+          placeholder={t('Filter model, account, provider...')}
           bind:value={searchFilter}
           class="w-44 sm:w-56 rounded-xl border border-border bg-surface pl-8 pr-3 py-1 text-xs text-text-main focus:outline-none focus:border-brand-500"
         />
@@ -172,7 +173,7 @@
     <div role="alert" class="flex items-start gap-2 border-b border-red-500/30 px-5 py-3 bg-red-500/5">
       <span class="material-symbols-outlined mt-px text-[18px] text-red-600 dark:text-red-400" aria-hidden="true">error</span>
       <div class="min-w-0 flex-1">
-        <p class="font-headline text-xs font-semibold text-red-600 dark:text-red-400">Failed to load request history</p>
+        <p class="font-headline text-xs font-semibold text-red-600 dark:text-red-400">{t('Failed to load request history')}</p>
         <p class="mt-0.5 break-words font-body text-[11px] text-text-muted">{detailsError}</p>
       </div>
     </div>
@@ -199,17 +200,17 @@
         <thead class="bg-surface-2 border-b border-border text-text-muted uppercase text-[10px] font-semibold tracking-wider">
           <tr>
             <th class="py-3 px-4 w-2"></th>
-            <th class="py-3 px-4">Time</th>
-            <th class="py-3 px-4 hidden md:table-cell">Account</th>
-            <th class="py-3 px-4 hidden md:table-cell">Provider</th>
-            <th class="py-3 px-4">Model</th>
-            <th class="py-3 px-4 text-right hidden md:table-cell">TTFT</th>
-            <th class="py-3 px-4 text-right">Duration</th>
-            <th class="py-3 px-4 text-right">Prompt</th>
-            <th class="py-3 px-4 text-right hidden md:table-cell">Completion</th>
-            <th class="py-3 px-4 text-right hidden md:table-cell">Cached</th>
-            <th class="py-3 px-4 text-right">Cost</th>
-            <th class="py-3 px-4 text-right">Actions</th>
+            <th class="py-3 px-4">{t('Time')}</th>
+            <th class="py-3 px-4 hidden md:table-cell">{t('Account')}</th>
+            <th class="py-3 px-4 hidden md:table-cell">{t('Provider')}</th>
+            <th class="py-3 px-4">{t('Model')}</th>
+            <th class="py-3 px-4 text-right hidden md:table-cell">{t('TTFT')}</th>
+            <th class="py-3 px-4 text-right">{t('Duration')}</th>
+            <th class="py-3 px-4 text-right">{t('Prompt')}</th>
+            <th class="py-3 px-4 text-right hidden md:table-cell">{t('Completion')}</th>
+            <th class="py-3 px-4 text-right hidden md:table-cell">{t('Cached')}</th>
+            <th class="py-3 px-4 text-right">{t('Cost')}</th>
+            <th class="py-3 px-4 text-right">{t('Actions')}</th>
           </tr>
         </thead>
         <tbody class="divide-y divide-border/60 font-code text-[11px]">
@@ -229,16 +230,16 @@
                     : 'bg-danger'}"
                 ></span>
               </td>
-              <td data-label="Time" class="py-3 px-4 text-text-muted whitespace-nowrap text-[11px]">
+              <td data-label={t('Time')} class="py-3 px-4 text-text-muted whitespace-nowrap text-[11px]">
                 {timeAgo(item.timestamp)}
               </td>
-              <td data-label="Account" class="py-3 px-4 hidden md:table-cell">
+              <td data-label={t('Account')} class="py-3 px-4 hidden md:table-cell">
                 <div class="flex items-center gap-1.5 max-w-[130px] truncate" title={acc.email ? `${acc.name} (${acc.email})` : acc.name}>
                   <span class="material-symbols-outlined text-[13px] text-text-subtle shrink-0">person</span>
                   <span class="truncate font-sans font-medium text-text-main text-[11px]">{acc.name}</span>
                 </div>
               </td>
-              <td data-label="Provider" class="py-3 px-4 hidden md:table-cell">
+              <td data-label={t('Provider')} class="py-3 px-4 hidden md:table-cell">
                 <div class="flex items-center gap-1.5">
                   {#if item.provider}
                     <ProviderArtwork
@@ -252,7 +253,7 @@
                   </span>
                 </div>
               </td>
-              <td data-label="Model" class="py-3 px-4 font-mono text-[11px] text-text-muted">
+              <td data-label={t('Model')} class="py-3 px-4 font-mono text-[11px] text-text-muted">
                 <div class="flex items-center gap-1 max-w-[140px] truncate" title={item.loopWarning ? `Warning: ${item.loopWarning} · ${item.model}` : item.model}>
                   {#if item.loopWarning || (item.anomalies && item.anomalies.length > 0)}
                     <span class="material-symbols-outlined text-[12px] text-amber-500 shrink-0" title={item.loopWarning || 'Possible loop detected'}>warning</span>
@@ -260,13 +261,13 @@
                   <span class="truncate block">{item.model}</span>
                 </div>
               </td>
-              <td data-label="TTFT" class="py-3 px-4 text-right hidden md:table-cell">
+              <td data-label={t('TTFT')} class="py-3 px-4 text-right hidden md:table-cell">
                 {item.latency?.ttft && item.latency.ttft > 0 ? formatDuration(item.latency.ttft) : '—'}
               </td>
-              <td data-label="Duration" class="py-3 px-4 text-right font-medium text-text-main">
+              <td data-label={t('Duration')} class="py-3 px-4 text-right font-medium text-text-main">
                 {formatDuration(item.latency?.total)}
               </td>
-              <td data-label="Prompt" class="py-3 px-4 text-right">
+              <td data-label={t('Prompt')} class="py-3 px-4 text-right">
                 <div class="flex flex-col items-end">
                   <span>{fmt(item.tokens?.prompt_tokens)}</span>
                   {#if item.tokens?.saved_tokens}
@@ -278,17 +279,17 @@
                   {/if}
                 </div>
               </td>
-              <td data-label="Completion" class="py-3 px-4 text-right text-success hidden md:table-cell">
+              <td data-label={t('Completion')} class="py-3 px-4 text-right text-success hidden md:table-cell">
                 {fmt(item.tokens?.completion_tokens)}
               </td>
-              <td data-label="Cached" class="py-3 px-4 text-right text-info hidden md:table-cell">
+              <td data-label={t('Cached')} class="py-3 px-4 text-right text-info hidden md:table-cell">
                 {fmt(cachedTokensFor(item))}
               </td>
-              <td data-label="Cost" class="py-3 px-4 text-right font-mono text-emerald-500 text-[11px]">
+              <td data-label={t('Cost')} class="py-3 px-4 text-right font-mono text-emerald-500 text-[11px]">
                 {item.cost ? costIn(item.cost, 4) : '—'}
               </td>
               {#if isPanelVisible('details.payload')}
-              <td data-label="Actions" class="py-3 px-4 text-right">
+              <td data-label={t('Actions')} class="py-3 px-4 text-right">
                 <button
                   type="button"
                   onclick={(e) => {
@@ -369,7 +370,7 @@
           type="button"
           onclick={closeDetail}
           class="p-1 rounded-lg text-text-muted hover:text-text-main hover:bg-surface-3 transition-colors cursor-pointer"
-          aria-label="Close"
+          aria-label={t('Close')}
         >
           <X class="w-5 h-5" />
         </button>
@@ -380,25 +381,25 @@
         <!-- Top Metrics / Execution Summary (OmniRoute style) -->
         <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
           <div class="p-3 rounded-lg bg-surface-2 border border-border">
-            <div class="text-text-muted text-[10px] uppercase font-bold tracking-wider">Duration</div>
+            <div class="text-text-muted text-[10px] uppercase font-bold tracking-wider">{t('Duration')}</div>
             <div class="font-code text-sm font-bold text-text-main mt-1" title={selectedDetail.latency?.total ? `${selectedDetail.latency.total}ms` : undefined}>
               {formatDuration(selectedDetail.latency?.total)}
             </div>
           </div>
           <div class="p-3 rounded-lg bg-surface-2 border border-border">
-            <div class="text-text-muted text-[10px] uppercase font-bold tracking-wider">TTFT</div>
+            <div class="text-text-muted text-[10px] uppercase font-bold tracking-wider">{t('TTFT')}</div>
             <div class="font-code text-sm font-bold text-text-main mt-1" title={selectedDetail.latency?.ttft ? `${selectedDetail.latency.ttft}ms` : undefined}>
               {selectedDetail.latency?.ttft && selectedDetail.latency.ttft > 0 ? formatDuration(selectedDetail.latency.ttft) : '— (non-stream)'}
             </div>
           </div>
           <div class="p-3 rounded-lg bg-surface-2 border border-border">
-            <div class="text-text-muted text-[10px] uppercase font-bold tracking-wider">Speed</div>
+            <div class="text-text-muted text-[10px] uppercase font-bold tracking-wider">{t('Speed')}</div>
             <div class="font-code text-sm font-bold text-emerald-500 mt-1">
               {calculateTPS(selectedDetail.tokens?.completion_tokens, selectedDetail.latency?.total, selectedDetail.latency?.ttft) || '—'}
             </div>
           </div>
           <div class="p-3 rounded-lg bg-surface-2 border border-border">
-            <div class="text-text-muted text-[10px] uppercase font-bold tracking-wider">Status</div>
+            <div class="text-text-muted text-[10px] uppercase font-bold tracking-wider">{t('Status')}</div>
             <div class="font-code text-sm font-bold {selectedDetail.status === 'success' || selectedDetail.status === 'ok' ? 'text-success' : 'text-danger'} mt-1">
               {formatDetailStatus(selectedDetail)}
             </div>
@@ -452,7 +453,7 @@
                     type="button"
                     onclick={() => copyToClipboard(errInfo.message || '')}
                     class="text-red-500 hover:text-red-700 dark:hover:text-red-300 p-0.5 rounded hover:bg-red-500/20 transition-colors shrink-0 cursor-pointer"
-                    title="Copy Error Message"
+                    title={t('Copy Error Message')}
                   >
                     <span class="material-symbols-outlined text-[13px]">content_copy</span>
                   </button>
@@ -552,37 +553,37 @@
         <!-- Routing & Account Details (OmniRoute style) -->
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 pt-1">
           <div class="p-3 rounded-xl bg-surface-2 border border-border space-y-1">
-            <div class="text-text-muted text-[10px] uppercase font-bold tracking-wider">Started At</div>
+            <div class="text-text-muted text-[10px] uppercase font-bold tracking-wider">{t('Started At')}</div>
             <div class="font-code text-xs text-text-main font-medium">
               {formatLocalTimestamp(selectedDetail.startedAt || selectedDetail.timestamp)}
             </div>
           </div>
           <div class="p-3 rounded-xl bg-surface-2 border border-border space-y-1">
-            <div class="text-text-muted text-[10px] uppercase font-bold tracking-wider">Ended At</div>
+            <div class="text-text-muted text-[10px] uppercase font-bold tracking-wider">{t('Ended At')}</div>
             <div class="font-code text-xs text-text-main font-medium">
               {formatLocalTimestamp(selectedDetail.endedAt)}
             </div>
           </div>
           <div class="p-3 rounded-xl bg-surface-2 border border-border space-y-1">
-            <div class="text-text-muted text-[10px] uppercase font-bold tracking-wider">Requested Model</div>
+            <div class="text-text-muted text-[10px] uppercase font-bold tracking-wider">{t('Requested Model')}</div>
             <div class="font-code text-xs text-text-main break-all font-medium">
               {selectedDetail.requestedModel || selectedDetail.model}
             </div>
           </div>
           <div class="p-3 rounded-xl bg-surface-2 border border-border space-y-1">
-            <div class="text-text-muted text-[10px] uppercase font-bold tracking-wider">Req Protocol</div>
+            <div class="text-text-muted text-[10px] uppercase font-bold tracking-wider">{t('Req Protocol')}</div>
             <div class="font-code text-xs text-text-main font-medium">
               {selectedDetail.protocol || 'OpenAI-Chat'}
             </div>
           </div>
           <div class="p-3 rounded-xl bg-surface-2 border border-border space-y-1">
-            <div class="text-text-muted text-[10px] uppercase font-bold tracking-wider">Cache Source</div>
+            <div class="text-text-muted text-[10px] uppercase font-bold tracking-wider">{t('Cache Source')}</div>
             <div class="font-code text-xs text-cyan-400 font-medium">
               {selectedDetail.cacheSource || (cachedTokensFor(selectedDetail) > 0 ? 'Upstream (Provider)' : 'None')}
             </div>
           </div>
           <div class="p-3 rounded-xl bg-surface-2 border border-border space-y-1">
-            <div class="text-text-muted text-[10px] uppercase font-bold tracking-wider">Account</div>
+            <div class="text-text-muted text-[10px] uppercase font-bold tracking-wider">{t('Account')}</div>
             <div class="flex items-center justify-between gap-1">
               <div class="font-code text-xs text-text-main break-all font-medium" title={acc.name}>
                 {acc.name}
@@ -591,40 +592,40 @@
                 type="button"
                 onclick={() => copyToClipboard(acc.name)}
                 class="text-text-subtle hover:text-text-main p-0.5 rounded hover:bg-surface-3 transition-colors shrink-0"
-                title="Copy Account"
+                title={t('Copy Account')}
               >
                 <span class="material-symbols-outlined text-[13px]">content_copy</span>
               </button>
             </div>
           </div>
           <div class="p-3 rounded-xl bg-surface-2 border border-border space-y-1">
-            <div class="text-text-muted text-[10px] uppercase font-bold tracking-wider">API Key</div>
+            <div class="text-text-muted text-[10px] uppercase font-bold tracking-wider">{t('API Key')}</div>
             <div class="font-code text-xs text-text-main break-all font-mono" title={selectedDetail.apiKey || 'Default'}>
               {selectedDetail.apiKey || 'Default'}
             </div>
           </div>
           <div class="p-3 rounded-xl bg-surface-2 border border-border space-y-1">
-            <div class="text-text-muted text-[10px] uppercase font-bold tracking-wider">Combo</div>
+            <div class="text-text-muted text-[10px] uppercase font-bold tracking-wider">{t('Combo')}</div>
             <div class="font-code text-xs text-purple-400 font-mono font-medium">
               {selectedDetail.combo || 'Direct (None)'}
             </div>
           </div>
           <div class="p-3 rounded-xl bg-surface-2 border border-border space-y-1">
-            <div class="text-text-muted text-[10px] uppercase font-bold tracking-wider">Est. Cost</div>
+            <div class="text-text-muted text-[10px] uppercase font-bold tracking-wider">{t('Est. Cost')}</div>
             <div class="font-code text-xs text-emerald-500 font-bold">
               {costIn(selectedDetail.cost ?? 0, 4)}
             </div>
           </div>
           {#if selectedDetail.id}
             <div class="p-3 rounded-xl bg-surface-2 border border-border space-y-1 col-span-1 sm:col-span-2 lg:col-span-3">
-              <div class="text-text-muted text-[10px] uppercase font-bold tracking-wider">Request ID</div>
+              <div class="text-text-muted text-[10px] uppercase font-bold tracking-wider">{t('Request ID')}</div>
               <div class="font-code text-xs text-text-muted flex items-center justify-between gap-2" title={selectedDetail.id}>
                 <span class="break-all select-all">{selectedDetail.id}</span>
                 <button
                   type="button"
                   onclick={() => copyToClipboard(selectedDetail?.id || '')}
                   class="text-text-subtle hover:text-text-main p-0.5 rounded hover:bg-surface-3 transition-colors shrink-0"
-                  title="Copy Request ID"
+                  title={t('Copy Request ID')}
                 >
                   <span class="material-symbols-outlined text-[14px]">content_copy</span>
                 </button>
@@ -635,7 +636,7 @@
         <!-- Raw JSON details inspector with loading & error states -->
         <div class="space-y-1.5 pt-2 border-t border-border/60">
           <div class="flex items-center justify-between text-xs text-text-muted">
-            <span class="font-semibold text-text-main uppercase text-[10px] tracking-wider">Payload</span>
+            <span class="font-semibold text-text-main uppercase text-[10px] tracking-wider">{t('Payload')}</span>
             <button
               type="button"
               onclick={() => copyToClipboard(JSON.stringify(selectedDetail, null, 2))}

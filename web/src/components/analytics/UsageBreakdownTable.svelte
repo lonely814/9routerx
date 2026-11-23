@@ -1,5 +1,6 @@
 <!-- 9RouterX — this file is part of a port maintained by https://github.com/yanstd888/ — https://t.me/aiclub_id -->
 <script lang="ts">
+  import { t } from '../../lib/i18n.svelte'
   import Badge from '../../lib/ui/Badge.svelte'
   import Card from '../../lib/ui/Card.svelte'
   import ProviderArtwork from '../providers/ProviderArtwork.svelte'
@@ -298,7 +299,7 @@
                   </div>
                 </td>
                 {#if tableView !== 'provider'}
-                  <td data-label="Provider" class="py-3 px-4 hidden md:table-cell">
+                  <td data-label={t('Provider')} class="py-3 px-4 hidden md:table-cell">
                     <div class="flex items-center gap-1.5">
                       {#if row.provider}
                         <ProviderArtwork
@@ -311,7 +312,7 @@
                     </div>
                   </td>
                 {/if}
-                <td data-label="Requests" class="py-3 px-4 text-right font-mono font-semibold text-text-main">
+                <td data-label={t('Requests')} class="py-3 px-4 text-right font-mono font-semibold text-text-main">
                   <div class="flex flex-col items-end gap-1">
                     <span>{fmt(row.requests)}</span>
                     {#if miniBarShare(row, 'requests') > 0}
@@ -324,7 +325,7 @@
                   </div>
                 </td>
                 {#if viewMode === 'costs'}
-                  <td data-label="Total Cost" class="py-3 px-4 text-right font-mono font-bold text-warning">
+                  <td data-label={t('Total Cost')} class="py-3 px-4 text-right font-mono font-bold text-warning">
                     <div class="flex flex-col items-end gap-1">
                       <span>{costIn(row.cost ?? 0)}</span>
                       {#if miniBarShare(row, 'cost') > 0}
@@ -337,13 +338,13 @@
                     </div>
                   </td>
                 {:else}
-                  <td data-label="In Tokens" class="py-3 px-4 text-right font-mono text-brand-500">
+                  <td data-label={t('In Tokens')} class="py-3 px-4 text-right font-mono text-brand-500">
                     {fmt(row.promptTokens)}
                   </td>
-                  <td data-label="Out Tokens" class="py-3 px-4 text-right font-mono text-success">
+                  <td data-label={t('Out Tokens')} class="py-3 px-4 text-right font-mono text-success">
                     {fmt(row.completionTokens)}
                   </td>
-                  <td data-label="Cached Tokens" class="py-3 px-4 text-right font-mono text-info">
+                  <td data-label={t('Cached Tokens')} class="py-3 px-4 text-right font-mono text-info">
                     <div class="flex flex-col items-end gap-1">
                       <span>{fmt(row.cachedTokens)}</span>
                       {#if miniBarShare(row, 'cached') > 0}
@@ -356,7 +357,7 @@
                     </div>
                   </td>
                 {/if}
-                <td data-label="Last Used" class="py-3 px-4 text-right text-text-muted whitespace-nowrap text-[11px] hidden md:table-cell">
+                <td data-label={t('Last Used')} class="py-3 px-4 text-right text-text-muted whitespace-nowrap text-[11px] hidden md:table-cell">
                   {timeAgo(row.lastUsed)}
                 </td>
               </tr>

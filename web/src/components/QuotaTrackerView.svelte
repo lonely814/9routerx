@@ -1,5 +1,6 @@
 <!-- 9RouterX — all source code port and modification by https://github.com/yanstd888/ — https://t.me/aiclub_id -->
 <script lang="ts">
+  import { t } from '../lib/i18n.svelte'
   // Port of Next.js ProviderLimits page logic for the Go dashboard quota page.
   // Matches upstream behavior: paginated provider fetch, per-connection quota
   // fetch + localStorage cache, auto-refresh w/ countdown + page visibility,
@@ -1086,7 +1087,7 @@
           class="flex h-8 items-center justify-between gap-1 rounded-lg border border-border-subtle bg-surface-2 px-2 text-xs text-text-main transition-colors hover:bg-surface-3"
           aria-haspopup="menu"
           aria-expanded={providerMenuOpen}
-          title="Filter quota providers"
+          title={t('Filter quota providers')}
         >
           <span class="flex min-w-0 items-center gap-1.5">
             {#if providerFilter === 'all'}
@@ -1111,7 +1112,7 @@
             use:portal
             bind:this={providerDropdownPanel}
             role="menu"
-            aria-label="Filter quota providers"
+            aria-label={t('Filter quota providers')}
             tabindex="-1"
             style={providerPanelStyle}
             class="fixed z-50 w-max rounded-xl border border-border bg-surface p-1.5 shadow-[var(--shadow-elev)]"
@@ -1125,7 +1126,7 @@
                 : 'text-text-main hover:bg-surface-2'}"
             >
               <span class="material-symbols-outlined text-[22px]">apps</span>
-              <span class="font-medium">All providers</span>
+              <span class="font-medium">{t('All providers')}</span>
               {#if providerFilter === 'all'}
                 <span class="material-symbols-outlined ml-auto text-[20px]">check</span>
               {/if}
@@ -1165,7 +1166,7 @@
         bind:value={accountFilter}
         onchange={handleAccountFilterChange}
         class="h-8 rounded-lg border border-border-subtle bg-surface-2 px-2 text-xs text-text-main outline-none transition-colors hover:bg-surface-3"
-        aria-label="Filter accounts by status"
+        aria-label={t('Filter accounts by status')}
       >
         {#each ACCOUNT_FILTER_OPTIONS as option (option.value)}
           <option value={option.value}>{option.label}</option>
@@ -1177,7 +1178,7 @@
         <select
           bind:value={quotaSortMode}
           class="h-8 rounded-lg border border-border-subtle bg-surface-2 px-2 text-xs text-text-main outline-none transition-colors hover:bg-surface-3"
-          aria-label="Sort Codex quotas by remaining"
+          aria-label={t('Sort Codex quotas by remaining')}
         >
           {#each QUOTA_SORT_OPTIONS as option (option.value)}
             <option value={option.value}>{option.label}</option>
@@ -1185,14 +1186,14 @@
         </select>
       {/if}
 
-      <Menu label="Quota tracker actions" triggerIcon="tune" minWidth="17rem">
+      <Menu label={t('Quota tracker actions')} triggerIcon="tune" minWidth="17rem">
         <MenuItem
           label={$emailPrivacy ? 'Show full emails' : 'Mask emails'}
           icon={$emailPrivacy ? 'visibility' : 'visibility_off'}
           onSelect={() => emailPrivacy.toggle()}
         />
         <MenuItem
-          label="Expiring first"
+          label={t('Expiring first')}
           icon="hourglass_top"
           checkbox
           pressed={expiringFirst}
@@ -1202,13 +1203,13 @@
         <div class="my-1 border-t border-border-subtle" role="separator"></div>
 
         <MenuItem
-          label="Disable depleted accounts"
+          label={t('Disable depleted accounts')}
           icon="block"
           disabled={bulkToggling}
           onSelect={handleDisableDepleted}
         />
         <MenuItem
-          label="Enable accounts with quota"
+          label={t('Enable accounts with quota')}
           icon="check_circle"
           disabled={bulkToggling}
           onSelect={handleEnableAvailable}
@@ -1217,7 +1218,7 @@
         <div class="my-1 border-t border-border-subtle" role="separator"></div>
 
         <MenuItem
-          label="Auto-refresh"
+          label={t('Auto-refresh')}
           icon="sync"
           checkbox
           pressed={autoRefresh}
@@ -1225,7 +1226,7 @@
           onSelect={() => (autoRefresh = !autoRefresh)}
         />
         <MenuItem
-          label="Refresh all"
+          label={t('Refresh all')}
           icon="refresh"
           disabled={refreshingAll}
           onSelect={() => refreshAll(true)}
@@ -1349,7 +1350,7 @@
                         <button
                           type="button"
                           onclick={() => copyArn(profileArn, conn.id)}
-                          aria-label="Copy profile ARN"
+                          aria-label={t('Copy profile ARN')}
                           title={profileArn}
                           class="inline-flex max-w-full items-center gap-1 rounded-full border border-border-subtle px-2 py-0.5 text-[10px] text-text-muted transition-colors hover:text-primary cursor-pointer"
                         >
@@ -1371,7 +1372,7 @@
                     type="button"
                     disabled={isLoading || rowBusy || resetCreditConsuming}
                     onclick={() => openResetCredits(conn)}
-                    aria-label="Redeem a Codex reset credit"
+                    aria-label={t('Redeem a Codex reset credit')}
                     title={resetCreditCount > 0
                       ? `Redeem a Codex reset credit (${resetCreditCount} available)`
                       : 'Check Codex reset credits'}
@@ -1389,7 +1390,7 @@
                     type="button"
                     disabled={isLoading || rowBusy || glmResetCardConsuming}
                     onclick={() => openGlmResetCards(conn)}
-                    aria-label="Redeem a GLM reset card"
+                    aria-label={t('Redeem a GLM reset card')}
                     title={resetCardCount > 0
                       ? `Redeem a GLM reset card (${resetCardCount} available)`
                       : 'Check GLM reset cards'}
@@ -1409,7 +1410,7 @@
                     type="button"
                     onclick={() => toggleAutoPing(conn.id, conn.provider, !isAutoPingActive)}
                     title={AUTO_PING_TOOLTIPS[conn.provider]}
-                    aria-label="Toggle auto-ping"
+                    aria-label={t('Toggle auto-ping')}
                     class="flex h-8 w-8 items-center justify-center rounded-lg transition-colors hover:bg-surface-3 cursor-pointer {isAutoPingActive ? 'text-primary' : 'text-text-muted'}"
                   >
                     <span class="material-symbols-outlined text-[18px]">bolt</span>
@@ -1417,8 +1418,8 @@
                   <button
                     type="button"
                     onclick={() => (autoPingEditing = conn)}
-                    title="Auto-ping schedule"
-                    aria-label="Configure auto-ping schedule"
+                    title={t('Auto-ping schedule')}
+                    aria-label={t('Configure auto-ping schedule')}
                     class="flex h-8 w-8 items-center justify-center rounded-lg transition-colors hover:bg-surface-3 cursor-pointer {hasSchedule
                       ? 'text-primary'
                       : 'text-text-muted'}"
@@ -1432,8 +1433,8 @@
                   type="button"
                   onclick={() => refreshProvider(conn.id, conn.provider)}
                   disabled={isLoading || rowBusy}
-                  aria-label="Refresh quota"
-                  title="Refresh quota"
+                  aria-label={t('Refresh quota')}
+                  title={t('Refresh quota')}
                   class="flex h-8 w-8 items-center justify-center rounded-lg text-text-muted transition-colors hover:bg-surface-3 hover:text-text-main disabled:opacity-50 cursor-pointer"
                 >
                   <span
@@ -1448,8 +1449,8 @@
                   type="button"
                   onclick={() => openEditModal(conn)}
                   disabled={rowBusy}
-                  aria-label="Edit connection"
-                  title="Edit connection"
+                  aria-label={t('Edit connection')}
+                  title={t('Edit connection')}
                   class="flex h-8 w-8 items-center justify-center rounded-lg text-text-muted transition-colors hover:bg-surface-3 hover:text-primary disabled:opacity-50 cursor-pointer"
                 >
                   <span class="material-symbols-outlined text-[18px]">edit</span>
@@ -1460,8 +1461,8 @@
                   type="button"
                   onclick={() => handleDeleteConnection(conn.id)}
                   disabled={rowBusy}
-                  aria-label="Delete connection"
-                  title="Delete connection"
+                  aria-label={t('Delete connection')}
+                  title={t('Delete connection')}
                   class="flex h-8 w-8 items-center justify-center rounded-lg text-text-muted transition-colors hover:bg-red-500/10 hover:text-red-500 disabled:opacity-50 cursor-pointer"
                 >
                   <span
@@ -1523,7 +1524,7 @@
                 class="mt-2 flex min-w-0 items-center gap-1 border-t border-border-subtle/60 pt-2 text-[10px] text-text-muted"
               >
                 <span class="material-symbols-outlined shrink-0 text-[14px]">visibility_off</span>
-                <span class="shrink-0">Hidden:</span>
+                <span class="shrink-0">{t('Hidden:')}</span>
                 <div
                   class="flex min-w-0 flex-1 items-center gap-1 overflow-x-auto whitespace-nowrap pb-2"
                 >
@@ -1532,7 +1533,7 @@
                       type="button"
                       onclick={() => handleShowQuota(conn.provider, quotaRow)}
                       class="shrink-0 rounded-md border border-border-subtle px-1.5 py-0.5 transition-colors hover:bg-surface-3 hover:text-text-main"
-                      title="Show this quota row"
+                      title={t('Show this quota row')}
                     >
                       {quotaRow.name}
                     </button>
@@ -1559,12 +1560,12 @@
               if (Number.isFinite(nextPageSize)) handlePageSizeChange(nextPageSize)
             }}
             class="h-8 rounded-lg border border-border-subtle bg-surface-2 px-2 text-xs text-text-main outline-none transition-colors hover:bg-surface-3"
-            aria-label="Accounts per page"
+            aria-label={t('Accounts per page')}
           >
             {#each ACCOUNT_PAGE_SIZE_OPTIONS as option (option)}
               <option value={String(option)}>{option} / page</option>
             {/each}
-            <option value="custom">Custom</option>
+            <option value="custom">{t('Custom')}</option>
           </select>
           <input
             type="number"
@@ -1575,8 +1576,8 @@
             onblur={commitCustomPageSize}
             onkeydown={handleCustomPageSizeKeydown}
             class="h-8 w-20 rounded-lg border border-border-subtle bg-surface-2 px-2 text-xs text-text-main outline-none transition-colors hover:bg-surface-3"
-            aria-label="Custom accounts per page"
-            placeholder="Custom"
+            aria-label={t('Custom accounts per page')}
+            placeholder={t('Custom')}
           />
           <span class="text-xs text-text-muted">
             Page {pagination.page} / {pagination.totalPages}
@@ -1595,7 +1596,7 @@
             type="button"
             onclick={() => (page = Math.max(1, page - 1))}
             disabled={pagination.page <= 1 || connectionsLoading || refreshingAll}
-            aria-label="Previous accounts page"
+            aria-label={t('Previous accounts page')}
             class="flex h-8 w-8 items-center justify-center rounded-lg border border-border-subtle text-text-main transition-colors hover:bg-surface-3 disabled:cursor-not-allowed disabled:opacity-40"
           >
             <span class="material-symbols-outlined text-[16px]">chevron_left</span>
@@ -1604,7 +1605,7 @@
             type="button"
             onclick={() => (page = Math.min(pagination.totalPages, page + 1))}
             disabled={pagination.page >= pagination.totalPages || connectionsLoading || refreshingAll}
-            aria-label="Next accounts page"
+            aria-label={t('Next accounts page')}
             class="flex h-8 w-8 items-center justify-center rounded-lg border border-border-subtle text-text-main transition-colors hover:bg-surface-3 disabled:cursor-not-allowed disabled:opacity-40"
           >
             <span class="material-symbols-outlined text-[16px]">chevron_right</span>
@@ -1657,13 +1658,13 @@
     ></div>
     <div class="relative w-full max-w-md bg-surface border border-border-subtle rounded-[14px] shadow-[var(--shadow-elev)] p-6">
       <div class="flex items-center justify-between pb-3 border-b border-border-subtle mb-4">
-        <h2 class="text-lg font-semibold text-text-main">Redeem a reset credit</h2>
+        <h2 class="text-lg font-semibold text-text-main">{t('Redeem a reset credit')}</h2>
         <button
           type="button"
           onclick={closeResetCredits}
           disabled={resetCreditConsuming}
           class="text-text-muted hover:text-text-main transition-colors disabled:opacity-50 cursor-pointer"
-          aria-label="Close"
+          aria-label={t('Close')}
         >
           <span class="material-symbols-outlined">close</span>
         </button>
@@ -1674,7 +1675,7 @@
           <div class="flex items-start gap-3">
             <span class="material-symbols-outlined text-amber-500">warning</span>
             <div class="min-w-0">
-              <p class="font-semibold text-text-main">Redeem this reset credit?</p>
+              <p class="font-semibold text-text-main">{t('Redeem this reset credit?')}</p>
               <p class="mt-1 text-sm text-text-muted">{getResetCreditConfirmation(resetCreditPending)}</p>
             </div>
           </div>
@@ -1697,7 +1698,7 @@
       </p>
 
       {#if resetCreditLoading}
-        <p class="text-sm text-text-muted py-4 text-center">Loading reset credits…</p>
+        <p class="text-sm text-text-muted py-4 text-center">{t('Loading reset credits…')}</p>
       {:else if resetCreditError && resetCreditList.length === 0}
         <p class="text-sm text-red-500 py-4 text-center">{resetCreditError}</p>
       {:else if resetCreditList.length === 0 && resetCreditCount > 0}
@@ -1705,7 +1706,7 @@
           Credit details are currently unavailable. Refresh and try again.
         </p>
       {:else if resetCreditList.length === 0}
-        <p class="text-sm text-text-muted py-4 text-center">No reset credits are available on this account.</p>
+        <p class="text-sm text-text-muted py-4 text-center">{t('No reset credits are available on this account.')}</p>
       {:else}
         <div class="space-y-2 max-h-64 overflow-y-auto">
           {#each resetCreditList as credit, index (credit.selectionToken)}
@@ -1727,7 +1728,7 @@
                     Expires in {getCodexResetCreditExpiryLabel(credit.expiresAt).relative} · {getCodexResetCreditExpiryLabel(credit.expiresAt).absolute}
                   </span>
                 {:else}
-                  <span class="block text-[11px] text-text-muted">No expiry date</span>
+                  <span class="block text-[11px] text-text-muted">{t('No expiry date')}</span>
                 {/if}
                 {#if credit.description}
                   <span class="block text-[11px] text-text-subtle mt-0.5">{credit.description}</span>
@@ -1793,13 +1794,13 @@
     ></div>
     <div class="relative w-full max-w-md bg-surface border border-border-subtle rounded-[14px] shadow-[var(--shadow-elev)] p-6">
       <div class="flex items-center justify-between pb-3 border-b border-border-subtle mb-4">
-        <h2 class="text-lg font-semibold text-text-main">Redeem a GLM reset card</h2>
+        <h2 class="text-lg font-semibold text-text-main">{t('Redeem a GLM reset card')}</h2>
         <button
           type="button"
           onclick={closeGlmResetCards}
           disabled={glmResetCardConsuming}
           class="text-text-muted hover:text-text-main transition-colors disabled:opacity-50 cursor-pointer"
-          aria-label="Close"
+          aria-label={t('Close')}
         >
           <span class="material-symbols-outlined">close</span>
         </button>
@@ -1810,7 +1811,7 @@
           <div class="flex items-start gap-3">
             <span class="material-symbols-outlined text-amber-500">warning</span>
             <div class="min-w-0">
-              <p class="font-semibold text-text-main">Redeem this reset card?</p>
+              <p class="font-semibold text-text-main">{t('Redeem this reset card?')}</p>
               <p class="mt-1 text-sm text-text-muted">
                 This will immediately reset your GLM quota window. The card will be consumed permanently.
               </p>
@@ -1835,7 +1836,7 @@
       </p>
 
       {#if glmResetCardLoading}
-        <p class="text-sm text-text-muted py-4 text-center">Loading reset cards…</p>
+        <p class="text-sm text-text-muted py-4 text-center">{t('Loading reset cards…')}</p>
       {:else if glmResetCardError && glmResetCardList.length === 0}
         <p class="text-sm text-red-500 py-4 text-center">{glmResetCardError}</p>
       {:else if glmResetCardList.length === 0 && glmResetCardCount > 0}
@@ -1843,7 +1844,7 @@
           Card details are currently unavailable. Refresh and try again.
         </p>
       {:else if glmResetCardList.length === 0}
-        <p class="text-sm text-text-muted py-4 text-center">No reset cards are available on this account.</p>
+        <p class="text-sm text-text-muted py-4 text-center">{t('No reset cards are available on this account.')}</p>
       {:else}
         <div class="space-y-2 max-h-64 overflow-y-auto">
           {#each glmResetCardList as credit, index (credit.recordId)}

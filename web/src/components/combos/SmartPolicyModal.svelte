@@ -1,5 +1,6 @@
 <!-- 9RouterX — all source code port and modification by https://github.com/yanstd888/ — https://t.me/aiclub_id -->
 <script lang="ts">
+  import { t } from '../../lib/i18n.svelte'
   import Modal from '../../lib/ui/Modal.svelte'
   import Button from '../../lib/ui/Button.svelte'
   import Badge from '../../lib/ui/Badge.svelte'
@@ -135,7 +136,7 @@
               onkeydown={(e) => e.stopPropagation()}
             >
               <div class="flex items-center justify-between text-xs">
-                <span class="font-medium text-text-muted">Switch Confidence Threshold:</span>
+                <span class="font-medium text-text-muted">{t('Switch Confidence Threshold:')}</span>
                 <span class="font-mono font-semibold text-primary text-sm">{threshold}%</span>
               </div>
 
@@ -146,11 +147,11 @@
                 step="1"
                 bind:value={threshold}
                 class="w-full accent-primary cursor-pointer h-1.5 bg-black/10 dark:bg-white/10 rounded-lg appearance-none"
-                aria-label="Switch confidence threshold percent"
+                aria-label={t('Switch confidence threshold percent')}
               />
 
               <div class="flex items-center gap-1.5 pt-1">
-                <span class="text-[10px] text-text-muted mr-1">Presets:</span>
+                <span class="text-[10px] text-text-muted mr-1">{t('Presets:')}</span>
                 {#each QUICK_THRESHOLDS as pct (pct)}
                   <button
                     type="button"
@@ -174,7 +175,7 @@
     <div class="rounded-xl border border-primary/20 bg-primary/[0.03] p-3 text-xs flex items-start gap-2.5">
       <span class="material-symbols-outlined text-primary text-[18px] shrink-0 mt-0.5">bolt</span>
       <div class="text-text-muted leading-relaxed">
-        <span class="font-medium text-text-main">Prompt Cache Benefits: </span>
+        <span class="font-medium text-text-main">{t('Prompt Cache Benefits:')} </span>
         Retaining the same model across session turns keeps upstream prompt caches warm, reducing
         input token costs by up to <strong class="text-text-main">90%</strong> and cutting latency
         in half (Claude Prompt Cache, DeepSeek KV-cache, Gemini Implicit Cache).
@@ -182,8 +183,8 @@
     </div>
 
     <div class="flex items-center justify-end gap-2 pt-2 border-t border-border/40">
-      <Button variant="ghost" size="sm" onclick={onClose}>Cancel</Button>
-      <Button variant="primary" size="sm" onclick={handleSave}>Save Policy</Button>
+      <Button variant="ghost" size="sm" onclick={onClose}>{t('Cancel')}</Button>
+      <Button variant="primary" size="sm" onclick={handleSave}>{t('Save Policy')}</Button>
     </div>
   </div>
 </Modal>

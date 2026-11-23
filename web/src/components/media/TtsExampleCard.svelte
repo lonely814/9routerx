@@ -1,5 +1,6 @@
 <!-- 9RouterX — derived from the work of https://github.com/yanstd888/ — port and modifications by the maintainers — https://t.me/aiclub_id -->
 <script lang="ts">
+  import { t } from '../../lib/i18n.svelte'
   import { onMount } from 'svelte'
   import { api, getStoredAPIKey, type APIKey, type ProviderConnection } from '../../api/client'
   import { copyToClipboard } from '../../lib/clipboard'
@@ -227,12 +228,12 @@
 </script>
 
 <Card>
-  <h2 class="text-lg font-semibold text-text-main mb-4">Example</h2>
+  <h2 class="text-lg font-semibold text-text-main mb-4">{t('Example')}</h2>
 
   <div class="flex flex-col gap-2.5">
     <!-- Endpoint Row -->
     <div class="flex min-w-0 flex-col gap-1.5 sm:flex-row sm:items-center sm:gap-3">
-      <span class="w-full text-xs font-medium text-text-muted sm:w-24 sm:shrink-0">Endpoint</span>
+      <span class="w-full text-xs font-medium text-text-muted sm:w-24 sm:shrink-0">{t('Endpoint')}</span>
       <div class="flex w-full flex-col gap-2 sm:w-auto sm:flex-1 sm:flex-row sm:items-center">
         <span class="w-full min-w-0 flex-1 px-3 py-1.5 text-sm font-mono text-text-main bg-sidebar rounded-lg truncate">
           {effectiveEndpoint}/v1/audio/speech
@@ -253,7 +254,7 @@
 
     <!-- API Key Row -->
     <div class="flex min-w-0 flex-col gap-1.5 sm:flex-row sm:items-center sm:gap-3">
-      <span class="w-full text-xs font-medium text-text-muted sm:w-24 sm:shrink-0">API Key</span>
+      <span class="w-full text-xs font-medium text-text-muted sm:w-24 sm:shrink-0">{t('API Key')}</span>
       <div class="w-full min-w-0 flex-1">
         <span class="px-3 py-1.5 text-sm font-mono text-text-main bg-sidebar rounded-lg truncate block">
           {#if activeApiKey}
@@ -261,7 +262,7 @@
           {:else if connectionCount > 0}
             <span class="text-text-muted italic">Using stored key(s) · {connectionCount} connection{connectionCount > 1 ? 's' : ''}</span>
           {:else}
-            <span class="text-text-muted italic">No key configured</span>
+            <span class="text-text-muted italic">{t('No key configured')}</span>
           {/if}
         </span>
       </div>
@@ -270,18 +271,18 @@
     <!-- Model Selector (if supported) -->
     {#if providerId === 'selfhosted-tts'}
       <div class="flex min-w-0 flex-col gap-1.5 sm:flex-row sm:items-center sm:gap-3">
-        <span class="w-full text-xs font-medium text-text-muted sm:w-24 sm:shrink-0">Model</span>
+        <span class="w-full text-xs font-medium text-text-muted sm:w-24 sm:shrink-0">{t('Model')}</span>
         <div class="w-full min-w-0 flex-1">
           <input
             bind:value={selectedModel}
-            placeholder="e.g. kokoro or Qwen3-TTS-12Hz-1.7B-CustomVoice-bf16"
+            placeholder={t('e.g. kokoro or Qwen3-TTS-12Hz-1.7B-CustomVoice-bf16')}
             class="w-full px-3 py-1.5 text-sm border border-border rounded-lg bg-background focus:outline-none focus:border-primary text-text-main font-mono"
           />
         </div>
       </div>
     {:else if config.hasModelSelector}
       <div class="flex min-w-0 flex-col gap-1.5 sm:flex-row sm:items-center sm:gap-3">
-        <span class="w-full text-xs font-medium text-text-muted sm:w-24 sm:shrink-0">Model</span>
+        <span class="w-full text-xs font-medium text-text-muted sm:w-24 sm:shrink-0">{t('Model')}</span>
         <div class="w-full min-w-0 flex-1">
           <select
             bind:value={selectedModel}
@@ -298,7 +299,7 @@
     <!-- Language row + Browse button (edge-tts, local-device, elevenlabs) -->
     {#if config.hasBrowseButton}
       <div class="flex min-w-0 flex-col gap-1.5 sm:flex-row sm:items-center sm:gap-3">
-        <span class="w-full text-xs font-medium text-text-muted sm:w-24 sm:shrink-0">Language</span>
+        <span class="w-full text-xs font-medium text-text-muted sm:w-24 sm:shrink-0">{t('Language')}</span>
         <div class="flex w-full flex-col gap-2 sm:w-auto sm:flex-1 sm:flex-row sm:items-center">
           <button
             type="button"
@@ -308,7 +309,7 @@
             {#if selectedLang}
               <span class="text-text-main">{languages.find((l) => l.code === selectedLang)?.name || selectedLang}</span>
             {:else}
-              <span class="text-text-muted">No language selected</span>
+              <span class="text-text-muted">{t('No language selected')}</span>
             {/if}
           </button>
           <button
@@ -326,7 +327,7 @@
     <!-- Voice chips -->
     {#if countryVoices.length > 0}
       <div class="flex min-w-0 flex-col gap-1.5 sm:flex-row sm:items-center sm:gap-3">
-        <span class="w-full text-xs font-medium text-text-muted sm:w-24 sm:shrink-0">Voice</span>
+        <span class="w-full text-xs font-medium text-text-muted sm:w-24 sm:shrink-0">{t('Voice')}</span>
         <div class="w-full min-w-0 flex-1 flex flex-wrap gap-1.5">
           {#each countryVoices as v (v.id)}
             <button
@@ -348,7 +349,7 @@
     <!-- Voice ID manual input -->
     {#if config.hasVoiceIdInput}
       <div class="flex min-w-0 flex-col gap-1.5 sm:flex-row sm:items-center sm:gap-3">
-        <span class="w-full text-xs font-medium text-text-muted sm:w-24 sm:shrink-0">Voice ID</span>
+        <span class="w-full text-xs font-medium text-text-muted sm:w-24 sm:shrink-0">{t('Voice ID')}</span>
         <div class="w-full min-w-0 flex-1">
           <input
             bind:value={voiceId}
@@ -361,7 +362,7 @@
 
     <!-- Input row -->
     <div class="flex min-w-0 flex-col gap-1.5 sm:flex-row sm:items-center sm:gap-3">
-      <span class="w-full text-xs font-medium text-text-muted sm:w-24 sm:shrink-0">Input</span>
+      <span class="w-full text-xs font-medium text-text-muted sm:w-24 sm:shrink-0">{t('Input')}</span>
       <div class="w-full min-w-0 flex-1 relative">
         <input
           bind:value={input}
@@ -381,14 +382,14 @@
 
     <!-- Output Format selector -->
     <div class="flex min-w-0 flex-col gap-1.5 sm:flex-row sm:items-center sm:gap-3">
-      <span class="w-full text-xs font-medium text-text-muted sm:w-24 sm:shrink-0">Output Format</span>
+      <span class="w-full text-xs font-medium text-text-muted sm:w-24 sm:shrink-0">{t('Output Format')}</span>
       <div class="w-full min-w-0 flex-1">
         <select
           bind:value={responseFormat}
           class="w-full px-3 py-1.5 text-sm border border-border rounded-lg bg-background focus:outline-none focus:border-primary text-text-main"
         >
-          <option value="mp3">MP3 (Binary)</option>
-          <option value="json">JSON (base64 audio)</option>
+          <option value="mp3">{t('MP3 (Binary)')}</option>
+          <option value="json">{t('JSON (base64 audio)')}</option>
         </select>
       </div>
     </div>
@@ -396,7 +397,7 @@
     <!-- Request curl snippet -->
     <div class="mt-2">
       <div class="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between mb-1.5">
-        <span class="text-xs font-semibold text-text-muted uppercase tracking-wider">Request</span>
+        <span class="text-xs font-semibold text-text-muted uppercase tracking-wider">{t('Request')}</span>
         <div class="flex w-full flex-col gap-2 sm:w-auto sm:flex-row sm:items-center">
           <button
             type="button"
@@ -444,7 +445,7 @@
 
         {#if jsonResponse}
           <div class="mt-3">
-            <span class="text-xs font-semibold text-text-muted uppercase tracking-wider">JSON Response</span>
+            <span class="text-xs font-semibold text-text-muted uppercase tracking-wider">{t('JSON Response')}</span>
             <pre class="mt-1 bg-sidebar rounded-lg px-3 py-2.5 text-xs font-mono text-text-main overflow-x-auto whitespace-pre-wrap break-all">
 {JSON.stringify({
   format: jsonResponse.format,
@@ -456,7 +457,7 @@
       </div>
     {:else}
       <div class="mt-2">
-        <span class="text-xs font-semibold text-text-muted uppercase tracking-wider">Response</span>
+        <span class="text-xs font-semibold text-text-muted uppercase tracking-wider">{t('Response')}</span>
         <pre class="mt-1.5 bg-sidebar rounded-lg px-3 py-2.5 text-xs font-mono text-text-main overflow-x-auto whitespace-pre-wrap break-all opacity-50">{DEFAULT_TTS_RESPONSE_EXAMPLE}</pre>
       </div>
     {/if}
@@ -482,7 +483,7 @@
     >
       <!-- Header -->
       <div class="flex items-center justify-between px-4 py-3 border-b border-border shrink-0 rounded-t-xl">
-        <h3 class="text-sm font-semibold text-text-main">Select Language</h3>
+        <h3 class="text-sm font-semibold text-text-main">{t('Select Language')}</h3>
         <button
           type="button"
           onclick={() => (modalOpen = false)}
@@ -496,7 +497,7 @@
       <div class="px-4 py-2.5 border-b border-border shrink-0">
         <input
           bind:value={modalSearch}
-          placeholder="Search language..."
+          placeholder={t('Search language...')}
           class="w-full px-3 py-1.5 text-sm border border-border rounded-lg bg-background focus:outline-none focus:border-primary text-text-main"
         />
       </div>
@@ -507,7 +508,7 @@
           <p class="text-xs text-red-500 px-2 py-1">{modalError}</p>
         {/if}
         {#if modalLoading}
-          <p class="text-xs text-text-muted px-2 py-3">Loading voices...</p>
+          <p class="text-xs text-text-muted px-2 py-3">{t('Loading voices...')}</p>
         {:else}
           <div class="flex flex-col gap-0.5">
             {#each filteredLanguages as c (c.code)}
@@ -526,7 +527,7 @@
               </button>
             {/each}
             {#if filteredLanguages.length === 0}
-              <p class="text-xs text-text-muted px-2 py-3">No languages found.</p>
+              <p class="text-xs text-text-muted px-2 py-3">{t('No languages found.')}</p>
             {/if}
           </div>
         {/if}

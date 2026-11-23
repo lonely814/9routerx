@@ -1,5 +1,6 @@
 <!-- 9RouterX — all source code port and modification by https://github.com/yanstd888/ — https://t.me/aiclub_id -->
 <script lang="ts">
+  import { t } from '../lib/i18n.svelte'
   import { api, type SystemVersionInfo } from '../api/client'
   import { copyToClipboard } from '../lib/clipboard'
   import { TAB_ROUTES, type ActiveTab } from '../lib/router'
@@ -272,7 +273,7 @@
           <button
             type="button"
             onclick={copyInstallCmd}
-            title="Copy install command"
+            title={t('Copy install command')}
             class="flex-1 text-left hover:opacity-80 transition-opacity cursor-pointer min-w-0"
           >
             <code class="block text-[10px] text-green-700 dark:text-amber-300 font-mono truncate bg-surface/70 px-1 py-0.5 rounded">
@@ -488,7 +489,7 @@
       class="p-2.5 rounded-[10px] bg-surface border border-border-subtle flex items-center justify-between"
     >
       <div class="min-w-0">
-        <p class="text-[11px] text-text-muted uppercase tracking-wide">Providers</p>
+        <p class="text-[11px] text-text-muted uppercase tracking-wide">{t('Providers')}</p>
         <p class="text-xs font-semibold text-text-main mt-0.5 truncate">
           {activeConnections} <span class="text-text-muted font-normal">/ {totalConnections} active</span>
         </p>

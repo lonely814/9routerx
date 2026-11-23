@@ -1,5 +1,6 @@
 <!-- 9RouterX — derived from the work of https://github.com/yanstd888/ — port and modifications by the maintainers — https://t.me/aiclub_id -->
 <script lang="ts">
+  import { t } from '../../lib/i18n.svelte'
   import { onMount } from 'svelte'
   import { notifications } from '../../lib/notifications'
   import { api, type APIKey, type Combo, type ProviderConnection, type ProviderNode, type Settings } from '../../api/client'
@@ -174,7 +175,7 @@
 
     {#if supportsCombo && kindCombos.length > 0}
       <div class="flex flex-col gap-2">
-        <h2 class="text-xs font-semibold text-text-muted uppercase tracking-wider">Combos</h2>
+        <h2 class="text-xs font-semibold text-text-muted uppercase tracking-wider">{t('Combos')}</h2>
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
           {#each kindCombos as combo (combo.id)}
             <a href={`/dashboard/media-providers/combo/${combo.id}`}>

@@ -1,6 +1,7 @@
 <!-- 9RouterX — source port and modifications by https://github.com/yanstd888/ — https://t.me/aiclub_id -->
 
 <script lang="ts">
+  import { t } from '../lib/i18n.svelte'
   import { onMount } from 'svelte'
   import { sanitizeHtml } from '../lib/sanitizeHtml'
   import { api, type JailbreakDoc, type JailbreakImportEntry, type JailbreakImportResult, type JailbreakMatch, type JailbreakKeyword, type JailbreakModelConfig } from '../api/client'
@@ -912,30 +913,30 @@
 
 <div class="space-y-6">
   <!-- No page header: the TopBar already carries the page title and description. -->
-  {#if loading}<span class="text-xs text-text-subtle">Loading…</span>{/if}
+  {#if loading}<span class="text-xs text-text-subtle">{t('Loading…')}</span>{/if}
 
   <!-- Summary strip: label above, number below, description last — the same
        reading order SecurityPanel uses, so the two pages scan identically. -->
   <div class="grid grid-cols-1 gap-3 sm:grid-cols-3">
     <div class="rounded-[14px] border border-border-subtle bg-surface p-4 shadow-[var(--shadow-soft)]">
-      <div class="font-code text-[10px] uppercase tracking-wider text-text-subtle">Presets</div>
+      <div class="font-code text-[10px] uppercase tracking-wider text-text-subtle">{t('Presets')}</div>
       <div class="mt-1 text-2xl font-semibold text-text-main">{presets.length}</div>
-      <p class="mt-1 text-xs text-text-muted">Prompt presets in the library</p>
+      <p class="mt-1 text-xs text-text-muted">{t('Prompt presets in the library')}</p>
     </div>
     <div class="rounded-[14px] border border-border-subtle bg-surface p-4 shadow-[var(--shadow-soft)]">
-      <div class="font-code text-[10px] uppercase tracking-wider text-text-subtle">Bindings armed</div>
+      <div class="font-code text-[10px] uppercase tracking-wider text-text-subtle">{t('Bindings armed')}</div>
       <div class="mt-1 text-2xl font-semibold text-text-main">
         {Object.values(models).filter((c) => c.enabled).length}
         <span class="text-sm font-normal text-text-subtle">/ {Object.keys(models).length}</span>
       </div>
-      <p class="mt-1 text-xs text-text-muted">Exact bindings currently injecting</p>
+      <p class="mt-1 text-xs text-text-muted">{t('Exact bindings currently injecting')}</p>
     </div>
     <div class="rounded-[14px] border border-border-subtle bg-surface p-4 shadow-[var(--shadow-soft)]">
-      <div class="font-code text-[10px] uppercase tracking-wider text-text-subtle">Injections</div>
+      <div class="font-code text-[10px] uppercase tracking-wider text-text-subtle">{t('Injections')}</div>
       <div class="mt-1 text-2xl font-semibold text-text-main">
         {Object.values(presetUsage).reduce((a, b) => a + b, 0)}
       </div>
-      <p class="mt-1 text-xs text-text-muted">Total prompts prepended, all presets</p>
+      <p class="mt-1 text-xs text-text-muted">{t('Total prompts prepended, all presets')}</p>
     </div>
   </div>
   <!-- How it works: read-once reference, so it carries the lightest
@@ -949,56 +950,56 @@
       </summary>
       <div class="pt-3 space-y-3 text-xs text-text-muted leading-relaxed">
         <p>
-          This feature prepends a <span class="text-text-main">system prompt</span> system prompt ahead of the original content for the models, providers, or combos you choose.
-          Injection is <span class="text-text-main">opt-in</span> and off by default: a model is never injected just because it exists, only because you armed it.
+          This feature prepends a <span class="text-text-main">{t('system prompt')}</span> system prompt ahead of the original content for the models, providers, or combos you choose.
+          Injection is <span class="text-text-main">{t('opt-in')}</span> and off by default: a model is never injected just because it exists, only because you armed it.
         </p>
         <p>
           A persona is simply a system prompt of your own — nothing about the mechanism limits what it
           may say. Because it is prepended ahead of the model's original instructions, it is also the
-          usual way to apply <span class="text-text-main">jailbreak prompting</span>: a persona that
+          usual way to apply <span class="text-text-main">{t('jailbreak prompting')}</span>: a persona that
           reframes the assistant's role, drops its refusals, or replaces its rules entirely is written
           here and armed exactly like any other. The gateway does not judge the content, it only
           delivers it to the models you chose.
         </p>
         <div class="space-y-1.5">
-          <div class="text-[11px] font-semibold uppercase tracking-wide text-text-subtle">Three ways to arm a preset</div>
+          <div class="text-[11px] font-semibold uppercase tracking-wide text-text-subtle">{t('Three ways to arm a preset')}</div>
           <ul class="space-y-1.5 pl-4">
             <li class="flex gap-2">
               <span class="text-brand-500 shrink-0">1.</span>
-              <span><span class="text-text-main">Exact binding</span> — bind one id to one preset. The precise tool: use it when one id needs a different preset from the rest of its family, or when a whole combo should be armed regardless of its legs.</span>
+              <span><span class="text-text-main">{t('Exact binding')}</span> {t('— bind one id to one preset. The precise tool: use it when one id needs a different preset from the rest of its family, or when a whole combo should be armed regardless of its legs.')}</span>
             </li>
             <li class="flex gap-2">
               <span class="text-brand-500 shrink-0">2.</span>
-              <span><span class="text-text-main">Keyword (include)</span> — one rule covers every model id that matches, across providers and combo legs. Three modes: <span class="font-code">word</span> (whole token, default), <span class="font-code">partial</span> (substring), <span class="font-code">regex</span> (RE2).</span>
+              <span><span class="text-text-main">{t('Keyword (include)')}</span> {t('— one rule covers every model id that matches, across providers and combo legs. Three modes:')} <span class="font-code">word</span> {t('(whole token, default),')} <span class="font-code">partial</span> {t('(substring),')} <span class="font-code">regex</span> {t('(RE2).')}</span>
             </li>
             <li class="flex gap-2">
               <span class="text-brand-500 shrink-0">3.</span>
-              <span><span class="text-text-main">Excludes (deny)</span> — two deny lists: per preset (a model matching a keyword still never gets this preset) and global (never injected at all, outranking everything).</span>
+              <span><span class="text-text-main">{t('Excludes (deny)')}</span> {t('— two deny lists: per preset (a model matching a keyword still never gets this preset) and global (never injected at all, outranking everything).')}</span>
             </li>
           </ul>
         </div>
         <div class="space-y-1.5">
-          <div class="text-[11px] font-semibold uppercase tracking-wide text-text-subtle">Precedence</div>
+          <div class="text-[11px] font-semibold uppercase tracking-wide text-text-subtle">{t('Precedence')}</div>
           <ol class="space-y-1 pl-4 list-decimal">
-            <li>Global exclude list — a match means no injection, whatever anything else says.</li>
-            <li>Exact binding on the id the client sent.</li>
-            <li>Exclude of the winning preset.</li>
-            <li>Keyword on the primary id, before a keyword on a forwarded leg.</li>
-            <li>Among keyword hits on the same id, the longest wins; a tie goes to the lowest preset id.</li>
+            <li>{t('Global exclude list — a match means no injection, whatever anything else says.')}</li>
+            <li>{t('Exact binding on the id the client sent.')}</li>
+            <li>{t('Exclude of the winning preset.')}</li>
+            <li>{t('Keyword on the primary id, before a keyword on a forwarded leg.')}</li>
+            <li>{t('Among keyword hits on the same id, the longest wins; a tie goes to the lowest preset id.')}</li>
           </ol>
         </div>
         <div class="space-y-1.5">
-          <div class="text-[11px] font-semibold uppercase tracking-wide text-text-subtle">Filling a preset</div>
+          <div class="text-[11px] font-semibold uppercase tracking-wide text-text-subtle">{t('Filling a preset')}</div>
           <ul class="space-y-1 pl-4">
-            <li class="flex gap-2"><span class="text-brand-500 shrink-0">•</span><span><span class="text-text-main">New preset</span> — one modal, three tabs: <span class="text-text-muted">Write</span> builds one preset field by field, <span class="text-text-muted">From files</span> picks or drops several at once, <span class="text-text-muted">From URL</span> pulls a repository or any http(s) address. The file name becomes the preset name and its keyword chain, so <span class="font-code">SOUL.md</span>, <span class="font-code">AGENTS.md</span>, <span class="font-code">CLAUDE.md</span> are labelled with their kind right away.</span></li>
+            <li class="flex gap-2"><span class="text-brand-500 shrink-0">•</span><span><span class="text-text-main">{t('New preset')}</span> {t('— one modal, three tabs:')} <span class="text-text-muted">{t('Write')}</span> {t('builds one preset field by field,')} <span class="text-text-muted">{t('From files')}</span> {t('picks or drops several at once,')} <span class="text-text-muted">{t('From URL')}</span> {t('pulls a repository or any http(s) address. The file name becomes the preset name and its keyword chain, so')} <span class="font-code">{t('SOUL.md')}</span>, <span class="font-code">{t('AGENTS.md')}</span>, <span class="font-code">{t('CLAUDE.md')}</span> {t('are labelled with their kind right away.')}</span></li>
           </ul>
         </div>
         <div class="space-y-1.5">
-          <div class="text-[11px] font-semibold uppercase tracking-wide text-text-subtle">Checking without guessing</div>
+          <div class="text-[11px] font-semibold uppercase tracking-wide text-text-subtle">{t('Checking without guessing')}</div>
           <ul class="space-y-1 pl-4">
-            <li class="flex gap-2"><span class="text-brand-500 shrink-0">•</span><span><span class="text-text-main">Test match</span> — type an id and the page answers which preset wins and why (exact-binding, keyword, global-exclude, preset-exclude, or no-match), plus a preview of the final payload.</span></li>
-            <li class="flex gap-2"><span class="text-brand-500 shrink-0">•</span><span><span class="text-text-main">Add</span> — one modal, two tabs: <span class="text-text-muted">Single</span> types one id by hand, <span class="text-text-muted">Bulk</span> picks many ids straight from the live catalog (1500+ models) and binds them all to one preset.</span></li>
-            <li class="flex gap-2"><span class="text-brand-500 shrink-0">•</span><span><span class="text-text-main">Statistik pemakaian</span> — every preset shows how many times it actually injected.</span></li>
+            <li class="flex gap-2"><span class="text-brand-500 shrink-0">•</span><span><span class="text-text-main">{t('Test match')}</span> {t('— type an id and the page answers which preset wins and why (exact-binding, keyword, global-exclude, preset-exclude, or no-match), plus a preview of the final payload.')}</span></li>
+            <li class="flex gap-2"><span class="text-brand-500 shrink-0">•</span><span><span class="text-text-main">{t('Add')}</span> {t('— one modal, two tabs:')} <span class="text-text-muted">{t('Single')}</span> {t('types one id by hand,')} <span class="text-text-muted">{t('Bulk')}</span> {t('picks many ids straight from the live catalog (1500+ models) and binds them all to one preset.')}</span></li>
+            <li class="flex gap-2"><span class="text-brand-500 shrink-0">•</span><span><span class="text-text-main">{t('Statistik pemakaian')}</span> {t('— every preset shows how many times it actually injected.')}</span></li>
           </ul>
         </div>
         <p class="text-[11px] text-text-subtle">
@@ -1013,8 +1014,8 @@
   <Card padding="sm" class="bg-surface-2/60">
     <div class="flex flex-wrap items-center justify-between gap-2">
       <div class="space-y-1">
-        <h2 class="text-sm font-bold text-text-main">Global exclude list</h2>
-        <p class="text-[11px] text-text-subtle">Overrides every preset and binding.</p>
+        <h2 class="text-sm font-bold text-text-main">{t('Global exclude list')}</h2>
+        <p class="text-[11px] text-text-subtle">{t('Overrides every preset and binding.')}</p>
       </div>
       <div class="flex flex-wrap items-center gap-2">
         {#if globalStatus}<span class="text-xs text-text-muted">{globalStatus}</span>{/if}
@@ -1029,7 +1030,7 @@
     </p>
     <div class="pt-3">
       <KeywordRules
-        label="Excluded models"
+        label={t('Excluded models')}
         rules={globalExcludes}
         onchange={(next) => (globalExcludes = next)}
       />
@@ -1057,7 +1058,7 @@
     </div>
     {#if batchStatus}<p class="text-xs text-text-muted pt-2">{batchStatus}</p>{/if}
     {#if presets.length === 0}
-      <p class="text-xs text-text-subtle">No presets yet.</p>
+      <p class="text-xs text-text-subtle">{t('No presets yet.')}</p>
     {:else}
       <!-- The filter row lives outside the match/no-match branch: when a query
            matches nothing, the field has to stay on screen or the operator
@@ -1066,31 +1067,31 @@
         <input
           type="text"
           bind:value={presetSearch}
-          placeholder="Filter presets…"
-          aria-label="Filter presets"
+          placeholder={t('Filter presets…')}
+          aria-label={t('Filter presets')}
           class="min-w-[240px] flex-1 px-3 py-1.5 rounded-[10px] bg-surface-2 border border-border-subtle text-text-main text-xs placeholder:text-text-subtle"
         />
         <select
           bind:value={presetSort}
-          aria-label="Sort presets"
+          aria-label={t('Sort presets')}
           class="px-2 py-1.5 rounded-[10px] bg-surface-2 border border-border-subtle text-text-main text-xs outline-none"
         >
-          <option value="name-asc">Name A→Z</option>
-          <option value="name-desc">Name Z→A</option>
-          <option value="newest">Newest first</option>
-          <option value="updated">Recently updated</option>
-          <option value="usage">Most used</option>
-          <option value="kind">By kind</option>
+          <option value="name-asc">{t('Name A→Z')}</option>
+          <option value="name-desc">{t('Name Z→A')}</option>
+          <option value="newest">{t('Newest first')}</option>
+          <option value="updated">{t('Recently updated')}</option>
+          <option value="usage">{t('Most used')}</option>
+          <option value="kind">{t('By kind')}</option>
         </select>
         <select
           bind:value={presetPageSize}
-          aria-label="Rows per page"
+          aria-label={t('Rows per page')}
           class="px-2 py-1.5 rounded-[10px] bg-surface-2 border border-border-subtle text-text-main text-xs outline-none"
         >
-          <option value={10}>10 / page</option>
-          <option value={20}>20 / page</option>
-          <option value={50}>50 / page</option>
-          <option value={100}>100 / page</option>
+          <option value={10}>{t('10 / page')}</option>
+          <option value={20}>{t('20 / page')}</option>
+          <option value={50}>{t('50 / page')}</option>
+          <option value={100}>{t('100 / page')}</option>
         </select>
       </div>
       {#if filteredPresets.length === 0}
@@ -1103,7 +1104,7 @@
            its own line below. One line held both, so the actions pushed the
            count sideways and wrapped unpredictably as the selection grew. -->
       <div class="flex flex-wrap items-center gap-2 pt-3 border-t border-border-subtle">
-        <label class="flex items-center gap-2 text-xs text-text-subtle cursor-pointer select-none" title="Select the presets on this page only">
+        <label class="flex items-center gap-2 text-xs text-text-subtle cursor-pointer select-none" title={t('Select the presets on this page only')}>
           <input
             type="checkbox"
             checked={pagedPresets.length > 0 && pagedPresets.every((p) => selectedPresetIds.has(p.id ?? p.name ?? ''))}
@@ -1112,7 +1113,7 @@
           />
           Select page
         </label>
-        <label class="flex items-center gap-2 text-xs text-text-subtle cursor-pointer select-none" title="Select every preset the current filter matches, across all pages">
+        <label class="flex items-center gap-2 text-xs text-text-subtle cursor-pointer select-none" title={t('Select every preset the current filter matches, across all pages')}>
           <input
             type="checkbox"
             checked={filteredPresets.length > 0 && filteredPresets.every((p) => selectedPresetIds.has(p.id ?? p.name ?? ''))}
@@ -1178,7 +1179,7 @@
                 type="button"
                 onclick={() => openEdit(preset)}
                 aria-label={`Edit ${preset.name || presetKey}`}
-                title="Edit"
+                title={t('Edit')}
                 class="text-text-subtle hover:text-brand-500 leading-none"
               >
                 <span class="material-symbols-outlined text-[16px]">edit</span>
@@ -1187,20 +1188,20 @@
                 type="button"
                 onclick={() => duplicatePreset(preset.id ?? '')}
                 aria-label={`Duplicate ${preset.name || presetKey}`}
-                title="Duplicate"
+                title={t('Duplicate')}
                 class="text-text-subtle hover:text-brand-500 leading-none"
               >
                 <span class="material-symbols-outlined text-[16px]">content_copy</span>
               </button>
               {#if confirmDeleteId === presetKey}
-                <button type="button" onclick={() => removePreset(presetKey)} class="text-xs text-error font-medium hover:underline">Confirm</button>
-                <button type="button" onclick={() => (confirmDeleteId = null)} class="text-xs text-text-subtle hover:underline">Cancel</button>
+                <button type="button" onclick={() => removePreset(presetKey)} class="text-xs text-error font-medium hover:underline">{t('Confirm')}</button>
+                <button type="button" onclick={() => (confirmDeleteId = null)} class="text-xs text-text-subtle hover:underline">{t('Cancel')}</button>
               {:else}
                 <button
                   type="button"
                   onclick={() => removePreset(presetKey)}
                   aria-label={`Delete ${preset.name || presetKey}`}
-                  title="Delete"
+                  title={t('Delete')}
                   class="text-text-subtle hover:text-error leading-none"
                 >
                   <span class="material-symbols-outlined text-[16px]">delete</span>
@@ -1240,7 +1241,7 @@
     </p>
     {#if bindingBatchStatus}<p class="text-xs text-text-muted pt-2">{bindingBatchStatus}</p>{/if}
     {#if boundEntries.length === 0}
-      <p class="text-xs text-text-subtle">No models armed.</p>
+      <p class="text-xs text-text-subtle">{t('No models armed.')}</p>
     {:else}
       <!-- The filter row lives outside the match/no-match branch: when a query
            matches nothing, the field has to stay on screen or the operator
@@ -1249,19 +1250,19 @@
         <input
           type="text"
           bind:value={bindingSearch}
-          placeholder="Filter bindings…"
-          aria-label="Filter bindings"
+          placeholder={t('Filter bindings…')}
+          aria-label={t('Filter bindings')}
           class="min-w-[240px] flex-1 px-3 py-1.5 rounded-[10px] bg-surface-2 border border-border-subtle text-text-main text-xs placeholder:text-text-subtle"
         />
         <select
           bind:value={bindingPageSize}
-          aria-label="Rows per page"
+          aria-label={t('Rows per page')}
           class="px-2 py-1.5 rounded-[10px] bg-surface-2 border border-border-subtle text-text-main text-xs outline-none"
         >
-          <option value={10}>10 / page</option>
-          <option value={20}>20 / page</option>
-          <option value={50}>50 / page</option>
-          <option value={100}>100 / page</option>
+          <option value={10}>{t('10 / page')}</option>
+          <option value={20}>{t('20 / page')}</option>
+          <option value={50}>{t('50 / page')}</option>
+          <option value={100}>{t('100 / page')}</option>
         </select>
       </div>
       {#if filteredBindings.length === 0}
@@ -1274,7 +1275,7 @@
            its own line below. One line held both, so the actions pushed the
            count sideways and wrapped unpredictably as the selection grew. -->
       <div class="flex flex-wrap items-center gap-2 pt-3 border-t border-border-subtle">
-        <label class="flex items-center gap-2 text-xs text-text-subtle cursor-pointer select-none" title="Select the bindings on this page only">
+        <label class="flex items-center gap-2 text-xs text-text-subtle cursor-pointer select-none" title={t('Select the bindings on this page only')}>
           <input
             type="checkbox"
             checked={pagedBindings.length > 0 && pagedBindings.every(([id]) => selectedBindingIds.has(id))}
@@ -1283,7 +1284,7 @@
           />
           Select page
         </label>
-        <label class="flex items-center gap-2 text-xs text-text-subtle cursor-pointer select-none" title="Select every binding the current filter matches, across all pages">
+        <label class="flex items-center gap-2 text-xs text-text-subtle cursor-pointer select-none" title={t('Select every binding the current filter matches, across all pages')}>
           <input
             type="checkbox"
             checked={filteredBindings.length > 0 && filteredBindings.every(([id]) => selectedBindingIds.has(id))}
@@ -1300,10 +1301,10 @@
         <div class="flex flex-wrap items-center gap-2 pt-2">
           <select
             bind:value={bindingBatchPresetId}
-            aria-label="Preset for the selected bindings"
+            aria-label={t('Preset for the selected bindings')}
             class="px-2 py-1 rounded-[8px] bg-surface-2 border border-border-subtle text-text-main text-xs outline-none"
           >
-            <option value="">Choose preset…</option>
+            <option value="">{t('Choose preset…')}</option>
             {#each presets as preset (preset.id ?? preset.name)}
               <option value={preset.id ?? ''}>{preset.name || preset.id}</option>
             {/each}
@@ -1374,7 +1375,7 @@
                 type="button"
                 onclick={() => openBindingEdit(id, cfg)}
                 aria-label={`Edit ${id}`}
-                title="Edit"
+                title={t('Edit')}
                 class="text-text-subtle hover:text-brand-500 leading-none"
               >
                 <span class="material-symbols-outlined text-[16px]">edit</span>
@@ -1391,7 +1392,7 @@
                 type="button"
                 onclick={() => unbindModel(id)}
                 aria-label={`Unbind ${id}`}
-                title="Unbind"
+                title={t('Unbind')}
                 class="text-text-subtle hover:text-error leading-none"
               >
                 <span class="material-symbols-outlined text-[16px]">delete</span>
@@ -1418,7 +1419,7 @@
   <Modal
     isOpen={testMatchOpen}
     onClose={() => (testMatchOpen = false)}
-    title="Test match"
+    title={t('Test match')}
     size="md"
     icon="troubleshoot"
   >
@@ -1431,8 +1432,8 @@
         <input
           type="text"
           bind:value={testMatchId}
-          placeholder="providerx/deepseek-4-pro, or a combo name"
-          aria-label="Model id to test"
+          placeholder={t('providerx/deepseek-4-pro, or a combo name')}
+          aria-label={t('Model id to test')}
           onkeydown={(e) => e.key === 'Enter' && runTestMatch()}
           class="flex-1 min-w-[280px] px-3 py-2 rounded-[10px] bg-surface-2 border border-border-subtle text-sm text-text-main font-code placeholder:text-text-subtle"
         />
@@ -1480,7 +1481,7 @@
       {#if testMatchResult?.injected}
         <div class="space-y-2">
           <div class="flex items-center justify-between gap-2">
-            <span class="text-xs text-text-muted">Outbound payload preview</span>
+            <span class="text-xs text-text-muted">{t('Outbound payload preview')}</span>
             <button
               type="button"
               onclick={togglePreview}
@@ -1491,7 +1492,7 @@
           </div>
           {#if previewOpen}
             {#if previewLoading}
-              <p class="text-xs text-text-muted">Building preview…</p>
+              <p class="text-xs text-text-muted">{t('Building preview…')}</p>
             {:else if previewError}
               <p class="text-xs text-error">{previewError}</p>
             {:else if previewData}
@@ -1539,7 +1540,7 @@
            fill many presets at once and have no fields to fill, only a source
            and a result log. Editing an existing preset is always Write — the
            import paths create, they never modify. -->
-      <div class="grid grid-cols-3 gap-2 mb-5" role="tablist" aria-label="Preset source">
+      <div class="grid grid-cols-3 gap-2 mb-5" role="tablist" aria-label={t('Preset source')}>
         <button
           type="button"
           role="tab"
@@ -1581,12 +1582,12 @@
     {#if editingId || presetModalTab === 'write'}
     <div class="space-y-4">
       <label class="block space-y-1.5">
-        <span class="text-xs text-text-muted">ID</span>
+        <span class="text-xs text-text-muted">{t('ID')}</span>
         <input
           type="text"
           bind:value={presetForm.id}
           disabled={!!editingId}
-          placeholder="expert-coder"
+          placeholder={t('expert-coder')}
           class="w-full px-3 py-2 rounded-[10px] bg-surface-2 border border-border-subtle text-text-main text-sm outline-none focus:border-brand-500 disabled:opacity-50"
         />
         {#if editingId}
@@ -1596,16 +1597,16 @@
         {/if}
       </label>
       <label class="block space-y-1.5">
-        <span class="text-xs text-text-muted">Name</span>
+        <span class="text-xs text-text-muted">{t('Name')}</span>
         <input
           type="text"
           bind:value={presetForm.name}
-          placeholder="Expert Coder"
+          placeholder={t('Expert Coder')}
           class="w-full px-3 py-2 rounded-[10px] bg-surface-2 border border-border-subtle text-text-main text-sm outline-none focus:border-brand-500"
         />
       </label>
       <label class="block space-y-1.5">
-        <span class="text-xs text-text-muted">Prompt</span>
+        <span class="text-xs text-text-muted">{t('Prompt')}</span>
         <textarea
           bind:value={presetForm.prompt}
           rows="6"
@@ -1628,21 +1629,21 @@
       </label>
       <div class="grid gap-4 sm:grid-cols-2">
         <label class="block space-y-1.5">
-          <span class="text-xs text-text-muted">Source file name</span>
+          <span class="text-xs text-text-muted">{t('Source file name')}</span>
           <input
             type="text"
             bind:value={presetForm.source}
-            placeholder="expert.md"
+            placeholder={t('expert.md')}
             class="w-full px-3 py-2 rounded-[10px] bg-surface-2 border border-border-subtle text-text-main text-sm outline-none focus:border-brand-500"
           />
         </label>
         <label class="block space-y-1.5">
-          <span class="text-xs text-text-muted">Kind</span>
+          <span class="text-xs text-text-muted">{t('Kind')}</span>
           <input
             type="text"
             bind:value={presetForm.kind}
             list="jailbreak-kinds"
-            placeholder="SOUL, PERSONA, AGENTS, LOAD…"
+            placeholder={t('SOUL, PERSONA, AGENTS, LOAD…')}
             class="w-full px-3 py-2 rounded-[10px] bg-surface-2 border border-border-subtle text-text-main text-sm outline-none focus:border-brand-500"
           />
         </label>
@@ -1658,23 +1659,23 @@
       </datalist>
       <label class="flex items-center gap-2 cursor-pointer select-none">
         <input type="checkbox" bind:checked={presetForm.geminiSafety} class="w-4 h-4 accent-brand-500" />
-        <span class="text-sm text-text-main">Relax Gemini safety filters</span>
+        <span class="text-sm text-text-main">{t('Relax Gemini safety filters')}</span>
       </label>
       <KeywordRules
-        label="Keywords (include)"
+        label={t('Keywords (include)')}
         hint="Every model id matching one of these rules resolves to this preset — across providers and combo legs."
         rules={presetForm.keywords}
         onchange={(next) => (presetForm.keywords = next)}
       />
       <KeywordRules
-        label="Excludes (deny)"
+        label={t('Excludes (deny)')}
         hint="Models matching one of these rules never get this preset, even when a keyword above matches."
         rules={presetForm.excludes}
         onchange={(next) => (presetForm.excludes = next)}
       />
       {#if presetError}<p class="text-xs text-error">{presetError}</p>{/if}
       <div class="flex justify-end gap-2 pt-4 border-t border-border-subtle">
-        <Button variant="secondary" size="md" onclick={() => (presetModalOpen = false)}>Cancel</Button>
+        <Button variant="secondary" size="md" onclick={() => (presetModalOpen = false)}>{t('Cancel')}</Button>
         <Button variant="primary" size="md" onclick={savePreset} disabled={presetSaving}>{presetSaving ? 'Saving…' : 'Save'}</Button>
       </div>
     </div>
@@ -1682,7 +1683,7 @@
       <div
         class="space-y-3"
         role="group"
-        aria-label="Import from files"
+        aria-label={t('Import from files')}
         ondragover={(e) => {
           e.preventDefault()
           dragging = true
@@ -1697,17 +1698,17 @@
           chain, so a preset covers that model on every provider and combo leg.
         </p>
         <div class="flex flex-wrap items-center gap-x-2 gap-y-1 text-[11px] text-text-subtle">
-          <span class="font-medium">Accepted:</span>
-          <span class="font-code text-text-muted">.md</span>
-          <span class="font-code text-text-muted">.markdown</span>
-          <span class="font-code text-text-muted">.txt</span>
+          <span class="font-medium">{t('Accepted:')}</span>
+          <span class="font-code text-text-muted">{t('.md')}</span>
+          <span class="font-code text-text-muted">{t('.markdown')}</span>
+          <span class="font-code text-text-muted">{t('.txt')}</span>
           <span class="text-border">·</span>
-          <span>instruction files such as</span>
-          <span class="font-code text-text-muted">SOUL.md</span>
-          <span class="font-code text-text-muted">AGENTS.md</span>
-          <span class="font-code text-text-muted">CLAUDE.md</span>
-          <span class="font-code text-text-muted">PERSONA.md</span>
-          <span class="font-code text-text-muted">LOAD.md</span>
+          <span>{t('instruction files such as')}</span>
+          <span class="font-code text-text-muted">{t('SOUL.md')}</span>
+          <span class="font-code text-text-muted">{t('AGENTS.md')}</span>
+          <span class="font-code text-text-muted">{t('CLAUDE.md')}</span>
+          <span class="font-code text-text-muted">{t('PERSONA.md')}</span>
+          <span class="font-code text-text-muted">{t('LOAD.md')}</span>
         </div>
         <label
           class="relative flex h-[calc(6*1.5rem+1rem+2px)] w-full cursor-pointer flex-col items-center justify-center gap-1 rounded-[10px] border border-dashed border-border bg-surface-2 px-3 py-2 text-center transition-colors {dragging
@@ -1723,7 +1724,7 @@
               e.currentTarget.value = ''
             }}
             disabled={uploading}
-            aria-label="Pick prompt files"
+            aria-label={t('Pick prompt files')}
             class="absolute inset-0 h-full w-full cursor-pointer opacity-0"
           />
           <span class="material-symbols-outlined text-[22px] text-text-subtle">upload_file</span>
@@ -1775,7 +1776,7 @@
           bind:value={importTarget}
           rows="6"
           placeholder={'owner/repo, owner/repo@branch\nhttps://github.com/owner/repo\nhttps://gitlab.com/owner/repo/-/raw/main/SOUL.md\nhttps://paste.example.com/abc123'}
-          aria-label="Repositories or URLs to import, one per line"
+          aria-label={t('Repositories or URLs to import, one per line')}
           class="w-full px-3 py-2 rounded-[10px] bg-surface-2 border border-border-subtle text-text-main text-sm font-code placeholder:text-text-subtle outline-none focus:border-brand-500 resize-y"
         ></textarea>
         <div class="flex flex-wrap items-center justify-center gap-2">
@@ -1783,7 +1784,7 @@
             type="text"
             bind:value={importFileName}
             placeholder={importNameSuggestion || 'my-prompt.md (optional)'}
-            aria-label="Custom file name for imported preset"
+            aria-label={t('Custom file name for imported preset')}
             class="w-[240px] px-3 py-2 rounded-[10px] bg-surface-2 border border-border-subtle text-sm text-text-main placeholder:text-text-subtle"
           />
           <Button variant="primary" size="sm" class="min-w-[140px]" onclick={importFromGithub} disabled={importing}>
@@ -1810,7 +1811,7 @@
           readonly
           value="{importLogText}"
           rows="{Math.min(12, Math.max(4, importResult.imported.length + importResult.refused.length))}"
-          aria-label="Import log"
+          aria-label={t('Import log')}
           class="w-full px-3 py-2 rounded-[10px] bg-surface-2 border border-border-subtle text-text-main text-[11px] font-code leading-relaxed outline-none resize-y"
         ></textarea>
       </div>
@@ -1832,7 +1833,7 @@
          binding always lands on Single, so the strip is hidden then.
          The segmented treatment is the one the Proxy Pools Bulk Add dialog
          uses, so the two "one by hand vs many at once" dialogs match. -->
-    <div class="flex gap-1 rounded-lg border border-border/50 bg-surface-2 p-1 mb-5" role="tablist" aria-label="Binding mode">
+    <div class="flex gap-1 rounded-lg border border-border/50 bg-surface-2 p-1 mb-5" role="tablist" aria-label={t('Binding mode')}>
       <button
         type="button"
         role="tab"
@@ -1866,17 +1867,17 @@
             : 'Type one model, provider, or combo id exactly as the client sends it, then pick the preset it resolves to.'}
         </p>
         <label class="block space-y-1.5">
-          <span class="text-xs text-text-muted">Model / provider / combo id</span>
+          <span class="text-xs text-text-muted">{t('Model / provider / combo id')}</span>
           <input
             type="text"
             bind:value={bindModelId}
             disabled={!!bindingEditId}
-            placeholder="deepseek-v4-flash"
+            placeholder={t('deepseek-v4-flash')}
             class="w-full px-3 py-2 rounded-[10px] bg-surface-2 border border-border-subtle text-text-main text-sm font-code outline-none focus:border-brand-500 disabled:opacity-50"
           />
         </label>
         <label class="block space-y-1.5">
-          <span class="text-xs text-text-muted">Preset</span>
+          <span class="text-xs text-text-muted">{t('Preset')}</span>
           <div class="relative" data-preset-combobox>
             <input
               type="text"
@@ -1889,8 +1890,8 @@
                 bindPresetSearch = e.currentTarget.value
                 bindPresetDropdownOpen = true
               }}
-              placeholder="Search presets…"
-              aria-label="Search presets"
+              placeholder={t('Search presets…')}
+              aria-label={t('Search presets')}
               class="w-full px-3 py-2 rounded-[10px] bg-surface-2 border border-border-subtle text-text-main text-sm placeholder:text-text-subtle outline-none focus:border-brand-500"
             />
             {#if bindPresetDropdownOpen}
@@ -1932,7 +1933,7 @@
                   </li>
                 {/each}
                 {#if bindPresetOptions.length === 0}
-                  <li class="px-3 py-2 text-xs text-text-subtle">No preset matches.</li>
+                  <li class="px-3 py-2 text-xs text-text-subtle">{t('No preset matches.')}</li>
                 {/if}
               </ul>
             {/if}
@@ -1943,11 +1944,11 @@
         {#if bindingEditId}
           <label class="flex items-center gap-2 cursor-pointer select-none">
             <input type="checkbox" bind:checked={bindingEditEnabled} class="w-4 h-4 accent-brand-500" />
-            <span class="text-sm text-text-main">Inject this preset for the id above</span>
+            <span class="text-sm text-text-main">{t('Inject this preset for the id above')}</span>
           </label>
         {/if}
         <div class="flex justify-end gap-2 pt-4 border-t border-border-subtle">
-          <Button variant="secondary" size="md" onclick={() => (bindModalOpen = false)}>Cancel</Button>
+          <Button variant="secondary" size="md" onclick={() => (bindModalOpen = false)}>{t('Cancel')}</Button>
           <Button variant="primary" size="md" onclick={bindModel} disabled={bindingBatchBusy}>
             {bindingEditId ? 'Save' : 'Bind'}
           </Button>
@@ -1964,13 +1965,13 @@
         <input
           type="text"
           bind:value={bulkArmSearch}
-          placeholder="Filter models…  (/^deepseek for regex)"
-          aria-label="Filter models"
+          placeholder={t('Filter models…  (/^deepseek for regex)')}
+          aria-label={t('Filter models')}
           class="w-full px-3 py-2 rounded-[10px] bg-surface-2 border border-border-subtle text-sm text-text-main font-code placeholder:text-text-subtle"
         />
         <p class="text-[11px] text-text-subtle">
           Substring by default. Start with <span class="font-code text-text-muted">/</span> for an RE2 regex,
-          matched case-insensitively — e.g. <span class="font-code text-text-muted">/^deepseek</span> or
+          matched case-insensitively — e.g. <span class="font-code text-text-muted">{t('/^deepseek')}</span> or
           <span class="font-code text-text-muted">/(kimi|glm)-\d</span>.
         </p>
         {#if bulkArmRegexError}
@@ -1979,7 +1980,7 @@
       </div>
 
       {#if bulkArmModelsLoading}
-        <p class="text-xs text-text-muted">Loading catalog…</p>
+        <p class="text-xs text-text-muted">{t('Loading catalog…')}</p>
       {:else if bulkArmModels.length === 0}
         <div class="space-y-2">
           <p class="text-xs text-text-subtle">
@@ -2030,13 +2031,13 @@
            first, then decides what they become. It is a searchable combobox so
            a 50-preset library stays navigable. -->
       <div class="pt-4 border-t border-border-subtle space-y-2">
-        <span class="text-xs text-text-muted">Bind the picked ids to…</span>
+        <span class="text-xs text-text-muted">{t('Bind the picked ids to…')}</span>
         <div class="relative">
           <input
             type="text"
             bind:value={bulkArmPresetSearch}
-            placeholder="Search presets…"
-            aria-label="Search presets"
+            placeholder={t('Search presets…')}
+            aria-label={t('Search presets')}
             onfocus={() => (bulkArmPresetDropdownOpen = true)}
             class="w-full px-3 py-2 rounded-[10px] bg-surface-2 border border-border-subtle text-sm text-text-main placeholder:text-text-subtle outline-none focus:border-brand-500"
           />
@@ -2072,7 +2073,7 @@
                 </li>
               {/each}
               {#if bulkArmPresetOptions.length === 0}
-                <li class="px-3 py-2 text-xs text-text-subtle">No preset matches.</li>
+                <li class="px-3 py-2 text-xs text-text-subtle">{t('No preset matches.')}</li>
               {/if}
             </ul>
           {/if}
@@ -2083,7 +2084,7 @@
       <div class="flex items-center justify-between gap-2 pt-4 border-t border-border-subtle">
         <span class="text-xs text-text-subtle">{bulkArmPicked.size} picked</span>
         <div class="flex gap-2">
-          <Button variant="secondary" size="md" onclick={() => (bindModalOpen = false)}>Cancel</Button>
+          <Button variant="secondary" size="md" onclick={() => (bindModalOpen = false)}>{t('Cancel')}</Button>
           <Button variant="primary" size="md" onclick={saveBulkArm} disabled={bulkArmSaving || bulkArmPicked.size === 0}>
             {bulkArmSaving ? 'Binding…' : 'Bulk Bind'}
           </Button>

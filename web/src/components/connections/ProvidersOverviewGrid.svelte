@@ -1,5 +1,6 @@
 <!-- 9RouterX — source port and modifications by https://github.com/yanstd888/ — https://t.me/aiclub_id -->
 <script lang="ts">
+  import { t } from '../../lib/i18n.svelte'
   import { notifications } from '../../lib/notifications'
   import { Download, Play, Plus, Search, Server } from 'lucide-svelte'
   import type { ProviderConnection, ProviderNode } from '../../api/client'
@@ -89,7 +90,7 @@
       <input
         type="text"
         bind:value={searchQuery}
-        placeholder="Search providers..."
+        placeholder={t('Search providers...')}
         class="w-full pl-9 pr-4 py-1.5 text-xs rounded-xl bg-surface border border-border text-text-main placeholder:text-text-muted focus:outline-none focus:border-brand-500 transition-colors"
       />
     </div>
@@ -98,11 +99,11 @@
       bind:value={statusFilter}
       class="h-8 rounded-lg border border-border bg-surface px-2 text-xs text-text-main outline-none transition-colors hover:border-brand-500/40 cursor-pointer"
     >
-      <option value="all">All</option>
-      <option value="connected">Connected</option>
-      <option value="error">Error</option>
-      <option value="disabled">Disabled</option>
-      <option value="not_connected">Not Connected</option>
+      <option value="all">{t('All')}</option>
+      <option value="connected">{t('Connected')}</option>
+      <option value="error">{t('Error')}</option>
+      <option value="disabled">{t('Disabled')}</option>
+      <option value="not_connected">{t('Not Connected')}</option>
     </select>
   </div>
 
@@ -127,7 +128,7 @@
     {#if customNodes.length === 0}
       <div class="flex items-center justify-center gap-2 py-4 border border-dashed border-border rounded-xl text-text-muted text-xs">
         <Server class="w-4 h-4" />
-        <span>No custom providers — use “Add Custom Provider” to register an OpenAI, Anthropic, or embedding endpoint</span>
+        <span>{t('No custom providers — use “Add Custom Provider” to register an OpenAI, Anthropic, or embedding endpoint')}</span>
       </div>
     {:else}
       <div class="grid grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-4 lg:grid-cols-3 xl:grid-cols-4">
@@ -149,7 +150,7 @@
   {#if oauthProviders.length > 0}
     <div class="flex flex-col gap-4">
       <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-        <h2 class="text-lg sm:text-xl font-semibold leading-tight text-text-main">OAuth Providers</h2>
+        <h2 class="text-lg sm:text-xl font-semibold leading-tight text-text-main">{t('OAuth Providers')}</h2>
         <Button size="sm" variant="outline" class="text-xs w-full sm:w-auto text-text-muted hover:text-text-main" onclick={() => notifications.info('Testing OAuth connections...')}>
           <Play class="w-3.5 h-3.5 mr-1 text-text-muted" /> Test All
         </Button>
@@ -172,7 +173,7 @@
   {#if freeTierProviders.length > 0}
     <div class="flex flex-col gap-4">
       <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-        <h2 class="text-lg sm:text-xl font-semibold leading-tight text-text-main">Free Tier Providers</h2>
+        <h2 class="text-lg sm:text-xl font-semibold leading-tight text-text-main">{t('Free Tier Providers')}</h2>
         <Button size="sm" variant="outline" class="text-xs w-full sm:w-auto text-text-muted hover:text-text-main" onclick={() => notifications.info('Testing Free Tier connections...')}>
           <Play class="w-3.5 h-3.5 mr-1 text-text-muted" /> Test All
         </Button>
@@ -196,7 +197,7 @@
   {#if apikeyProviders.length > 0}
     <div class="flex flex-col gap-4">
       <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-        <h2 class="text-lg sm:text-xl font-semibold leading-tight text-text-main">API Key Providers</h2>
+        <h2 class="text-lg sm:text-xl font-semibold leading-tight text-text-main">{t('API Key Providers')}</h2>
         <Button size="sm" variant="outline" class="text-xs w-full sm:w-auto text-text-muted hover:text-text-main" onclick={() => notifications.info('Testing API Key connections...')}>
           <Play class="w-3.5 h-3.5 mr-1 text-text-muted" /> Test All
         </Button>
@@ -226,11 +227,11 @@
   <!-- 5. Web Cookie Providers -->
   <div class="flex flex-col gap-4">
     <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-      <h2 class="text-lg sm:text-xl font-semibold leading-tight text-text-main">Web Cookie Providers</h2>
-      <span class="text-xs text-text-muted">browser-session lanes; some are opt-in</span>
+      <h2 class="text-lg sm:text-xl font-semibold leading-tight text-text-main">{t('Web Cookie Providers')}</h2>
+      <span class="text-xs text-text-muted">{t('browser-session lanes; some are opt-in')}</span>
     </div>
     {#if webCookieProviders.length === 0}
-      <p class="text-xs text-text-subtle">No web-cookie providers in the catalog.</p>
+      <p class="text-xs text-text-subtle">{t('No web-cookie providers in the catalog.')}</p>
     {:else}
       <div class="grid grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-4 lg:grid-cols-3 xl:grid-cols-4">
         {#each webCookieProviders as p (p.id)}
@@ -238,7 +239,7 @@
             {#if p.optInDisabled}
               <span
                 class="absolute right-2 top-2 z-10 rounded-full bg-surface-2 text-text-muted font-semibold px-2 py-0.5 text-[10px]"
-                title="disabled — enable via the Web Cookie Providers dashboard toggle / CLAUDE_WEB_ENABLED"
+                title={t('disabled — enable via the Web Cookie Providers dashboard toggle / CLAUDE_WEB_ENABLED')}
               >
                 disabled — enable via dashboard toggle / CLAUDE_WEB_ENABLED
               </span>

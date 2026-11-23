@@ -149,7 +149,7 @@
       use:portal
       bind:this={panel}
       role="listbox"
-      aria-label="Time window"
+      aria-label={t('Time window')}
       tabindex="-1"
       style={panelStyle}
       onkeydown={onKeydown}
@@ -172,7 +172,7 @@
 
       {#if showCustom}
         <div class="mt-1 border-t border-border-subtle px-3 pt-2 pb-1">
-          <label for="custom-period" class="text-[11px] font-medium text-text-muted">Custom window</label>
+          <label for="custom-period" class="text-[11px] font-medium text-text-muted">{t('Custom window')}</label>
           <div class="mt-1.5 flex items-center gap-1.5">
             <input
               id="custom-period"
@@ -197,7 +197,7 @@
               {customError}
             </p>
           {:else}
-            <p class="mt-1.5 text-[11px] text-text-muted">Days or hours, for example 14d or 12h.</p>
+            <p class="mt-1.5 text-[11px] text-text-muted">{t('Days or hours, for example 14d or 12h.')}</p>
           {/if}
         </div>
       {/if}

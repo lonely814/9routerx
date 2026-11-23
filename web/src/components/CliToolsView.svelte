@@ -629,7 +629,7 @@
       class="flex items-center gap-1.5 px-3 py-2 rounded-lg bg-surface-2 hover:bg-surface-3 text-text-main font-semibold text-xs border border-border transition cursor-pointer self-start sm:self-auto"
     >
       <RefreshCw class="w-3.5 h-3.5 {isLoading ? 'animate-spin text-brand-500' : 'text-text-muted'}" />
-      <span>Scan Installed Tools</span>
+      <span>{t('Scan Installed Tools')}</span>
     </button>
   </div>
 
@@ -681,7 +681,7 @@
       <input
         type="text"
         bind:value={searchQuery}
-        placeholder="Filter tools..."
+        placeholder={t('Filter tools...')}
         class="w-full pl-9 pr-3 py-1.5 rounded-xl bg-surface-2 border border-border text-xs text-text-main focus:outline-none focus:border-brand-500"
       />
     </div>
@@ -758,7 +758,7 @@
 
         <div class="flex items-center justify-between pt-2 border-t border-border/40 text-xs">
           <span class="text-[11px] text-brand-500 font-semibold flex items-center gap-1">
-            <span>Configure</span>
+            <span>{t('Configure')}</span>
             <ExternalLink class="w-3 h-3" />
           </span>
 
@@ -826,7 +826,7 @@
 
         <button
           type="button"
-          aria-label="Close tool details"
+          aria-label={t('Close tool details')}
           onclick={() => (selectedTool = null)}
           class="text-text-muted hover:text-text-main cursor-pointer"
         >
@@ -843,8 +843,8 @@
           <div class="p-3 rounded-xl bg-surface-2 border border-border/80 space-y-3">
             <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
               <div>
-                <span class="text-xs font-bold text-text-main">Auto-Compact Window</span>
-                <p class="text-[11px] text-text-muted">Threshold before Claude Code auto-compacts context</p>
+                <span class="text-xs font-bold text-text-main">{t('Auto-Compact Window')}</span>
+                <p class="text-[11px] text-text-muted">{t('Threshold before Claude Code auto-compacts context')}</p>
               </div>
               <div class="flex items-center gap-1 bg-surface-3 p-1 rounded-lg border border-border/60">
                 {#each ['default', '100k', '150k', '180k'] as opt}
@@ -861,8 +861,8 @@
 
             <div class="flex items-center justify-between pt-2 border-t border-border/40">
               <div>
-                <span class="text-xs font-bold text-text-main">1M Context Window</span>
-                <p class="text-[11px] text-text-muted">Suggest [1m] suffix for compatible models</p>
+                <span class="text-xs font-bold text-text-main">{t('1M Context Window')}</span>
+                <p class="text-[11px] text-text-muted">{t('Suggest [1m] suffix for compatible models')}</p>
               </div>
               <label class="relative inline-flex items-center cursor-pointer">
                 <input
@@ -881,7 +881,7 @@
         {#if selectedTool.envVars}
           <div class="space-y-2">
             <div class="flex items-center justify-between">
-              <span class="text-xs font-bold text-text-main">One-Click Environment Setup</span>
+              <span class="text-xs font-bold text-text-main">{t('One-Click Environment Setup')}</span>
               <button
                 type="button"
                 onclick={() => {
@@ -894,10 +894,10 @@
               >
                 {#if copiedSnippetId === 'all-env'}
                   <Check class="w-3.5 h-3.5 text-success" />
-                  <span>Copied!</span>
+                  <span>{t('Copied!')}</span>
                 {:else}
                   <Copy class="w-3.5 h-3.5" />
-                  <span>Copy Export Commands</span>
+                  <span>{t('Copy Export Commands')}</span>
                 {/if}
               </button>
             </div>
@@ -910,7 +910,7 @@
                     type="button"
                     onclick={() => copyText(`export ${key}="${key.includes('KEY') ? snippetApiKey : val}"`, key)}
                     class="p-1 text-text-subtle hover:text-text-main cursor-pointer"
-                    title="Copy single variable"
+                    title={t('Copy single variable')}
                   >
                     {#if copiedSnippetId === key}
                       <Check class="w-3 h-3 text-success" />
@@ -927,7 +927,7 @@
         <!-- Step-by-Step Instructions -->
         {#if selectedTool.instructions}
           <div class="space-y-2">
-            <span class="text-xs font-bold text-text-main">Setup Instructions</span>
+            <span class="text-xs font-bold text-text-main">{t('Setup Instructions')}</span>
             <div class="space-y-2 text-xs">
               {#each selectedTool.instructions as step, idx}
                 <div class="flex items-start gap-2.5 p-2.5 rounded-lg bg-surface-2 border border-border/60">

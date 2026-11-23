@@ -1,5 +1,6 @@
 <!-- 9RouterX — this file is part of a port maintained by https://github.com/yanstd888/ — https://t.me/aiclub_id -->
 <script lang="ts">
+  import { t } from '../../lib/i18n.svelte'
   /**
    * Hermes per-profile configuration card.
    *
@@ -262,14 +263,14 @@
   {#if checking}
     <div class="flex items-center gap-2 text-sm text-text-muted py-2">
       <Loader2 class="w-4 h-4 animate-spin" />
-      <span>Checking Hermes Agent…</span>
+      <span>{t('Checking Hermes Agent…')}</span>
     </div>
   {:else if settings && !settings.installed}
     <div class="flex flex-col gap-3 p-4 rounded-[10px] bg-yellow-500/10 border border-yellow-500/30">
       <div class="flex items-start gap-3">
         <AlertTriangle class="w-5 h-5 text-warning shrink-0" />
         <div class="flex-1">
-          <p class="font-semibold text-warning">Hermes Agent not detected locally</p>
+          <p class="font-semibold text-warning">{t('Hermes Agent not detected locally')}</p>
           <p class="text-sm text-text-muted">
             Install: curl -fsSL https://raw.githubusercontent.com/NousResearch/hermes-agent/main/scripts/install.sh | bash
           </p>
@@ -289,7 +290,7 @@
       {#if profiles.length > 1}
         <div class="flex flex-col gap-1.5">
           <div class="flex flex-wrap items-center gap-1.5">
-            <span class="text-xs font-semibold text-text-main mr-1">Profile</span>
+            <span class="text-xs font-semibold text-text-main mr-1">{t('Profile')}</span>
             {#each profiles as p (p.name)}
               {@const status = profileStatus(p, endpointContext)}
               <button
@@ -311,21 +312,21 @@
           <div class="flex items-center gap-2 text-xs text-text-muted">
             <Terminal class="w-3.5 h-3.5 shrink-0" />
             <code class="px-1.5 py-0.5 rounded bg-surface-2 font-mono text-[11px]">{runCommand}</code>
-            <button type="button" onclick={copyCommand} class="p-0.5 rounded cursor-pointer {copiedCommand === runCommand ? 'text-success' : 'text-text-muted hover:text-text-main'}" title="Copy command">
+            <button type="button" onclick={copyCommand} class="p-0.5 rounded cursor-pointer {copiedCommand === runCommand ? 'text-success' : 'text-text-muted hover:text-text-main'}" title={t('Copy command')}>
               {#if copiedCommand === runCommand}
                 <Check class="w-3.5 h-3.5" />
               {:else}
                 <Copy class="w-3.5 h-3.5" />
               {/if}
             </button>
-            <span class="hidden sm:inline">— every profile runs as its own agent with its own model.</span>
+            <span class="hidden sm:inline">{t('— every profile runs as its own agent with its own model.')}</span>
           </div>
         </div>
       {/if}
 
       <div class="flex flex-col gap-2">
         <div class="flex flex-col sm:flex-row sm:items-center gap-1.5 sm:gap-2">
-          <span class="text-xs font-semibold text-text-main sm:w-32 sm:text-right sm:text-sm">Endpoint</span>
+          <span class="text-xs font-semibold text-text-main sm:w-32 sm:text-right sm:text-sm">{t('Endpoint')}</span>
           <input
             type="text"
             bind:value={endpoint}
@@ -336,19 +337,19 @@
 
         {#if currentBaseUrl}
           <div class="flex flex-col sm:flex-row sm:items-center gap-1.5 sm:gap-2">
-            <span class="text-xs font-semibold text-text-main sm:w-32 sm:text-right sm:text-sm">Current</span>
+            <span class="text-xs font-semibold text-text-main sm:w-32 sm:text-right sm:text-sm">{t('Current')}</span>
             <span class="flex-1 min-w-0 truncate rounded bg-surface-2 px-2 py-1.5 text-xs text-text-muted">{currentBaseUrl}</span>
           </div>
         {/if}
 
         <div class="flex flex-col sm:flex-row sm:items-center gap-1.5 sm:gap-2">
-          <span class="text-xs font-semibold text-text-main sm:w-32 sm:text-right sm:text-sm">API Key</span>
+          <span class="text-xs font-semibold text-text-main sm:w-32 sm:text-right sm:text-sm">{t('API Key')}</span>
           <select
             bind:value={selectedApiKey}
             class="flex-1 min-w-0 px-2 py-1.5 rounded bg-surface border border-border text-xs text-text-main focus:outline-none focus:ring-1 focus:ring-brand-500/50"
           >
             {#if apiKeys.length === 0}
-              <option value="">No key created</option>
+              <option value="">{t('No key created')}</option>
             {/if}
             {#each apiKeys as key (key.id)}
               <option value={key.key}>{key.name || key.keyDisplay || key.key}</option>
@@ -357,11 +358,11 @@
         </div>
 
         <div class="flex flex-col sm:flex-row sm:items-center gap-1.5 sm:gap-2">
-          <span class="text-xs font-semibold text-text-main sm:w-32 sm:text-right sm:text-sm">Default Model</span>
+          <span class="text-xs font-semibold text-text-main sm:w-32 sm:text-right sm:text-sm">{t('Default Model')}</span>
           <input
             type="text"
             bind:value={selectedModel}
-            placeholder="provider/model-id"
+            placeholder={t('provider/model-id')}
             class="flex-1 min-w-0 px-2 py-1.5 rounded bg-surface border border-border text-xs text-text-main focus:outline-none focus:ring-1 focus:ring-brand-500/50"
           />
         </div>
@@ -386,12 +387,12 @@
                     type="text"
                     value={roleModels[role.id] ?? ''}
                     oninput={(e) => (roleModels = { ...roleModels, [role.id]: e.currentTarget.value })}
-                    placeholder="inherit default"
+                    placeholder={t('inherit default')}
                     class="flex-1 min-w-0 px-2 py-1.5 rounded bg-surface border border-border text-xs text-text-main focus:outline-none focus:ring-1 focus:ring-brand-500/50"
                   />
                 </div>
               {/each}
-              <p class="text-xs text-text-muted">Empty roles inherit the default model.</p>
+              <p class="text-xs text-text-muted">{t('Empty roles inherit the default model.')}</p>
             </div>
           {/if}
         </div>
@@ -422,7 +423,7 @@
             type="button"
             onclick={handleApplyAll}
             disabled={applyingAll}
-            title="Set the endpoint and API key on every profile that routes through 9RouterX. Each profile keeps its own model."
+            title={t('Set the endpoint and API key on every profile that routes through 9RouterX. Each profile keeps its own model.')}
             class="flex items-center gap-1.5 px-3 py-1.5 rounded-[10px] bg-surface-2 hover:bg-surface-3 text-text-main border border-border font-semibold text-xs disabled:opacity-50 cursor-pointer"
           >
             <Layers class="w-3.5 h-3.5" />Apply to All Profiles
@@ -457,10 +458,10 @@
     <div class="w-full max-w-2xl p-6 rounded-2xl bg-surface border border-border shadow-2xl space-y-4" onclick={(e) => e.stopPropagation()} role="presentation">
       <div class="flex items-start justify-between pb-3 border-b border-border">
         <div>
-          <h3 class="text-base font-bold text-text-main">Hermes Agent — Manual Configuration</h3>
+          <h3 class="text-base font-bold text-text-main">{t('Hermes Agent — Manual Configuration')}</h3>
           <p class="text-xs text-text-muted">Write these into {hermesHomeDir(activeProfile)} when you prefer to edit the files yourself.</p>
         </div>
-        <button type="button" onclick={() => (showManualConfig = false)} class="text-text-muted hover:text-text-main cursor-pointer" title="Close">
+        <button type="button" onclick={() => (showManualConfig = false)} class="text-text-muted hover:text-text-main cursor-pointer" title={t('Close')}>
           <X class="w-4 h-4" />
         </button>
       </div>

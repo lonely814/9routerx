@@ -737,8 +737,10 @@ func ForwardZed(w http.ResponseWriter, req *Request) error {
 		if !isEventStreamResponse(resp.Header) {
 			data, rerr := io.ReadAll(io.LimitReader(resp.Body, constants.MaxUpstreamBodyBytes))
 			if rerr != nil {
+				_ = resp.Body.Close()
 				return fmt.Errorf("read zed response: %w", rerr)
 			}
+			_ = resp.Body.Close()
 			if !proxy.LooksLikeSSE(data) && !zedLooksLikeJSONL(data) {
 				return zedWriteWhole(w, req, wire, data)
 			}
